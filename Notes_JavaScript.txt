@@ -1,0 +1,244 @@
+JavaScript Developer Roadmap (Zero to Hero)
+🟢 1. Basics of JavaScript
+
+What is JavaScript? (History & Usage)
+
+Adding JS to HTML (<script> tag, internal, external)
+
+Variables (var, let, const)
+
+Data Types (string, number, boolean, null, undefined, symbol, bigint)
+
+Operators (arithmetic, assignment, comparison, logical, ternary)
+
+Type Conversion & Coercion
+
+🟡 2. Control Flow
+
+Conditional Statements (if, else if, else, switch)
+
+Loops (for, while, do...while, for...of, for...in)
+
+Break & Continue
+
+Error Handling (try...catch...finally, throw)
+
+🔵 3. Functions
+
+Function Declaration & Expression
+
+Parameters & Arguments
+
+Return Values
+
+Arrow Functions () => {}
+
+Default Parameters
+
+Rest & Spread Operators (...)
+
+Callback Functions
+
+Higher-Order Functions
+
+🟠 4. Core Concepts
+
+Scope (Block, Function, Global)
+
+Hoisting
+
+Closures
+
+The this keyword
+
+Execution Context & Call Stack
+
+Lexical Environment
+
+Strict Mode ("use strict")
+
+🟣 5. Objects & Arrays
+
+Creating Objects ({} and new Object())
+
+Object Methods (Object.keys, Object.values, Object.entries)
+
+Object Destructuring
+
+Array Methods (map, filter, reduce, forEach, find, some, every, sort)
+
+Array & Object Spread/Rest
+
+JSON (JSON.stringify, JSON.parse)
+
+🔴 6. DOM Manipulation
+
+Selecting Elements (getElementById, querySelector, querySelectorAll)
+
+Changing Content & Styles (innerHTML, textContent, style)
+
+Adding & Removing Elements (appendChild, remove, insertBefore)
+
+Attributes & Classes (setAttribute, classList)
+
+Event Handling (addEventListener, event bubbling, delegation)
+
+🟤 7. Advanced JavaScript
+
+ES6+ Features (let/const, template literals, destructuring, modules, etc.)
+
+Spread & Rest Operator
+
+Default & Named Exports / Imports
+
+Promises (then, catch, finally)
+
+Async/Await
+
+Fetch API & AJAX
+
+Event Loop & Concurrency Model
+
+JavaScript Engine (V8 basics)
+
+⚫ 8. Object-Oriented Programming (OOP)
+
+Constructor Functions
+
+Prototypes & Prototype Chain
+
+class & extends
+
+super & constructor
+
+Encapsulation, Inheritance, Polymorphism
+
+Object.create()
+
+🔵 9. Functional Programming
+
+Pure Functions
+
+Immutability
+
+First-class Functions
+
+Higher-Order Functions
+
+Currying & Partial Application
+
+Composition & Pipelines
+
+🟢 10. Browser APIs
+
+LocalStorage & SessionStorage
+
+Geolocation API
+
+Fetch & API Calls
+
+Web Workers
+
+Canvas API
+
+Notifications & Clipboard API
+
+🟡 11. Asynchronous JavaScript (Deep Dive)
+
+Callbacks
+
+Promises (chaining)
+
+Async/Await with try...catch
+
+Parallel vs Sequential Execution
+
+Promise.all, Promise.race, Promise.any
+
+🔴 12. Advanced Topics
+
+Event Bubbling vs Capturing
+
+Debouncing & Throttling
+
+Modules (ESM vs CommonJS)
+
+Polyfills & Transpilers (Babel)
+
+Bundlers (Webpack, Vite, Parcel)
+
+Error Handling & Debugging (console, debugger)
+
+🟤 13. JavaScript in Depth
+
+Memory Management & Garbage Collection
+
+Closures (Advanced use cases)
+
+Currying & Memoization
+
+Shadowing & Temporal Dead Zone (TDZ)
+
+Design Patterns in JS (Singleton, Factory, Observer, etc.)
+
+🟣 14. Testing in JavaScript
+
+Unit Testing (Jest, Mocha, Jasmine)
+
+Integration & End-to-End Testing (Cypress, Playwright)
+
+Test-Driven Development (TDD)
+
+⚫ 15. Type Safety & Scaling
+
+TypeScript Basics (types, interfaces, generics)
+
+Flow / JSDoc annotations
+
+Large-Scale Application Structure
+
+🟢 16. Frameworks & Libraries
+
+React.js / Angular / Vue.js
+
+State Management (Redux, Zustand, Vuex)
+
+UI Libraries (Material UI, Tailwind CSS with JS)
+
+🟡 17. Backend with JavaScript
+
+Node.js Basics
+
+NPM & Package Management
+
+Express.js Framework
+
+REST APIs & CRUD Operations
+
+MongoDB / SQL with JS
+
+🔴 18. Tools & Best Practices
+
+Git & GitHub
+
+ESLint & Prettier
+
+Debugging Tools (Chrome DevTools)
+
+CI/CD with JavaScript projects
+
+Performance Optimization
+
+🟣 19. Advanced & Expert Level
+
+Event-Driven Architecture
+
+WebSockets & Real-time Apps
+
+Microservices with Node.js
+
+GraphQL with JavaScript
+
+Security in JS (XSS, CSRF, JWT, OAuth)
+
+Server-Side Rendering (Next.js, Nuxt.js)
