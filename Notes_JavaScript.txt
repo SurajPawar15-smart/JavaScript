@@ -1,5 +1,8 @@
+=======================================================
 JavaScript Developer Roadmap (Zero to Hero)
-🟢 1. Basics of JavaScript
+=======================================================
+
+🟢 1. Basics of JavaScript (Done)
 
 What is JavaScript? (History & Usage)
 
@@ -13,7 +16,7 @@ Operators (arithmetic, assignment, comparison, logical, ternary)
 
 Type Conversion & Coercion
 
-🟡 2. Control Flow
+🟡 2. Control Flow (Done)
 
 Conditional Statements (if, else if, else, switch)
 
@@ -23,7 +26,7 @@ Break & Continue
 
 Error Handling (try...catch...finally, throw)
 
-🔵 3. Functions
+🔵 3. Functions (Done)
 
 Function Declaration & Expression
 
@@ -41,7 +44,7 @@ Callback Functions
 
 Higher-Order Functions
 
-🟠 4. Core Concepts
+🟠 4. Core Concepts (Done)
 
 Scope (Block, Function, Global)
 
@@ -242,3 +245,3073 @@ GraphQL with JavaScript
 Security in JS (XSS, CSRF, JWT, OAuth)
 
 Server-Side Rendering (Next.js, Nuxt.js)
+
+====================================================================
+1.Basics of JavaScript (Done)
+What is JavaScript? (History & Usage)
+=================================================================
+📌 What is JavaScript?
+
+JavaScript (JS) is a high-level, interpreted programming language that makes web pages interactive, dynamic, and user-friendly.
+
+It runs on the client side (browser) but also on the server side using environments like Node.js.
+
+It follows the ECMAScript standard.
+
+👉 In short:
+
+HTML → Defines structure of a webpage.
+
+CSS → Defines style and presentation.
+
+JavaScript → Defines behavior (adds logic, interactivity, and dynamic content).
+
+📜 History of JavaScript
+
+1995 → Created by Brendan Eich at Netscape in just 10 days.
+
+Initially called Mocha, then renamed to LiveScript, and finally JavaScript.
+
+1997 → Standardized by ECMA International as ECMAScript (ES).
+
+Over the years, updates like ES5 (2009), ES6/ES2015, and beyond have introduced powerful features (classes, arrow functions, async/await, modules, etc.).
+
+⚡ Fun fact: Despite its name, JavaScript is not related to Java. The name was mainly for marketing reasons, as Java was popular at that time.
+
+🎯 Usage of JavaScript
+
+JavaScript is everywhere today:
+
+Web Development
+
+Adds interactivity to web pages.
+
+Example: Form validation, sliders, popups, animations.
+
+<!DOCTYPE html>
+<html>
+<body>
+  <h2>JavaScript Example</h2>
+  <button onclick="greet()">Click Me</button>
+
+  <script>
+    function greet() {
+      alert("Hello! Welcome to JavaScript.");
+    }
+  </script>
+</body>
+</html>
+
+
+Web Applications
+
+Frameworks like React, Angular, Vue make Single Page Applications (SPAs).
+
+Example: Showing current time dynamically.
+
+<p id="time"></p>
+<script>
+  document.getElementById("time").innerHTML = new Date().toLocaleTimeString();
+</script>
+
+
+Server-Side Development
+
+Using Node.js, JavaScript can build scalable backend applications.
+
+// Simple Node.js server
+const http = require('http');
+
+http.createServer((req, res) => {
+  res.write("Hello from Node.js!");
+  res.end();
+}).listen(3000);
+
+
+Mobile Apps
+
+Frameworks like React Native, Ionic allow building cross-platform apps.
+
+Game Development
+
+Libraries like Phaser.js let you build 2D games.
+
+AI & Machine Learning
+
+Libraries like TensorFlow.js enable running ML models in browsers.
+
+✅ Summary
+
+JavaScript is a lightweight, versatile language.
+
+Born in 1995 at Netscape → Standardized as ECMAScript.
+
+Used for frontend, backend, mobile apps, games, and even AI.
+
+Today, it’s one of the core technologies of the web alongside HTML & CSS.
+
+========================================================
+Adding JS to HTML (<script> tag, internal, external)
+========================================================
+📌 Adding JavaScript to HTML
+
+There are 3 main ways to include JavaScript in an HTML document:
+
+1️⃣ Inline JavaScript (inside HTML tag)
+
+You can write JavaScript directly inside an element’s attribute such as onclick, onmouseover, etc.
+
+👉 Example:
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Inline JavaScript Example</title>
+</head>
+<body>
+  <button onclick="alert('Hello! Inline JS works.')">Click Me</button>
+</body>
+</html>
+
+
+✅ Used for small snippets, but not recommended for larger projects (hard to maintain).
+
+2️⃣ Internal JavaScript (inside <script> tag in HTML)
+
+JavaScript is placed inside <script> tags within the HTML file.
+You can put it in <head> or <body>.
+
+👉 Example:
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Internal JavaScript Example</title>
+  <script>
+    function greet() {
+      alert("Hello from Internal JavaScript!");
+    }
+  </script>
+</head>
+<body>
+  <button onclick="greet()">Click Me</button>
+</body>
+</html>
+
+
+✅ Good for small projects or quick testing.
+
+3️⃣ External JavaScript (separate .js file)
+
+JavaScript code is written in a separate .js file and linked using <script src="...">.
+
+👉 Example:
+
+index.html
+<!DOCTYPE html>
+<html>
+<head>
+  <title>External JavaScript Example</title>
+  <script src="script.js"></script>
+</head>
+<body>
+  <button onclick="greet()">Click Me</button>
+</body>
+</html>
+
+script.js
+function greet() {
+  alert("Hello from External JavaScript!");
+}
+
+
+✅ Best practice for large projects → keeps HTML and JS separate and reusable.
+
+📌 Where to Place <script> Tag?
+
+In <head> → JS loads before content, may block page rendering.
+
+At end of <body> → Recommended for better performance (ensures HTML loads first).
+
+👉 Example (best practice):
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Script Placement</title>
+</head>
+<body>
+  <h1>Welcome</h1>
+  <button onclick="greet()">Click Me</button>
+
+  <!-- JavaScript loaded after HTML -->
+  <script>
+    function greet() {
+      alert("Best practice: Script at the bottom!");
+    }
+  </script>
+</body>
+</html>
+
+
+✅ Summary
+
+Inline → onclick="..." (quick but not recommended).
+
+Internal → <script> ... </script> inside HTML.
+
+External → Separate .js file linked with <script src="...">.
+
+===============================
+Variables (var, let, const)
+===============================
+What are Variables in JavaScript?
+
+Variables are containers for storing data values.
+In JavaScript, we can declare variables using:
+
+var
+
+let
+
+const
+
+🟢 1. var (Old way – function scoped)
+
+Introduced in 1995 (original JS).
+
+Function-scoped → accessible only inside the function where declared.
+
+Can be re-declared and updated.
+
+Gets hoisted (moved to top of scope with undefined).
+
+👉 Example:
+
+var name = "Suraj";
+console.log(name); // Suraj
+
+var name = "Pawar"; // Re-declared
+console.log(name); // Pawar
+
+// Function scope
+function test() {
+  var x = 10;
+  console.log(x); // 10
+}
+// console.log(x); // ❌ Error (x not defined outside function)
+
+🟡 2. let (Modern – block scoped)
+
+Introduced in ES6 (2015).
+
+Block-scoped → accessible only inside { }.
+
+Can be updated, but not re-declared in the same scope.
+
+Supports hoisting, but not initialized (gives error if used before declaration).
+
+👉 Example:
+
+let age = 25;
+console.log(age); // 25
+
+age = 26; // ✅ Update allowed
+console.log(age); // 26
+
+// let age = 30; ❌ Error (can't re-declare in same scope)
+
+// Block scope
+{
+  let city = "Pune";
+  console.log(city); // Pune
+}
+// console.log(city); // ❌ Error (city not accessible outside block)
+
+🔵 3. const (Constant – block scoped)
+
+Introduced in ES6 (2015).
+
+Block-scoped like let.
+
+Must be initialized at declaration.
+
+Cannot be updated or re-declared.
+
+👉 Example:
+
+const country = "India";
+console.log(country); // India
+
+// country = "USA"; ❌ Error (can't change value)
+
+// const country; ❌ Error (must initialize when declared)
+
+// Block scope
+{
+  const pi = 3.14159;
+  console.log(pi); // 3.14159
+}
+// console.log(pi); // ❌ Error (not accessible outside block)
+
+📊 Quick Comparison Table
+Feature	var	let	const
+Scope	Function-scoped	Block-scoped	Block-scoped
+Re-declaration	✅ Allowed	❌ Not allowed	❌ Not allowed
+Update value	✅ Allowed	✅ Allowed	❌ Not allowed
+Hoisting	✅ Yes (initialized as undefined)	✅ Yes (but not initialized)	✅ Yes (but not initialized)
+Use case	Old code (avoid now)	Variables that change	Constants, fixed values
+🎯 Example (All together)
+var x = 10;
+let y = 20;
+const z = 30;
+
+x = 15;   // ✅ allowed
+y = 25;   // ✅ allowed
+// z = 35; // ❌ Error (const can't change)
+
+console.log(x, y, z); // 15 25 30
+
+
+✅ Best Practice (Modern JS):
+
+Use let → for variables that change.
+
+Use const → for constants or values that don’t change.
+
+Avoid var in new code.
+
+====================================================================================
+Data Types (string, number, boolean, null, undefined, symbol, bigint) with examples
+====================================================================================
+JavaScript Data Types
+
+In JavaScript, data types are divided into two categories:
+
+Primitive Data Types (immutable, single value)
+
+string
+
+number
+
+boolean
+
+null
+
+undefined
+
+symbol
+
+bigint
+
+Non-Primitive (Reference) Data Types
+
+Objects, Arrays, Functions (we’ll cover later).
+
+Here, we’ll focus on primitive types.
+
+1️⃣ String
+
+Represents text (characters inside quotes).
+
+Can use "double", 'single', or `` backticks (template literals).
+
+👉 Example:
+
+let firstName = "Suraj";   // double quotes
+let lastName = 'Pawar';    // single quotes
+let fullName = `${firstName} ${lastName}`; // template literal
+
+console.log(fullName); // Suraj Pawar
+console.log(typeof fullName); // string
+
+2️⃣ Number
+
+Represents integers, decimals, or floating-point numbers.
+
+Special values: Infinity, -Infinity, NaN (Not a Number).
+
+👉 Example:
+
+let age = 25;
+let price = 99.99;
+let infinityValue = Infinity;
+let notNumber = "abc" / 2; // NaN
+
+console.log(age, price); // 25 99.99
+console.log(typeof price); // number
+console.log(notNumber); // NaN
+
+3️⃣ Boolean
+
+Represents true or false values.
+
+Often used in conditions and logic.
+
+👉 Example:
+
+let isStudent = true;
+let isWorking = false;
+
+console.log(isStudent); // true
+console.log(typeof isWorking); // boolean
+
+4️⃣ Null
+
+Represents an intentional empty value (nothing).
+
+Type is "object" (this is a long-standing JavaScript bug).
+
+👉 Example:
+
+let data = null;
+console.log(data); // null
+console.log(typeof data); // object (weird but true)
+
+5️⃣ Undefined
+
+A variable declared but not assigned a value.
+
+👉 Example:
+
+let city;
+console.log(city); // undefined
+console.log(typeof city); // undefined
+
+6️⃣ Symbol (ES6)
+
+Used to create unique identifiers.
+
+Even if symbols have the same description, they are different.
+
+👉 Example:
+
+let sym1 = Symbol("id");
+let sym2 = Symbol("id");
+
+console.log(sym1 === sym2); // false
+console.log(typeof sym1);   // symbol
+
+7️⃣ BigInt (ES11 / ES2020)
+
+Used for very large integers beyond Number.MAX_SAFE_INTEGER (2^53 - 1).
+
+Add n at the end of the number.
+
+👉 Example:
+
+let bigNumber = 123456789012345678901234567890n;
+let normalNumber = 100;
+
+console.log(bigNumber); 
+console.log(typeof bigNumber); // bigint
+
+📊 Summary Table
+Data Type	Example	typeof result
+String	"Hello"	string
+Number	42, 3.14, NaN	number
+Boolean	true, false	boolean
+Null	null	object (bug)
+Undefined	let x;	undefined
+Symbol	Symbol("id")	symbol
+BigInt	12345678901234567890n	bigint
+
+⚡ Real-World Example (Mixing Data Types):
+
+let userName = "Suraj";     // string
+let userAge = 25;           // number
+let isAdmin = false;        // boolean
+let profilePic = null;      // null
+let phone;                  // undefined
+let id = Symbol("userID");  // symbol
+let bigID = 987654321987654321n; // bigint
+
+console.log(typeof userName); // string
+console.log(typeof userAge);  // number
+console.log(typeof isAdmin);  // boolean
+console.log(typeof profilePic); // object
+console.log(typeof phone);    // undefined
+console.log(typeof id);       // symbol
+console.log(typeof bigID);    // bigint
+
+====================================================================
+Operators (arithmetic, assignment, comparison, logical, ternary)
+====================================================================
+JavaScript Operators
+
+Operators are special symbols used to perform operations on values and variables.
+Main categories:
+
+Arithmetic Operators
+
+Assignment Operators
+
+Comparison Operators
+
+Logical Operators
+
+Ternary Operator (Conditional)
+
+1️⃣ Arithmetic Operators
+
+Used for mathematical calculations.
+
+Operator	Description	Example (a = 10, b = 3)	Result
++	Addition	a + b	13
+-	Subtraction	a - b	7
+*	Multiplication	a * b	30
+/	Division	a / b	3.333…
+%	Modulus (remainder)	a % b	1
+**	Exponentiation	a ** b	1000
+++	Increment (add 1)	a++ → 11	
+--	Decrement (subtract 1)	b-- → 2	
+
+👉 Example:
+
+let a = 10, b = 3;
+
+console.log(a + b); // 13
+console.log(a - b); // 7
+console.log(a * b); // 30
+console.log(a / b); // 3.333...
+console.log(a % b); // 1
+console.log(a ** b); // 1000
+
+2️⃣ Assignment Operators
+
+Used to assign values.
+
+Operator	Description	Example (x = 5)	Result
+=	Assign	x = 5	5
++=	Add and assign	x += 2	7
+-=	Subtract and assign	x -= 2	3
+*=	Multiply and assign	x *= 2	10
+/=	Divide and assign	x /= 2	2.5
+%=	Modulus and assign	x %= 2	1
+
+👉 Example:
+
+let x = 5;
+x += 3;  // x = 8
+x *= 2;  // x = 16
+console.log(x); // 16
+
+3️⃣ Comparison Operators
+
+Used to compare values (return true/false).
+
+Operator	Description	Example (a = 5, b = "5", c = 10)	Result
+==	Equal (value only)	a == b	true
+===	Strict equal (value + type)	a === b	false
+!=	Not equal (value only)	a != c	true
+!==	Strict not equal	a !== b	true
+>	Greater than	c > a	true
+<	Less than	a < c	true
+>=	Greater than or equal	a >= 5	true
+<=	Less than or equal	a <= 4	false
+
+👉 Example:
+
+let a = 5, b = "5", c = 10;
+
+console.log(a == b);  // true
+console.log(a === b); // false
+console.log(a != c);  // true
+console.log(c > a);   // true
+
+4️⃣ Logical Operators
+
+Used for conditions (return true/false).
+
+Operator	Description	Example (x = true, y = false)	Result
+&&	Logical AND	x && y	false
+||	Logical OR	`x	
+!	Logical NOT	!x	false
+
+👉 Example:
+
+let x = true, y = false;
+
+console.log(x && y); // false
+console.log(x || y); // true
+console.log(!x);     // false
+
+5️⃣ Ternary Operator (? :)
+
+A shorthand for if-else.
+
+👉 Syntax:
+
+condition ? valueIfTrue : valueIfFalse;
+
+
+👉 Example:
+
+let age = 18;
+let result = (age >= 18) ? "Eligible to vote" : "Not eligible";
+console.log(result); // Eligible to vote
+
+✅ Quick Summary
+
+Arithmetic → + - * / % ** ++ --
+
+Assignment → = += -= *= /= %=
+
+Comparison → == === != !== > < >= <=
+
+Logical → && || !
+
+Ternary → condition ? trueValue : falseValue
+
+========================================
+Type Conversion & Coercion
+========================================
+Type Conversion vs Type Coercion
+
+Type Conversion (Explicit Casting)
+→ You manually convert a value from one type to another using built-in functions (Number(), String(), Boolean()).
+
+Type Coercion (Implicit Casting)
+→ JavaScript automatically converts data types when different types are used together (behind the scenes).
+
+1️⃣ Type Conversion (Explicit)
+
+You decide how to convert the type.
+
+👉 Example 1: String → Number
+
+let str = "123";
+let num = Number(str);
+
+console.log(num); // 123
+console.log(typeof num); // number
+
+
+👉 Example 2: Number → String
+
+let age = 25;
+let strAge = String(age);
+
+console.log(strAge); // "25"
+console.log(typeof strAge); // string
+
+
+👉 Example 3: Truthy/Falsy → Boolean
+
+console.log(Boolean(1));      // true
+console.log(Boolean(0));      // false
+console.log(Boolean("hello"));// true
+console.log(Boolean(""));     // false
+console.log(Boolean(null));   // false
+
+
+👉 Example 4: Parse methods
+
+let strNum = "50.75";
+console.log(parseInt(strNum));   // 50
+console.log(parseFloat(strNum)); // 50.75
+
+2️⃣ Type Coercion (Implicit)
+
+JavaScript automatically converts data types depending on context.
+
+👉 Example 1: String + Number → String
+
+console.log("5" + 2); // "52" (number coerced to string)
+
+
+👉 Example 2: Number - String → Number
+
+console.log("5" - 2); // 3 (string coerced to number)
+console.log("5" * "2"); // 10
+
+
+👉 Example 3: Boolean coercion in operations
+
+console.log(true + 1);  // 2  (true → 1)
+console.log(false + 1); // 1  (false → 0)
+
+
+👉 Example 4: Equality operators (== vs ===)
+
+console.log(5 == "5");  // true  (coercion: "5" → 5)
+console.log(5 === "5"); // false (strict: no coercion)
+
+⚡ Special Cases of Coercion
+console.log("" + 1);    // "1"   (string coercion)
+console.log("5" - 1);   // 4     (number coercion)
+console.log(null + 1);  // 1     (null → 0)
+console.log(undefined + 1); // NaN (undefined → NaN)
+
+📊 Summary Table
+Value	Number(value)	String(value)	Boolean(value)
+"123"	123	"123"	true
+"abc"	NaN	"abc"	true
+true	1	"true"	true
+false	0	"false"	false
+null	0	"null"	false
+undefined	NaN	"undefined"	false
+"" (empty)	0	""	false
+
+✅ Key Takeaway
+
+Type Conversion → Explicit, you control it (Number("5")).
+
+Type Coercion → Implicit, JS does it automatically ("5" - 2 → 3).
+
+======================================================================
+2. Control Flow (Done)
+Conditional Statements (if, else if, else, switch) with best examples
+======================================================================
+. if Statement
+
+Executes a block of code if the condition is true.
+
+👉 Example:
+
+let age = 20;
+
+if (age >= 18) {
+  console.log("You are eligible to vote.");
+}
+
+
+✅ Output → You are eligible to vote.
+
+📌 2. if ... else Statement
+
+Provides an alternative block if the condition is false.
+
+👉 Example:
+
+let isLoggedIn = false;
+
+if (isLoggedIn) {
+  console.log("Welcome back, User!");
+} else {
+  console.log("Please log in first.");
+}
+
+
+✅ Output → Please log in first.
+
+📌 3. if ... else if ... else Ladder
+
+Used when you need to test multiple conditions.
+
+👉 Example:
+
+let marks = 75;
+
+if (marks >= 90) {
+  console.log("Grade: A+");
+} else if (marks >= 75) {
+  console.log("Grade: A");
+} else if (marks >= 50) {
+  console.log("Grade: B");
+} else {
+  console.log("Grade: Fail");
+}
+
+
+✅ Output → Grade: A
+
+📌 4. switch Statement
+
+Used when you want to compare the same variable with multiple values.
+
+Cleaner than multiple else if statements.
+
+Uses case and requires break to stop execution.
+
+👉 Example:
+
+let day = 3;
+let dayName;
+
+switch (day) {
+  case 1:
+    dayName = "Monday";
+    break;
+  case 2:
+    dayName = "Tuesday";
+    break;
+  case 3:
+    dayName = "Wednesday";
+    break;
+  case 4:
+    dayName = "Thursday";
+    break;
+  case 5:
+    dayName = "Friday";
+    break;
+  case 6:
+    dayName = "Saturday";
+    break;
+  case 7:
+    dayName = "Sunday";
+    break;
+  default:
+    dayName = "Invalid day";
+}
+console.log(dayName);
+
+
+✅ Output → Wednesday
+
+📊 Quick Comparison
+Statement	Use Case
+if	Single condition
+if...else	Two-way choice
+else if	Multiple conditions
+switch	Multiple fixed values for a single variable
+⚡ Real-World Example (Login System)
+let role = "admin";
+
+if (role === "admin") {
+  console.log("Access granted: You can manage everything.");
+} else if (role === "editor") {
+  console.log("Access granted: You can edit content.");
+} else if (role === "user") {
+  console.log("Access granted: You can view content.");
+} else {
+  console.log("Access denied: Unknown role.");
+}
+
+
+✅ Output → Access granted: You can manage everything.
+
+
+=======================================================
+Loops (for, while, do...while, for...of, for...in)
+=======================================================
+. for Loop
+
+Used when you know how many times you want to repeat something.
+
+👉 Example: Print numbers 1 to 5
+
+for (let i = 1; i <= 5; i++) {
+  console.log("Number:", i);
+}
+
+
+✅ Output:
+
+Number: 1  
+Number: 2  
+Number: 3  
+Number: 4  
+Number: 5  
+
+📌 2. while Loop
+
+Executes code while a condition is true.
+Used when you don’t know the exact number of iterations in advance.
+
+👉 Example: Print numbers 1 to 5
+
+let i = 1;
+while (i <= 5) {
+  console.log("While Loop:", i);
+  i++;
+}
+
+📌 3. do...while Loop
+
+Like while, but ensures the block runs at least once, even if the condition is false.
+
+👉 Example: Run at least once
+
+let j = 6;
+do {
+  console.log("Do While Loop:", j);
+  j++;
+} while (j <= 5);
+
+
+✅ Output:
+
+Do While Loop: 6
+
+
+(Even though condition was false, it ran once.)
+
+📌 4. for...of Loop
+
+Used to iterate over arrays, strings, or other iterable objects.
+
+👉 Example: Loop through array
+
+let fruits = ["Apple", "Banana", "Mango"];
+
+for (let fruit of fruits) {
+  console.log("Fruit:", fruit);
+}
+
+
+✅ Output:
+
+Fruit: Apple  
+Fruit: Banana  
+Fruit: Mango  
+
+
+👉 Example: Loop through string
+
+let word = "JS";
+
+for (let char of word) {
+  console.log("Character:", char);
+}
+
+
+✅ Output:
+
+Character: J  
+Character: S  
+
+📌 5. for...in Loop
+
+Used to iterate over object properties (keys).
+
+👉 Example: Loop through object
+
+let user = { name: "Suraj", age: 25, country: "India" };
+
+for (let key in user) {
+  console.log(key, ":", user[key]);
+}
+
+
+✅ Output:
+
+name : Suraj  
+age : 25  
+country : India  
+
+📊 Quick Comparison
+Loop Type	Best Use Case
+for	Known number of iterations
+while	Unknown number of iterations (runs while condition is true)
+do...while	Run at least once, then check condition
+for...of	Iterate over arrays, strings, sets, maps
+for...in	Iterate over object keys
+⚡ Real-World Example: Shopping Cart
+let cart = [
+  { item: "Book", price: 200 },
+  { item: "Pen", price: 50 },
+  { item: "Bag", price: 500 }
+];
+
+let total = 0;
+for (let product of cart) {
+  total += product.price;
+}
+console.log("Total Price:", total);
+
+
+✅ Output → Total Price: 750
+
+============================================
+Break & Continue
+============================================
+1. break Statement
+
+👉 Used to exit a loop completely when a condition is met.
+
+📌 Example: Stop searching after finding an item in stock
+let products = ["Laptop", "Phone", "Tablet", "Camera"];
+let search = "Tablet";
+
+for (let item of products) {
+  console.log("Checking:", item);
+
+  if (item === search) {
+    console.log("✅ Found:", item);
+    break; // Exit the loop
+  }
+}
+
+
+✅ Output:
+
+Checking: Laptop  
+Checking: Phone  
+Checking: Tablet  
+✅ Found: Tablet
+
+
+👉 The loop stops after finding Tablet.
+
+🔹 2. continue Statement
+
+👉 Used to skip the current iteration and move to the next one.
+
+📌 Example: Skip out-of-stock items in a shopping cart
+let cart = [
+  { item: "Book", stock: true },
+  { item: "Pen", stock: false },
+  { item: "Bag", stock: true }
+];
+
+for (let product of cart) {
+  if (!product.stock) {
+    console.log("⛔ Skipping:", product.item);
+    continue; // Skip this product
+  }
+  console.log("🛒 Adding to cart:", product.item);
+}
+
+
+✅ Output:
+
+🛒 Adding to cart: Book  
+⛔ Skipping: Pen  
+🛒 Adding to cart: Bag  
+
+
+👉 The loop skips the Pen since stock is false.
+
+🔹 3. Real-Life Example: Login Attempts (using break)
+let correctPassword = "12345";
+let attempts = ["11111", "22222", "12345", "44444"];
+
+for (let attempt of attempts) {
+  if (attempt === correctPassword) {
+    console.log("🔐 Login Successful!");
+    break; // Stop checking after correct password
+  }
+  console.log("❌ Wrong Password:", attempt);
+}
+
+
+✅ Output:
+
+❌ Wrong Password: 11111  
+❌ Wrong Password: 22222  
+🔐 Login Successful!
+
+🔹 4. Real-Life Example: Skipping Invalid Emails (using continue)
+let emails = ["test@gmail.com", "", "user@yahoo.com", null, "admin@site.com"];
+
+for (let email of emails) {
+  if (!email) {
+    console.log("⚠️ Invalid email, skipping...");
+    continue; // Skip empty/null emails
+  }
+  console.log("📩 Sending mail to:", email);
+}
+
+
+✅ Output:
+
+📩 Sending mail to: test@gmail.com  
+⚠️ Invalid email, skipping...  
+📩 Sending mail to: user@yahoo.com  
+⚠️ Invalid email, skipping...  
+📩 Sending mail to: admin@site.com  
+
+
+✨ Quick Summary
+
+break → Exit the loop immediately.
+
+continue → Skip current iteration, continue with the next.
+
+============================================
+Error Handling (try...catch...finally, throw)
+============================================
+JavaScript provides:
+
+try...catch → To handle runtime errors.
+
+finally → Runs cleanup code regardless of success/failure.
+
+throw → Used to create custom errors.
+
+Let’s see real-world best examples 👇
+
+🔹 1. Basic try...catch
+
+👉 Prevent app crash when error occurs.
+
+try {
+  let user = JSON.parse('{"name":"Suraj", "age":25}');
+  console.log("✅ User loaded:", user.name);
+} catch (error) {
+  console.log("❌ Failed to parse user data:", error.message);
+}
+
+
+✅ Output:
+
+✅ User loaded: Suraj
+
+
+If JSON was invalid → ❌ Failed to parse user data: Unexpected token ...
+
+🔹 2. finally (Cleanup Always Runs)
+
+👉 Example: Closing DB connection or loader spinner.
+
+function fetchData() {
+  try {
+    console.log("⏳ Fetching data...");
+    throw new Error("Server not responding!");
+  } catch (error) {
+    console.log("❌ Error:", error.message);
+  } finally {
+    console.log("🔄 Closing connection / Hiding loader...");
+  }
+}
+
+fetchData();
+
+
+✅ Output:
+
+⏳ Fetching data...  
+❌ Error: Server not responding!  
+🔄 Closing connection / Hiding loader...
+
+🔹 3. throw (Custom Errors)
+
+👉 Example: Validate form input.
+
+function registerUser(name, age) {
+  try {
+    if (!name) throw new Error("Name is required!");
+    if (age < 18) throw new Error("User must be 18+ to register.");
+
+    console.log(`✅ Registered: ${name}, Age: ${age}`);
+  } catch (error) {
+    console.log("⚠️ Registration failed:", error.message);
+  }
+}
+
+registerUser("Suraj", 25);   // Works
+registerUser("", 20);        // Error: Name is required
+registerUser("Ravi", 15);    // Error: Must be 18+
+
+
+✅ Output:
+
+✅ Registered: Suraj, Age: 25  
+⚠️ Registration failed: Name is required!  
+⚠️ Registration failed: User must be 18+ to register.
+
+🔹 4. Real-Life Example: API Call with try...catch
+
+👉 Handling API fetch errors.
+
+async function getUsers() {
+  try {
+    let response = await fetch("https://jsonplaceholder.typicode.com/users");
+
+    if (!response.ok) {
+      throw new Error("Failed to fetch users!");
+    }
+
+    let data = await response.json();
+    console.log("✅ Users:", data);
+  } catch (error) {
+    console.log("❌ API Error:", error.message);
+  } finally {
+    console.log("🔄 API call completed!");
+  }
+}
+
+getUsers();
+
+
+✅ Handles cases like no internet, wrong URL, or server errors.
+
+🔹 5. Nested try...catch Example
+
+👉 Example: Payment process (card check → transaction).
+
+function processPayment(card, amount) {
+  try {
+    if (!card) throw new Error("Card not found!");
+
+    try {
+      if (amount <= 0) throw new Error("Invalid amount!");
+      console.log(`✅ Payment of $${amount} successful.`);
+    } catch (err) {
+      console.log("⚠️ Transaction failed:", err.message);
+    }
+
+  } catch (err) {
+    console.log("❌ Payment error:", err.message);
+  } finally {
+    console.log("🔄 Closing payment session...");
+  }
+}
+
+processPayment("Visa", 100);   // Works  
+processPayment("Visa", 0);     // Transaction failed  
+processPayment("", 200);       // Card not found  
+
+
+✅ Summary Table
+
+Statement	Purpose
+try	Test a block of code.
+catch	Handle error if occurs.
+finally	Always runs (cleanup).
+throw	Create a custom error.
+
+============================================================
+3. Functions
+Function Declaration & Expression
+============================================================
+In JavaScript, functions are building blocks. There are mainly two common ways to define them:
+
+Function Declaration
+
+Function Expression
+
+Let’s go step by step with examples 👇
+
+🔹 1. Function Declaration
+
+👉 A named function defined using the function keyword.
+
+Can be called before or after its definition (hoisting).
+
+📌 Example: Greeting Function
+// Function Declaration
+function greet(name) {
+  return `Hello, ${name}! 👋`;
+}
+
+console.log(greet("Suraj")); // ✅ Can call here also
+
+
+✅ Output:
+
+Hello, Suraj! 👋
+
+
+👉 Key Point: Function Declarations are hoisted (moved to the top of scope automatically).
+
+🔹 2. Function Expression
+
+👉 A function assigned to a variable (anonymous or named).
+
+Not hoisted → must be defined before use.
+
+📌 Example: Sum Function
+// Function Expression
+const sum = function(a, b) {
+  return a + b;
+};
+
+console.log(sum(5, 10)); // ✅ Must call after definition
+
+
+✅ Output:
+
+15
+
+🔹 Differences (Declaration vs Expression)
+Feature	Function Declaration	Function Expression
+Hoisting	✅ Yes (can call before defining)	❌ No (must define first)
+Name	Always has a name	Can be anonymous or named
+Usage	For reusable named functions	For callbacks, dynamic use
+Syntax	function myFunc(){}	const myFunc = function(){}
+🔹 3. Real-Life Examples
+✅ Function Declaration (Login check)
+function checkLogin(username, password) {
+  return username === "admin" && password === "12345";
+}
+
+console.log(checkLogin("admin", "12345")); // true
+console.log(checkLogin("guest", "12345")); // false
+
+✅ Function Expression (Button click handler)
+const handleClick = function() {
+  console.log("🔘 Button clicked!");
+};
+
+// Imagine attaching this in HTML button
+// <button onclick="handleClick()">Click Me</button>
+
+handleClick(); // Works like an event callback
+
+
+⚡ Bonus: Arrow Functions (a shorthand of Function Expression)
+
+const multiply = (x, y) => x * y;
+console.log(multiply(4, 5)); // 20
+
+============================================================
+Parameters & Arguments
+============================================================
+In JavaScript, parameters and arguments are related but not the same:
+
+🔹 Parameters vs Arguments
+
+Parameters → Variables defined in the function declaration (placeholders).
+
+Arguments → Actual values passed when calling the function.
+
+👉 Think of it like this:
+
+Parameters = Empty slots.
+
+Arguments = The actual data you put in those slots.
+
+🔹 Example 1: Simple Function
+// Parameters: name, age
+function introduce(name, age) {
+  console.log(`Hello, my name is ${name} and I am ${age} years old.`);
+}
+
+// Arguments: "Suraj", 25
+introduce("Suraj", 25);
+
+
+✅ Output:
+
+Hello, my name is Suraj and I am 25 years old.
+
+🔹 Example 2: Real-Life Shopping Cart
+// Parameters: item, price, quantity
+function addToCart(item, price, quantity) {
+  let total = price * quantity;
+  console.log(`🛒 Added ${quantity} ${item}(s). Total = ₹${total}`);
+}
+
+// Arguments: "Book", 200, 3
+addToCart("Book", 200, 3);
+
+
+✅ Output:
+
+🛒 Added 3 Book(s). Total = ₹600
+
+🔹 Example 3: Default Parameters
+
+👉 You can give default values to parameters if no arguments are passed.
+
+function greetUser(name = "Guest") {
+  console.log(`Welcome, ${name}!`);
+}
+
+greetUser("Suraj"); // Argument: "Suraj"
+greetUser();        // No argument → uses default
+
+
+✅ Output:
+
+Welcome, Suraj!
+Welcome, Guest!
+
+🔹 Example 4: Rest Parameters (...)
+
+👉 Used when number of arguments is unknown.
+
+function calculateTotal(...prices) {
+  let sum = 0;
+  for (let price of prices) {
+    sum += price;
+  }
+  console.log("💰 Total Price:", sum);
+}
+
+// Multiple arguments
+calculateTotal(200, 150, 50, 100);
+
+
+✅ Output:
+
+💰 Total Price: 500
+
+🔹 Example 5: Real-Life — Sending Email
+function sendEmail(to, subject, message = "No message") {
+  console.log(`📧 Email sent to: ${to}`);
+  console.log(`   Subject: ${subject}`);
+  console.log(`   Message: ${message}`);
+}
+
+// Passing arguments
+sendEmail("user@gmail.com", "Welcome!", "Thanks for joining us.");
+sendEmail("admin@gmail.com", "Alert"); // message uses default
+
+
+✅ Output:
+
+📧 Email sent to: user@gmail.com
+   Subject: Welcome!
+   Message: Thanks for joining us.
+📧 Email sent to: admin@gmail.com
+   Subject: Alert
+   Message: No message
+
+
+✅ Summary Table
+
+Term	Meaning
+Parameters	Placeholders inside function definition (function(x, y))
+Arguments	Actual values passed (myFunc(5, 10))
+Default Parameters	Provide fallback values
+Rest Parameters	Handle unlimited arguments
+
+============================================================
+Return Values
+============================================================
+In JavaScript, functions can return values using the return keyword. The return statement:
+
+Sends a value back to the caller.
+
+Ends function execution immediately.
+
+Can return any data type (string, number, object, array, function, etc.).
+
+🔹 1. Basic Return Example
+function add(a, b) {
+  return a + b; // returning result
+}
+
+let sum = add(5, 10);
+console.log("✅ Sum is:", sum);
+
+
+✅ Output:
+
+✅ Sum is: 15
+
+🔹 2. Real-Life Example: Discount Calculation
+function calculateDiscount(price, discountPercent) {
+  let discount = (price * discountPercent) / 100;
+  let finalPrice = price - discount;
+  return finalPrice;
+}
+
+let discountedPrice = calculateDiscount(1000, 10); 
+console.log("💰 Final Price after Discount:", discountedPrice);
+
+
+✅ Output:
+
+💰 Final Price after Discount: 900
+
+🔹 3. Returning Objects
+
+👉 Useful for APIs or structured data.
+
+function createUser(name, age) {
+  return {
+    username: name,
+    userAge: age,
+    isActive: true
+  };
+}
+
+let user = createUser("Suraj", 25);
+console.log("👤 User:", user);
+
+
+✅ Output:
+
+👤 User: { username: 'Suraj', userAge: 25, isActive: true }
+
+🔹 4. Returning Arrays
+function getTopStudents() {
+  return ["Amit", "Neha", "Suraj"];
+}
+
+let students = getTopStudents();
+console.log("🎓 Top Students:", students);
+
+
+✅ Output:
+
+🎓 Top Students: [ 'Amit', 'Neha', 'Suraj' ]
+
+🔹 5. Real-Life Example: Checking Login
+function checkLogin(username, password) {
+  if (username === "admin" && password === "12345") {
+    return "✅ Login Successful!";
+  }
+  return "❌ Invalid Credentials!";
+}
+
+console.log(checkLogin("admin", "12345"));
+console.log(checkLogin("user", "wrongpass"));
+
+
+✅ Output:
+
+✅ Login Successful!
+❌ Invalid Credentials!
+
+🔹 6. Returning Functions (Higher-Order Function)
+
+👉 Useful in real-world apps (callbacks, closures, functional programming).
+
+function multiplier(factor) {
+  return function(number) {
+    return number * factor;
+  };
+}
+
+let double = multiplier(2);
+let triple = multiplier(3);
+
+console.log("Double of 5:", double(5));
+console.log("Triple of 5:", triple(5));
+
+
+✅ Output:
+
+Double of 5: 10
+Triple of 5: 15
+
+⚡ Summary
+
+return sends values back to where the function was called.
+
+Functions can return → numbers, strings, objects, arrays, functions.
+
+Useful for → calculations, API data, validation, reusable logic.
+
+============================================================
+Arrow Functions () => {}
+============================================================
+What are Arrow Functions?
+
+Introduced in ES6 (2015).
+
+A shorter syntax for writing functions.
+
+Do not have their own this, arguments, super, or new.target.
+
+Mostly used for callbacks, array methods, and concise functions.
+
+🔹 1. Basic Syntax
+// Normal function
+function add(a, b) {
+  return a + b;
+}
+
+// Arrow function
+const addArrow = (a, b) => a + b;
+
+console.log("Normal:", add(5, 10));
+console.log("Arrow:", addArrow(5, 10));
+
+
+✅ Output:
+
+Normal: 15
+Arrow: 15
+
+🔹 2. With One Parameter
+const greet = name => `Hello, ${name}! 👋`;
+
+console.log(greet("Suraj"));
+
+
+✅ Output:
+
+Hello, Suraj! 👋
+
+🔹 3. With No Parameters
+const welcome = () => "🎉 Welcome to our website!";
+
+console.log(welcome());
+
+
+✅ Output:
+
+🎉 Welcome to our website!
+
+🔹 4. Real-Life Example: Shopping Cart (Arrow Function + Map)
+let cart = [
+  { item: "Book", price: 200 },
+  { item: "Pen", price: 50 },
+  { item: "Bag", price: 500 }
+];
+
+// Arrow function inside map()
+let prices = cart.map(product => product.price);
+
+console.log("💰 Prices:", prices);
+
+
+✅ Output:
+
+💰 Prices: [200, 50, 500]
+
+🔹 5. Real-Life Example: Filtering Users
+let users = [
+  { name: "Suraj", age: 25 },
+  { name: "Amit", age: 17 },
+  { name: "Neha", age: 30 }
+];
+
+// Arrow function inside filter()
+let adults = users.filter(user => user.age >= 18);
+
+console.log("✅ Adults:", adults);
+
+
+✅ Output:
+
+✅ Adults: [ { name: 'Suraj', age: 25 }, { name: 'Neha', age: 30 } ]
+
+🔹 6. Arrow Function with this (Important Difference)
+
+👉 Normal functions create their own this, but arrow functions do not.
+
+// Normal function
+const person1 = {
+  name: "Suraj",
+  greet: function() {
+    console.log("Hello, I'm " + this.name);
+  }
+};
+person1.greet();
+
+// Arrow function (doesn't bind `this`)
+const person2 = {
+  name: "Suraj",
+  greet: () => {
+    console.log("Hello, I'm " + this.name); // `this` = undefined/global
+  }
+};
+person2.greet();
+
+
+✅ Output:
+
+Hello, I'm Suraj
+Hello, I'm undefined
+
+
+👉 So:
+
+Use normal functions when you need this.
+
+Use arrow functions for short callbacks where this isn’t needed.
+
+🔹 7. Real-Life Example: Event Listener
+// Normal function
+document.getElementById("btn").addEventListener("click", function() {
+  console.log("Button clicked ✅");
+});
+
+// Arrow function
+document.getElementById("btn").addEventListener("click", () => {
+  console.log("Button clicked with Arrow ✅");
+});
+
+⚡ Summary
+
+Arrow Functions = Short, cleaner, best for callbacks.
+
+Do not bind their own this → useful in avoiding bugs.
+
+Widely used in → array methods (map, filter, reduce), event handlers, async code.
+
+============================================================
+Default Parameters
+============================================================
+What are Default Parameters?
+
+Introduced in ES6 (2015).
+
+Allow you to set default values for function parameters if no argument (or undefined) is provided.
+
+Helps avoid bugs when values are missing.
+
+🔹 1. Basic Example
+function greet(name = "Guest") {
+  console.log(`Hello, ${name}! 👋`);
+}
+
+greet("Suraj");  // Argument passed
+greet();         // No argument → uses default
+
+
+✅ Output:
+
+Hello, Suraj! 👋
+Hello, Guest! 👋
+
+🔹 2. Real-Life Example: Online Shopping Delivery
+function placeOrder(item, delivery = "Standard Delivery") {
+  console.log(`🛒 Order placed: ${item} | 🚚 Delivery: ${delivery}`);
+}
+
+placeOrder("Laptop", "Express Delivery");
+placeOrder("Book"); // uses default
+
+
+✅ Output:
+
+🛒 Order placed: Laptop | 🚚 Delivery: Express Delivery
+🛒 Order placed: Book | 🚚 Delivery: Standard Delivery
+
+🔹 3. Real-Life Example: Event Booking
+function bookEvent(eventName, seats = 1) {
+  console.log(`🎟️ Booking confirmed for ${eventName} with ${seats} seat(s).`);
+}
+
+bookEvent("Movie Night", 3);
+bookEvent("Concert"); // default seats = 1
+
+
+✅ Output:
+
+🎟️ Booking confirmed for Movie Night with 3 seat(s).
+🎟️ Booking confirmed for Concert with 1 seat(s).
+
+🔹 4. Real-Life Example: Sending Emails
+function sendEmail(to, subject = "No Subject", message = "No Message") {
+  console.log(`📧 Email sent to: ${to}`);
+  console.log(`   Subject: ${subject}`);
+  console.log(`   Message: ${message}`);
+}
+
+sendEmail("user@gmail.com", "Welcome", "Thanks for joining us!");
+sendEmail("admin@gmail.com"); // subject & message use defaults
+
+
+✅ Output:
+
+📧 Email sent to: user@gmail.com
+   Subject: Welcome
+   Message: Thanks for joining us!
+📧 Email sent to: admin@gmail.com
+   Subject: No Subject
+   Message: No Message
+
+🔹 5. Default Parameter with Expression
+
+👉 You can even set default values based on other parameters.
+
+function calculatePrice(price, tax = price * 0.1) {
+  return price + tax;
+}
+
+console.log("Total Price:", calculatePrice(1000)); // tax = 100
+console.log("Total Price:", calculatePrice(1000, 200)); // custom tax
+
+
+✅ Output:
+
+Total Price: 1100
+Total Price: 1200
+
+⚡ Summary
+
+Default parameters prevent undefined issues.
+
+Can be simple values, objects, or even expressions.
+
+Widely used in e-commerce apps, booking systems, APIs, and form handling.
+
+============================================================
+Rest & Spread Operators (...)
+============================================================
+The ... (three dots) in JavaScript have two different roles depending on where they are used:
+
+Rest Operator (...) → Collects multiple values into an array.
+
+Spread Operator (...) → Spreads (expands) values from an array/object.
+
+Let’s go step by step with real-based examples 👇
+
+🔹 1. Rest Operator (...)
+
+👉 Used in function parameters to gather remaining arguments into an array.
+
+📌 Example: Shopping Cart (Unknown number of items)
+function addToCart(...items) {
+  console.log("🛒 Items in cart:", items);
+}
+
+addToCart("Book", "Pen", "Laptop");
+
+
+✅ Output:
+
+🛒 Items in cart: [ 'Book', 'Pen', 'Laptop' ]
+
+📌 Example: Calculate Total Price
+function calculateTotal(...prices) {
+  return prices.reduce((sum, price) => sum + price, 0);
+}
+
+console.log("💰 Total:", calculateTotal(200, 150, 50, 100));
+
+
+✅ Output:
+
+💰 Total: 500
+
+🔹 2. Spread Operator (...)
+
+👉 Used to expand arrays/objects into individual elements.
+
+📌 Example: Copying Arrays (Avoid mutation)
+let fruits = ["Apple", "Banana", "Mango"];
+let newFruits = [...fruits, "Orange"];
+
+console.log("🍎 Fruits:", newFruits);
+
+
+✅ Output:
+
+🍎 Fruits: [ 'Apple', 'Banana', 'Mango', 'Orange' ]
+
+📌 Example: Merging Arrays
+let electronics = ["Laptop", "Phone"];
+let accessories = ["Charger", "Headphones"];
+
+let storeItems = [...electronics, ...accessories];
+console.log("🏬 Store Items:", storeItems);
+
+
+✅ Output:
+
+🏬 Store Items: [ 'Laptop', 'Phone', 'Charger', 'Headphones' ]
+
+📌 Example: Copying & Updating Objects
+let user = { name: "Suraj", age: 25 };
+let updatedUser = { ...user, country: "India" };
+
+console.log("👤 User:", updatedUser);
+
+
+✅ Output:
+
+👤 User: { name: 'Suraj', age: 25, country: 'India' }
+
+📌 Example: Passing Array as Function Arguments
+function sum(a, b, c) {
+  return a + b + c;
+}
+
+let numbers = [10, 20, 30];
+console.log("➕ Sum:", sum(...numbers));
+
+
+✅ Output:
+
+➕ Sum: 60
+
+🔹 3. Real-Life Examples
+✅ Rest: Event Attendance System
+function registerEvent(eventName, ...participants) {
+  console.log(`🎉 Event: ${eventName}`);
+  console.log("👥 Participants:", participants);
+}
+
+registerEvent("Hackathon", "Suraj", "Neha", "Amit");
+
+
+✅ Output:
+
+🎉 Event: Hackathon
+👥 Participants: [ 'Suraj', 'Neha', 'Amit' ]
+
+✅ Spread: API Response Merge
+let apiResponse1 = { id: 1, name: "Suraj" };
+let apiResponse2 = { age: 25, country: "India" };
+
+let userProfile = { ...apiResponse1, ...apiResponse2 };
+console.log("📡 User Profile:", userProfile);
+
+
+✅ Output:
+
+📡 User Profile: { id: 1, name: 'Suraj', age: 25, country: 'India' }
+
+⚡ Summary
+Operator	Meaning	Use Case
+Rest (...)	Collects arguments into an array	Unknown number of function arguments
+Spread (...)	Expands arrays/objects	Copy, merge, pass elements
+
+============================================================
+Callback Functions
+============================================================
+What is a Callback Function?
+
+A callback function is a function passed as an argument to another function and executed later, usually after some task is completed.
+
+👉 They are heavily used in asynchronous JavaScript (e.g., API calls, timers, events).
+
+🔹 1. Basic Example of Callback
+function greetUser(name, callback) {
+  console.log("Hello, " + name);
+  callback(); // calling the callback function
+}
+
+function sayGoodbye() {
+  console.log("Goodbye! 👋");
+}
+
+greetUser("Suraj", sayGoodbye);
+
+
+✅ Output:
+
+Hello, Suraj
+Goodbye! 👋
+
+🔹 2. Callback with Anonymous Function
+function processNumber(num, callback) {
+  let result = num * 2;
+  callback(result);
+}
+
+processNumber(5, function(output) {
+  console.log("Doubled Number:", output);
+});
+
+
+✅ Output:
+
+Doubled Number: 10
+
+🔹 3. Real-Life Examples of Callback Functions
+📌 Example 1: Using setTimeout (Simulating async task like order confirmation)
+function placeOrder(order, callback) {
+  console.log(`📦 Placing order for: ${order}...`);
+  
+  setTimeout(() => {
+    console.log(`✅ Order ready: ${order}`);
+    callback();
+  }, 2000);
+}
+
+placeOrder("Pizza", function() {
+  console.log("🚚 Delivered to your address!");
+});
+
+
+✅ Output:
+
+📦 Placing order for: Pizza...
+✅ Order ready: Pizza
+🚚 Delivered to your address!
+
+📌 Example 2: Reading File (Simulation)
+function readFile(fileName, callback) {
+  console.log(`📂 Reading file: ${fileName}...`);
+
+  setTimeout(() => {
+    callback(`File content of ${fileName}`);
+  }, 1500);
+}
+
+readFile("notes.txt", function(content) {
+  console.log("📑 File Data:", content);
+});
+
+
+✅ Output:
+
+📂 Reading file: notes.txt...
+📑 File Data: File content of notes.txt
+
+📌 Example 3: Event Listener (Button Click)
+<button id="clickBtn">Click Me</button>
+
+<script>
+document.getElementById("clickBtn").addEventListener("click", function() {
+  console.log("👆 Button was clicked!");
+});
+</script>
+
+
+✅ Output when button is clicked:
+
+👆 Button was clicked!
+
+🔹 4. Callback in Array Methods
+
+👉 Functions like map, filter, forEach use callbacks.
+
+let numbers = [1, 2, 3, 4, 5];
+
+let doubled = numbers.map(function(num) {
+  return num * 2;
+});
+
+console.log("🔢 Doubled:", doubled);
+
+
+✅ Output:
+
+🔢 Doubled: [ 2, 4, 6, 8, 10 ]
+
+⚡ Summary
+
+A callback function is passed as an argument to another function.
+
+Used in async programming (API calls, setTimeout, events).
+
+Real-life use cases: order system, file reading, button clicks, array operations.
+
+============================================================
+Higher-Order Functions
+============================================================
+What is a Higher-Order Function?
+
+A Higher-Order Function (HOF) is a function that either:
+
+Takes another function as an argument (callback), OR
+
+Returns a function.
+
+👉 In JavaScript, functions are first-class citizens, meaning they can be passed around like variables.
+
+🔹 1. HOF Taking a Function as Argument
+📌 Example: Payment System
+function makePayment(amount, onSuccess, onFailure) {
+  if (amount > 0) {
+    onSuccess(amount); // calling callback
+  } else {
+    onFailure("Invalid payment amount");
+  }
+}
+
+makePayment(
+  500,
+  (amt) => console.log(`✅ Payment of ₹${amt} successful!`),
+  (error) => console.log(`❌ Payment failed: ${error}`)
+);
+
+
+✅ Output:
+
+✅ Payment of ₹500 successful!
+
+🔹 2. HOF Returning Another Function
+📌 Example: Discount Generator
+function discountCalculator(discount) {
+  return function(price) {
+    return price - (price * discount);
+  };
+}
+
+let studentDiscount = discountCalculator(0.2); // 20% discount
+console.log("🎓 Student Price:", studentDiscount(1000));
+
+let festivalDiscount = discountCalculator(0.5); // 50% discount
+console.log("🎉 Festival Price:", festivalDiscount(1000));
+
+
+✅ Output:
+
+🎓 Student Price: 800
+🎉 Festival Price: 500
+
+🔹 3. Real-Based Examples Using Built-in HOFs
+✅ Example 1: Online Store – map
+let products = [100, 200, 300];
+let gstPrices = products.map(price => price + price * 0.18);
+
+console.log("🛍️ Prices with GST:", gstPrices);
+
+
+✅ Output:
+
+🛍️ Prices with GST: [ 118, 236, 354 ]
+
+✅ Example 2: Filtering Students – filter
+let students = [
+  { name: "Suraj", marks: 85 },
+  { name: "Neha", marks: 45 },
+  { name: "Amit", marks: 70 }
+];
+
+let passed = students.filter(student => student.marks >= 50);
+console.log("🎓 Passed Students:", passed);
+
+
+✅ Output:
+
+🎓 Passed Students: [ { name: 'Suraj', marks: 85 }, { name: 'Amit', marks: 70 } ]
+
+✅ Example 3: Shopping Cart Total – reduce
+let cart = [200, 150, 50];
+
+let total = cart.reduce((sum, price) => sum + price, 0);
+console.log("💰 Cart Total:", total);
+
+
+✅ Output:
+
+💰 Cart Total: 400
+
+✅ Example 4: Event Management – forEach
+let attendees = ["Suraj", "Neha", "Amit"];
+
+attendees.forEach(person => console.log(`🎉 Welcome, ${person}!`));
+
+
+✅ Output:
+
+🎉 Welcome, Suraj!
+🎉 Welcome, Neha!
+🎉 Welcome, Amit!
+
+🔹 4. HOF in Real-World Automation
+📌 Example: Email Notification System
+function sendNotification(users, callback) {
+  users.forEach(user => {
+    callback(user);
+  });
+}
+
+let users = ["suraj@example.com", "neha@example.com"];
+
+sendNotification(users, (email) => {
+  console.log(`📧 Email sent to ${email}`);
+});
+
+
+✅ Output:
+
+📧 Email sent to suraj@example.com
+📧 Email sent to neha@example.com
+
+⚡ Summary
+Concept	Example
+Takes a function as argument	map, filter, reduce, custom callback systems
+Returns a function	Discount calculator, configuration functions
+Real-life use	Payments, shopping carts, student filtering, notifications
+
+===========================================================
+🟠 4. Core Concepts
+===========================================================
+
+===========================================================
+Scope (Block, Function, Global)
+===========================================================
+What is Scope?
+
+Scope defines where a variable can be accessed in your code.
+In JavaScript, we mainly have:
+
+Block Scope
+
+Function Scope
+
+Global Scope
+
+🔹 1. Global Scope 🌍
+
+👉 A variable declared outside any function or block is global.
+👉 Accessible from anywhere in the program.
+
+📌 Example: Website Theme
+let theme = "🌙 Dark Mode"; // Global Scope
+
+function showTheme() {
+  console.log("Current Theme:", theme);
+}
+
+showTheme();
+console.log("Applied Theme Everywhere:", theme);
+
+
+✅ Output:
+
+Current Theme: 🌙 Dark Mode
+Applied Theme Everywhere: 🌙 Dark Mode
+
+
+💡 Real-life: A global theme applies to all pages of a website.
+
+🔹 2. Function Scope 🔧
+
+👉 Variables declared with var, let, or const inside a function are only available within that function.
+
+📌 Example: Online Banking – Balance
+function checkBalance() {
+  let balance = 5000; // Function Scope
+  console.log("💰 Inside function - Balance:", balance);
+}
+
+checkBalance();
+// console.log(balance); // ❌ Error: balance is not defined
+
+
+✅ Output:
+
+💰 Inside function - Balance: 5000
+
+
+💡 Real-life: Your bank balance is private inside your account, not visible outside.
+
+🔹 3. Block Scope 📦
+
+👉 Variables declared with let or const inside a block {} are only accessible within that block.
+👉 var ignores block scope (it leaks out).
+
+📌 Example: Discount Offer
+if (true) {
+  let discount = "🎉 20% OFF";  // Block Scope
+  console.log("Available Offer:", discount);
+}
+
+// console.log(discount); // ❌ Error: discount is not defined
+
+
+✅ Output:
+
+Available Offer: 🎉 20% OFF
+
+
+💡 Real-life: Discounts are limited to a festival period (block), not available globally.
+
+🔹 4. Comparing var, let, and const in Scope
+if (true) {
+  var city = "Pune";     // function or global scope
+  let state = "Maharashtra"; // block scope
+  const country = "India";   // block scope
+}
+
+console.log(city);    // ✅ Works
+// console.log(state);  // ❌ Error
+// console.log(country);// ❌ Error
+
+
+✅ Output:
+
+Pune
+
+
+💡 var leaks out of blocks, while let and const stay inside.
+
+🔹 5. Nested Scope (Scope Chain)
+
+👉 Inner functions can access variables from outer functions (but not vice versa).
+
+📌 Example: Restaurant Order
+let restaurant = "🍴 Food Hub";
+
+function placeOrder() {
+  let order = "Pizza";
+
+  function kitchen() {
+    let chef = "👨‍🍳 Chef Ramesh";
+    console.log(`${chef} is preparing ${order} at ${restaurant}`);
+  }
+
+  kitchen();
+}
+
+placeOrder();
+
+
+✅ Output:
+
+👨‍🍳 Chef Ramesh is preparing Pizza at 🍴 Food Hub
+
+
+💡 Real-life: The kitchen (inner scope) knows the restaurant and order, but the restaurant cannot see the chef’s private details.
+
+⚡ Summary Table
+Scope Type	Keyword	Access
+Global	var, let, const (outside functions)	Accessible everywhere
+Function	var, let, const (inside function)	Only inside that function
+Block	let, const	Only inside {} block
+Scope Chain	Nested scopes	Inner can access outer variables
+
+===========================================================
+Hoisting
+===========================================================
+What is Hoisting?
+
+Hoisting is JavaScript’s default behavior of moving variable and function declarations to the top of their scope before code execution.
+
+👉 In simple words:
+You can use functions or variables before they are declared (but with different behaviors depending on var, let, const).
+
+🔹 1. Hoisting with var
+
+var declarations are hoisted but initialized as undefined.
+
+📌 Example: Shopping Cart Quantity
+console.log("🛒 Items in cart:", items); // undefined
+var items = 5;
+console.log("🛒 Items after update:", items);
+
+
+✅ Output:
+
+🛒 Items in cart: undefined
+🛒 Items after update: 5
+
+
+💡 Real-life: Like keeping a placeholder basket in a shopping cart — it exists, but it’s empty (undefined) until you add items.
+
+🔹 2. Hoisting with let and const
+
+let and const are hoisted but not initialized.
+
+They stay in the Temporal Dead Zone (TDZ) until the actual declaration.
+
+📌 Example: Festival Discount
+// console.log(discount); // ❌ ReferenceError
+let discount = "🎉 20% OFF";
+console.log("Festival Discount:", discount);
+
+
+✅ Output:
+
+Festival Discount: 🎉 20% OFF
+
+
+💡 Real-life: The discount exists in system memory but you can’t use it until the festival actually starts.
+
+🔹 3. Function Hoisting
+
+👉 Function declarations are hoisted completely.
+👉 Function expressions/arrow functions behave like variables (var, let, const).
+
+📌 Example: ATM Withdrawal
+withdraw(2000); // ✅ Works because function is hoisted
+
+function withdraw(amount) {
+  console.log(`💰 Withdrawn: ₹${amount}`);
+}
+
+
+✅ Output:
+
+💰 Withdrawn: ₹2000
+
+📌 Example: Function Expression (Not Hoisted Properly)
+// withdraw(2000); // ❌ Error: Cannot access 'withdraw' before initialization
+
+const withdraw = function(amount) {
+  console.log(`💰 Withdrawn: ₹${amount}`);
+};
+
+
+💡 Real-life:
+
+Function Declaration = ATM machine is always ready.
+
+Function Expression = ATM machine isn’t set up until staff configures it.
+
+🔹 4. Real-Based Example: Restaurant Menu
+console.log("Today's Special:", menu); // undefined
+
+var menu = "🍕 Pizza";
+console.log("Updated Menu:", menu);
+
+// console.log(drink); // ❌ ReferenceError
+let drink = "🥤 Coke";
+console.log("Drink of the Day:", drink);
+
+
+✅ Output:
+
+Today's Special: undefined
+Updated Menu: 🍕 Pizza
+Drink of the Day: 🥤 Coke
+
+
+💡 Real-life:
+
+Menu (var) exists but blank (undefined) until chef writes it.
+
+Drink (let) can’t even be seen until the staff puts it up.
+
+⚡ Summary Table
+Keyword	Hoisted?	Initialized?	Access before declaration
+var	✅ Yes	undefined	Allowed, gives undefined
+let	✅ Yes	❌ No	❌ ReferenceError
+const	✅ Yes	❌ No	❌ ReferenceError
+function	✅ Yes	✅ Yes	Allowed, fully usable
+function expression	Like variable	Depends on var/let/const	Error or undefined
+
+===========================================================
+Closures
+===========================================================
+.
+
+🔹 What is a Closure?
+
+A closure is created when a function remembers and accesses variables from its outer scope even after that outer function has finished executing.
+
+👉 In simple words:
+
+"A closure gives you access to an outer function’s variables from an inner function, even after the outer function has closed."
+
+🔹 1. Basic Closure Example
+function outer() {
+  let message = "Hello from Closure 👋";
+
+  function inner() {
+    console.log(message); // inner has access to outer's variable
+  }
+
+  return inner;
+}
+
+const greet = outer();
+greet(); // calling inner even after outer is done
+
+
+✅ Output:
+
+Hello from Closure 👋
+
+
+💡 Even though outer() finished, inner() still remembers message.
+
+🔹 2. Real-Life Examples of Closures
+📌 Example 1: Bank Account (Private Balance)
+function createBankAccount(initialBalance) {
+  let balance = initialBalance; // private variable
+
+  return {
+    deposit: function(amount) {
+      balance += amount;
+      console.log(`💰 Deposited: ₹${amount}, New Balance: ₹${balance}`);
+    },
+    withdraw: function(amount) {
+      if (amount <= balance) {
+        balance -= amount;
+        console.log(`🏧 Withdrawn: ₹${amount}, Remaining Balance: ₹${balance}`);
+      } else {
+        console.log("❌ Insufficient funds!");
+      }
+    },
+    checkBalance: function() {
+      console.log(`📊 Current Balance: ₹${balance}`);
+    }
+  };
+}
+
+const myAccount = createBankAccount(1000);
+myAccount.deposit(500);
+myAccount.withdraw(300);
+myAccount.checkBalance();
+
+
+✅ Output:
+
+💰 Deposited: ₹500, New Balance: ₹1500
+🏧 Withdrawn: ₹300, Remaining Balance: ₹1200
+📊 Current Balance: ₹1200
+
+
+💡 Here, balance is private. It’s not directly accessible from outside, only through closure functions.
+
+📌 Example 2: Restaurant Order Counter
+function orderCounter() {
+  let count = 0; // private variable
+
+  return function() {
+    count++;
+    console.log(`🍽️ Orders placed: ${count}`);
+  };
+}
+
+const takeOrder = orderCounter();
+
+takeOrder(); // 🍽️ Orders placed: 1
+takeOrder(); // 🍽️ Orders placed: 2
+takeOrder(); // 🍽️ Orders placed: 3
+
+
+💡 Closure keeps track of how many orders are placed even after orderCounter() has finished.
+
+📌 Example 3: Event Booking System
+function createEvent(eventName) {
+  let attendees = [];
+
+  return {
+    register: function(name) {
+      attendees.push(name);
+      console.log(`🎟️ ${name} registered for ${eventName}`);
+    },
+    listAttendees: function() {
+      console.log(`👥 Attendees for ${eventName}: ${attendees.join(", ")}`);
+    }
+  };
+}
+
+const hackathon = createEvent("Hackathon 2025");
+hackathon.register("Suraj");
+hackathon.register("Neha");
+hackathon.listAttendees();
+
+
+✅ Output:
+
+🎟️ Suraj registered for Hackathon 2025
+🎟️ Neha registered for Hackathon 2025
+👥 Attendees for Hackathon 2025: Suraj, Neha
+
+
+💡 Closure keeps track of attendees specific to each event.
+
+🔹 3. Why Are Closures Useful?
+
+✅ Data privacy (like private variables)
+✅ Maintaining state (like counters, balance, attendees)
+✅ Used in callbacks, event handlers, and async code
+✅ Popular in module patterns
+
+⚡ Summary
+
+A closure allows an inner function to access outer function’s variables even after the outer function finishes.
+
+Real-life use: Bank accounts, order counters, booking systems, event management, private data.
+
+===========================================================
+The this keyword
+===========================================================
+What is this?
+
+The this keyword refers to the object that is currently executing the function.
+Its value depends on how (and where) a function is called.
+
+🔹 1. Global Context 🌍
+
+In the global scope:
+
+In browser, this → window object.
+
+In Node.js, this → {} (empty object in modules).
+
+📌 Example: Website Environment
+console.log(this); // In browser → window
+
+
+💡 Real-life: Think of window as the entire website environment, and this points to it globally.
+
+🔹 2. Inside an Object (Method Call)
+
+When a function is called as an object’s method, this refers to that object.
+
+📌 Example: Online Store Product
+let product = {
+  name: "Laptop",
+  price: 50000,
+  showDetails: function() {
+    console.log(`💻 ${this.name} costs ₹${this.price}`);
+  }
+};
+
+product.showDetails();
+
+
+✅ Output:
+
+💻 Laptop costs ₹50000
+
+
+💡 Real-life: this points to the product object, so it knows its own name and price.
+
+🔹 3. In a Regular Function (Not Method)
+
+If a function is called normally (not as object method):
+
+In strict mode, this = undefined.
+
+In non-strict mode, this = global object (window).
+
+📌 Example: Random Utility Function
+function show() {
+  console.log(this);
+}
+show(); // window (in browser), undefined (in strict mode)
+
+🔹 4. With this in Constructor Functions / Classes
+
+When used inside a constructor function or class, this refers to the newly created object.
+
+📌 Example: User Account System
+function User(name, balance) {
+  this.name = name;
+  this.balance = balance;
+}
+
+let user1 = new User("Suraj", 1000);
+console.log(`👤 ${user1.name}, Balance: ₹${user1.balance}`);
+
+
+✅ Output:
+
+👤 Suraj, Balance: ₹1000
+
+
+💡 Real-life: Each new user gets their own data, and this points to that user object.
+
+🔹 5. Arrow Functions & this
+
+👉 Arrow functions do not have their own this.
+👉 They inherit this from their surrounding scope (lexical scope).
+
+📌 Example: Event Listener
+let button = {
+  label: "Submit",
+  click: function() {
+    setTimeout(() => {
+      console.log(`🔘 Button clicked: ${this.label}`);
+    }, 1000);
+  }
+};
+
+button.click();
+
+
+✅ Output:
+
+🔘 Button clicked: Submit
+
+
+💡 Here, arrow function keeps this from click method (the button object).
+
+🔹 6. this in Event Listeners
+
+👉 In regular functions, this = the element that triggered the event.
+
+📌 Example: Form Submit Button
+<button id="submitBtn">Submit</button>
+
+<script>
+document.getElementById("submitBtn").addEventListener("click", function() {
+  console.log("Clicked:", this.innerText); // "Submit"
+});
+</script>
+
+
+✅ Output (on click):
+
+Clicked: Submit
+
+
+💡 Real-life: this points to the button element itself.
+
+🔹 7. call, apply, bind with this
+
+👉 We can manually control what this points to.
+
+📌 Example: Borrowing Methods
+let customer = { name: "Suraj" };
+let bank = {
+  name: "SBI",
+  welcome: function() {
+    console.log(`🏦 Welcome ${this.name} to our bank`);
+  }
+};
+
+bank.welcome.call(customer);
+
+
+✅ Output:
+
+🏦 Welcome Suraj to our bank
+
+
+💡 Real-life: Like borrowing SBI’s welcome message and applying it for Suraj.
+
+⚡ Summary Table
+Context	this Refers To
+Global (browser)	window
+Object Method	The object
+Function (strict)	undefined
+Function (non-strict)	window
+Constructor / Class	New object
+Arrow Function	Inherits from parent scope
+Event Listener	The element
+call / apply / bind	Explicitly set object
+
+===========================================================
+Execution Context & Call Stack
+===========================================================
+1. What is Execution Context?
+
+An Execution Context (EC) is the environment in which JavaScript code is evaluated and executed.
+
+There are 3 main types:
+
+Global Execution Context (GEC) – Created when JS first runs (default).
+
+Function Execution Context (FEC) – Created every time a function is called.
+
+Eval Execution Context (less common, using eval()).
+
+👉 Each context has:
+
+Variable Environment (Memory/Hoisting phase)
+
+Scope Chain
+
+this binding
+
+🔹 2. What is Call Stack?
+
+The Call Stack is a stack data structure that keeps track of execution contexts.
+
+When a function is invoked → A new FEC is pushed onto the stack.
+
+When the function finishes → It is popped off the stack.
+
+🔹 3. Example: Online Shopping Flow 🛒
+function browseProducts() {
+  console.log("🛍️ Browsing products...");
+}
+
+function addToCart() {
+  console.log("🛒 Adding product to cart...");
+  payment(); // call another function
+}
+
+function payment() {
+  console.log("💳 Processing payment...");
+}
+
+function shopping() {
+  browseProducts();
+  addToCart();
+}
+
+shopping();
+
+🔹 Step-by-Step Execution (Call Stack)
+
+Global Execution Context (GEC) created → shopping() is defined.
+
+shopping() is called → Push shopping() FEC onto stack.
+
+Inside shopping() → Calls browseProducts() → Push browseProducts() FEC.
+
+browseProducts() executes → Logs message → Pop it off.
+
+Back to shopping(), calls addToCart() → Push addToCart() FEC.
+
+Inside addToCart() → Calls payment() → Push payment() FEC.
+
+payment() executes → Pop off after completion.
+
+addToCart() finishes → Pop off.
+
+shopping() finishes → Pop off.
+
+Only GEC remains.
+
+✅ Output:
+🛍️ Browsing products...
+🛒 Adding product to cart...
+💳 Processing payment...
+
+🔹 4. Real-Life Analogy
+
+Think of Call Stack like a restaurant kitchen order system 🍽️:
+
+Each Execution Context = one order.
+
+Call Stack = pile of orders (stack of plates).
+
+Chef (JS engine) handles last order first (LIFO).
+
+When one dish is completed (function finishes), the plate (FEC) is removed.
+
+🔹 5. Example with setTimeout (Async) ⏳
+
+JavaScript is single-threaded, but async code is handled by Web APIs + Callback Queue (not on Call Stack directly).
+
+console.log("🍽️ Order placed");
+
+setTimeout(() => {
+  console.log("🍲 Food served after 2 sec");
+}, 2000);
+
+console.log("💬 Chatting with friends");
+
+✅ Output:
+🍽️ Order placed
+💬 Chatting with friends
+🍲 Food served after 2 sec
+
+
+💡 Real-life: You order food (setTimeout), meanwhile you chat (other tasks). When food is ready (callback), waiter brings it after the delay.
+
+⚡ Summary
+Concept	Meaning	Real-Life Example
+Execution Context	Environment where code runs	Kitchen preparing a dish
+Global Execution Context	Default when script runs	Restaurant setup
+Function Execution Context	Created when function runs	Each new food order
+Call Stack	Tracks order of execution	Stack of plates with orders
+Pop/Push	Add/remove from stack	Chef starts/finishes a dish
+
+===========================================================
+Lexical Environment
+===========================================================
+1. What is Lexical Environment?
+
+A Lexical Environment in JavaScript is the place where variables and functions are physically declared in the code.
+
+👉 In simple terms:
+
+Lexical = related to “position in code” (where written)
+
+Every Execution Context has a Lexical Environment.
+
+A Lexical Environment has two parts:
+
+Environment Record → Stores variables & function declarations.
+
+Reference to outer environment → For scope chain (if variable not found locally).
+
+🔹 2. Simple Example
+function outer() {
+  let shopName = "SuperMart 🏬";
+
+  function inner() {
+    console.log("Shopping at", shopName);
+  }
+
+  inner();
+}
+
+outer();
+
+
+✅ Output:
+
+Shopping at SuperMart 🏬
+
+
+👉 Here:
+
+inner() has no variable shopName.
+
+It looks into its Lexical Environment → outer() → found shopName.
+
+This is possible because inner is defined inside outer (lexical position).
+
+🔹 3. Real-Life Example: Bank 🏦
+function bank() {
+  let bankName = "HDFC Bank 🏦";
+
+  function account(customer) {
+    console.log(`${customer} has an account in ${bankName}`);
+  }
+
+  account("Suraj");
+  account("Neha");
+}
+
+bank();
+
+
+✅ Output:
+
+Suraj has an account in HDFC Bank 🏦
+Neha has an account in HDFC Bank 🏦
+
+
+👉 Here:
+
+Function account() doesn’t have bankName.
+
+It uses outer lexical environment (bank) to access it.
+
+🔹 4. Nested Lexical Environments (Scope Chain)
+let country = "India 🇮🇳";
+
+function state() {
+  let stateName = "Maharashtra";
+
+  function city() {
+    let cityName = "Pune";
+    console.log(`${cityName}, ${stateName}, ${country}`);
+  }
+
+  city();
+}
+
+state();
+
+
+✅ Output:
+
+Pune, Maharashtra, India 🇮🇳
+
+
+👉 Execution flow:
+
+cityName → found in city()
+
+stateName → not in city(), found in state() lexical environment
+
+country → not in state(), found in global lexical environment
+
+That’s the scope chain powered by lexical environments.
+
+🔹 5. Real-Life Analogy 📖
+
+Think of a Lexical Environment like a filing cabinet system:
+
+If you can’t find a file (variable) in your own drawer (local scope),
+
+You check the next outer drawer (parent scope),
+
+Keep going until you find it (global scope).
+
+⚡ Summary
+Concept	Meaning	Real-Life Example
+Lexical Environment	Where variable/function is declared (position in code)	Filing cabinet with drawers
+Environment Record	Stores variables and function declarations	Documents in current drawer
+Outer Reference	Link to parent lexical scope	Key to parent drawer
+Scope Chain	Chain of lexical environments	Searching multiple drawers
+
+===========================================================
+Strict Mode ("use strict")
+===========================================================
+1. What is Strict Mode?
+
+"use strict" was introduced in ECMAScript 5 (ES5).
+
+It enforces stricter parsing and error handling in JavaScript.
+
+Helps developers write cleaner, more secure, and less error-prone code.
+
+👉 To enable it:
+
+"use strict";   // at top of file (applies globally)
+// or inside a function (applies locally)
+
+🔹 2. Why Use Strict Mode?
+
+✅ Prevents accidental errors
+✅ Avoids using undeclared variables
+✅ Makes debugging easier
+✅ Reserved keywords (like public, static) cannot be used as variable names
+
+🔹 3. Examples
+📌 Example 1: Using Undeclared Variables ❌
+// Without strict mode
+name = "Suraj"; 
+console.log(name); // Works, but creates global variable accidentally
+
+// With strict mode
+"use strict";
+name = "Suraj";  // ❌ Error: name is not defined
+
+
+👉 Real-life analogy: Imagine accidentally writing customer data in the wrong file — strict mode forces you to declare properly before use.
+
+📌 Example 2: Prevents Duplicate Parameters 🚫
+// Without strict mode
+function sum(a, a, b) {
+  return a + b; // Works, but confusing
+}
+console.log(sum(1, 2, 3)); // 5
+
+// With strict mode
+"use strict";
+function sum(a, a, b) {   // ❌ SyntaxError
+  return a + b;
+}
+
+
+👉 Real-life analogy: Like giving two students the same roll number — strict mode avoids confusion.
+
+📌 Example 3: Prevents Writing to Read-Only Properties 🔒
+"use strict";
+const obj = {};
+Object.defineProperty(obj, "id", { value: 101, writable: false });
+
+obj.id = 202;  // ❌ TypeError: Cannot assign to read only property
+
+
+👉 Real-life analogy: Think of trying to edit your Aadhaar number — system doesn’t allow modification.
+
+📌 Example 4: Disallows Reserved Keywords 🚫
+"use strict";
+let public = "data";  // ❌ SyntaxError
+let static = 123;     // ❌ SyntaxError
+
+
+👉 Prevents future conflicts since these may be reserved in newer versions of JS.
+
+📌 Example 5: In Functions (Local Strict Mode)
+function normalFunc() {
+  x = 10;  // Works (becomes global accidentally)
+  console.log("Normal:", x);
+}
+
+function strictFunc() {
+  "use strict";
+  y = 20;  // ❌ Error: y is not defined
+}
+
+normalFunc();
+strictFunc();
+
+
+👉 Real-life analogy: Think of strict exam hall rules (inside function) vs. casual class rules (normal function).
+
+⚡ Summary
+Without Strict Mode	With Strict Mode
+Allows undeclared variables	❌ Error if undeclared
+Duplicate function params	❌ Not allowed
+Silent failures (no error)	❌ Throws error
+Reserved keywords allowed	❌ Not allowed
+Global pollution risk	✅ Safer code
+
+=============================================================
+5. Objects & Arrays
+=============================================================
+
+=============================================================
+Creating Objects ({} and new Object())
+=============================================================
+
+=============================================================
+Object Methods (Object.keys, Object.values, Object.entries)
+=============================================================
+
+=============================================================
+Object Destructuring
+=============================================================
+
+=============================================================
+Array Methods (map, filter, reduce, forEach, find, some, every, sort)
+=============================================================
+
+=============================================================
+Array & Object Spread/Rest
+=============================================================
+
+=============================================================
+JSON (JSON.stringify, JSON.parse)
+=============================================================
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
