@@ -60,7 +60,7 @@ Lexical Environment
 
 Strict Mode ("use strict")
 
-🟣 5. Objects & Arrays
+🟣 5. Objects & Arrays (Done)
 
 Creating Objects ({} and new Object())
 
@@ -74,7 +74,7 @@ Array & Object Spread/Rest
 
 JSON (JSON.stringify, JSON.parse)
 
-🔴 6. DOM Manipulation
+🔴 6. DOM Manipulation (Done)
 
 Selecting Elements (getElementById, querySelector, querySelectorAll)
 
@@ -86,7 +86,7 @@ Attributes & Classes (setAttribute, classList)
 
 Event Handling (addEventListener, event bubbling, delegation)
 
-🟤 7. Advanced JavaScript
+🟤 7. Advanced JavaScript (Done)
 
 ES6+ Features (let/const, template literals, destructuring, modules, etc.)
 
@@ -104,7 +104,7 @@ Event Loop & Concurrency Model
 
 JavaScript Engine (V8 basics)
 
-⚫ 8. Object-Oriented Programming (OOP)
+⚫ 8. Object-Oriented Programming (OOP) (Done)
 
 Constructor Functions
 
@@ -3272,32 +3272,3692 @@ Global pollution risk	✅ Safer code
 =============================================================
 5. Objects & Arrays
 =============================================================
+🔹 1. Objects in JavaScript
+
+👉 An object is a collection of key–value pairs (like a dictionary).
+It represents a real-world entity with properties (data) and methods (functions).
+
+📌 Real-Life Example: Customer Profile 👤
+let customer = {
+  name: "Suraj Pawar",
+  age: 28,
+  email: "suraj@example.com",
+  address: {
+    city: "Pune",
+    country: "India"
+  },
+  orders: ["Laptop", "Phone", "Headphones"],
+
+  // method
+  greet: function() {
+    console.log(`Hello, ${this.name}! Welcome back to our store.`);
+  }
+};
+
+console.log(customer.name);       // Suraj Pawar
+console.log(customer.address.city); // Pune
+console.log(customer.orders[1]);  // Phone
+customer.greet();                 // Hello, Suraj! Welcome back to our store.
+
+
+✅ Output:
+
+Suraj Pawar
+Pune
+Phone
+Hello, Suraj! Welcome back to our store.
+
+
+👉 Real-life analogy: An object is like a customer profile in a shop’s database.
+
+🔹 2. Arrays in JavaScript
+
+👉 An array is an ordered collection of values (can store multiple items in one variable).
+
+📌 Real-Life Example: Shopping Cart 🛒
+let cart = ["Shirt", "Jeans", "Shoes", "Watch"];
+
+console.log("🛒 Items in cart:", cart);
+console.log("First Item:", cart[0]);  // Shirt
+console.log("Total Items:", cart.length); // 4
+
+// Adding new item
+cart.push("Cap");
+console.log("Updated Cart:", cart);
+
+// Removing last item
+cart.pop();
+console.log("After Removing:", cart);
+
+// Iterating over cart
+cart.forEach((item, index) => {
+  console.log(`${index + 1}. ${item}`);
+});
+
+
+✅ Output:
+
+🛒 Items in cart: [ 'Shirt', 'Jeans', 'Shoes', 'Watch' ]
+First Item: Shirt
+Total Items: 4
+Updated Cart: [ 'Shirt', 'Jeans', 'Shoes', 'Watch', 'Cap' ]
+After Removing: [ 'Shirt', 'Jeans', 'Shoes', 'Watch' ]
+1. Shirt
+2. Jeans
+3. Shoes
+4. Watch
+
+
+👉 Real-life analogy: An array is like a shopping cart holding multiple products.
+
+🔹 3. Objects + Arrays Together
+📌 Real-Life Example: E-commerce Order System 🛍️
+let orders = [
+  {
+    orderId: 101,
+    customer: "Suraj",
+    items: ["Laptop", "Mouse"],
+    total: 55000
+  },
+  {
+    orderId: 102,
+    customer: "Neha",
+    items: ["Phone", "Earbuds"],
+    total: 32000
+  }
+];
+
+// Accessing data
+console.log("First Order by:", orders[0].customer);  
+console.log("Neha bought:", orders[1].items[0]);  
+
+// Loop through orders
+orders.forEach(order => {
+  console.log(`Order ${order.orderId} - ${order.customer} - Total: ₹${order.total}`);
+});
+
+
+✅ Output:
+
+First Order by: Suraj
+Neha bought: Phone
+Order 101 - Suraj - Total: ₹55000
+Order 102 - Neha - Total: ₹32000
+
+
+👉 Real-life analogy: An array of objects is like a list of all customer orders in a database.
+
+⚡ Summary
+Concept	Real-Life Example
+Object	Customer profile (name, age, email, address, orders)
+Array	Shopping cart (list of items)
+Array of Objects	List of all orders in an e-commerce app
+
+✅ Objects represent entities (with details).
+✅ Arrays represent collections (lists of items).
+✅ Together, they power real-world apps like e-commerce, banking, ticket booking.
 
 =============================================================
 Creating Objects ({} and new Object())
 =============================================================
+🔹 1. Creating Object using Object Literal {}
+
+👉 The most common and simple way to create objects.
+
+📌 Example: Employee Profile 🏢
+let employee = {
+  id: 101,
+  name: "Suraj Pawar",
+  role: "Software Developer",
+  skills: ["JavaScript", "React", "Node.js"],
+
+  work: function() {
+    console.log(`${this.name} is working as ${this.role}`);
+  }
+};
+
+console.log(employee.name);   // Suraj Pawar
+employee.work();              // Suraj Pawar is working as Software Developer
+
+
+✅ Output:
+
+Suraj Pawar
+Suraj Pawar is working as Software Developer
+
+
+👉 Real-life analogy: Think of this as quickly filling out an employee form with details.
+
+🔹 2. Creating Object using new Object()
+
+👉 Another way is using the Object constructor.
+You create an empty object and then add properties.
+
+📌 Example: Bank Account 🏦
+let bankAccount = new Object();
+
+bankAccount.accountNumber = "1234567890";
+bankAccount.holderName = "Neha Sharma";
+bankAccount.balance = 50000;
+bankAccount.deposit = function(amount) {
+  this.balance += amount;
+  console.log(`Deposited ₹${amount}. New Balance: ₹${this.balance}`);
+};
+
+console.log(bankAccount.holderName);  // Neha Sharma
+bankAccount.deposit(10000);
+
+
+✅ Output:
+
+Neha Sharma
+Deposited ₹10000. New Balance: ₹60000
+
+
+👉 Real-life analogy: Like opening a new blank account in a bank and then filling in details step by step.
+
+🔹 3. Comparing {} vs new Object()
+Feature	{}	new Object()
+Syntax	Short & clean	Longer & explicit
+Usage	Most commonly used	Rare, but useful when adding properties dynamically
+Example	let obj = { name: "Suraj" }	let obj = new Object(); obj.name = "Suraj";
+🔹 4. Real-Life Example: Online Store 🛍️
+Using Object Literal {}
+let product = {
+  id: 201,
+  name: "Laptop",
+  price: 55000,
+  inStock: true
+};
+
+console.log(product);
+
+Using new Object()
+let order = new Object();
+order.orderId = 501;
+order.customer = "Suraj";
+order.items = ["Laptop", "Mouse"];
+order.total = 56000;
+
+console.log(order);
+
+
+✅ Output:
+
+{ id: 201, name: 'Laptop', price: 55000, inStock: true }
+{ orderId: 501, customer: 'Suraj', items: [ 'Laptop', 'Mouse' ], total: 56000 }
+
+⚡ Summary
+
+{} → Best for quick object creation.
+
+new Object() → Useful when you want to create an empty object and add properties later.
+
+Both represent real-world entities (employees, bank accounts, products, orders).
 
 =============================================================
 Object Methods (Object.keys, Object.values, Object.entries)
 =============================================================
+🔹 1. Object.keys(obj)
+
+👉 Returns an array of all property names (keys) in an object.
+
+📌 Real-Life Example: Product Info 🛍️
+let product = {
+  id: 101,
+  name: "Laptop",
+  brand: "Dell",
+  price: 55000
+};
+
+let keys = Object.keys(product);
+console.log("Product Keys:", keys);
+
+
+✅ Output:
+
+Product Keys: [ 'id', 'name', 'brand', 'price' ]
+
+
+👉 Use Case: To list all available details about a product.
+
+🔹 2. Object.values(obj)
+
+👉 Returns an array of all values in an object.
+
+📌 Real-Life Example: Customer Profile 👤
+let customer = {
+  name: "Suraj Pawar",
+  email: "suraj@example.com",
+  city: "Pune"
+};
+
+let values = Object.values(customer);
+console.log("Customer Values:", values);
+
+
+✅ Output:
+
+Customer Values: [ 'Suraj Pawar', 'suraj@example.com', 'Pune' ]
+
+
+👉 Use Case: To export customer data for reports.
+
+🔹 3. Object.entries(obj)
+
+👉 Returns an array of [key, value] pairs.
+
+📌 Real-Life Example: Bank Account 🏦
+let bankAccount = {
+  accountNumber: "1234567890",
+  holder: "Neha Sharma",
+  balance: 60000
+};
+
+let entries = Object.entries(bankAccount);
+console.log("Bank Account Entries:", entries);
+
+// Looping through entries
+entries.forEach(([key, value]) => {
+  console.log(`${key}: ${value}`);
+});
+
+
+✅ Output:
+
+Bank Account Entries: [
+  [ 'accountNumber', '1234567890' ],
+  [ 'holder', 'Neha Sharma' ],
+  [ 'balance', 60000 ]
+]
+accountNumber: 1234567890
+holder: Neha Sharma
+balance: 60000
+
+
+👉 Use Case: Useful when you want to display key-value pairs (like account statements).
+
+🔹 4. Combining All Methods
+📌 Real-Life Example: Online Order System 🛒
+let order = {
+  orderId: 501,
+  customer: "Suraj",
+  items: ["Laptop", "Mouse"],
+  total: 56000
+};
+
+console.log("🔑 Keys:", Object.keys(order));
+console.log("📦 Values:", Object.values(order));
+console.log("📋 Entries:", Object.entries(order));
+
+
+✅ Output:
+
+🔑 Keys: [ 'orderId', 'customer', 'items', 'total' ]
+📦 Values: [ 501, 'Suraj', [ 'Laptop', 'Mouse' ], 56000 ]
+📋 Entries: [
+  [ 'orderId', 501 ],
+  [ 'customer', 'Suraj' ],
+  [ 'items', [ 'Laptop', 'Mouse' ] ],
+  [ 'total', 56000 ]
+]
+
+⚡ Summary
+Method	Returns	Real-Life Use Case
+Object.keys()	Array of property names	List fields in product database
+Object.values()	Array of property values	Export customer details
+Object.entries()	Array of [key, value] pairs	Display bank account / order summary
 
 =============================================================
 Object Destructuring
 =============================================================
+🔹 1. What is Object Destructuring?
+
+👉 Object Destructuring is a shorthand way to unpack properties from an object into variables.
+
+Instead of this:
+
+let person = { name: "Suraj", city: "Pune" };
+let name = person.name;
+let city = person.city;
+
+
+We can do this 👇
+
+let { name, city } = person;
+console.log(name, city); // Suraj Pune
+
+🔹 2. Real-Life Examples
+📌 Example 1: Customer Profile 👤
+let customer = {
+  id: 101,
+  name: "Suraj Pawar",
+  email: "suraj@example.com",
+  city: "Pune"
+};
+
+// Destructuring
+let { name, email, city } = customer;
+console.log(`Customer: ${name}, Email: ${email}, City: ${city}`);
+
+
+✅ Output:
+
+Customer: Suraj Pawar, Email: suraj@example.com, City: Pune
+
+
+👉 Use case: Quickly access customer details for displaying in UI.
+
+📌 Example 2: E-Commerce Order 🛒
+let order = {
+  orderId: 501,
+  product: "Laptop",
+  price: 55000,
+  status: "Shipped"
+};
+
+// Destructuring with different variable names
+let { orderId, product: item, price, status } = order;
+
+console.log(`Order#${orderId}: ${item} - ₹${price} (${status})`);
+
+
+✅ Output:
+
+Order#501: Laptop - ₹55000 (Shipped)
+
+
+👉 Use case: Useful when fetching order details from API response.
+
+📌 Example 3: Nested Object Destructuring 🏦
+let bankAccount = {
+  accountNumber: "1234567890",
+  holder: {
+    name: "Neha Sharma",
+    city: "Mumbai"
+  },
+  balance: 75000
+};
+
+// Nested destructuring
+let { holder: { name, city }, balance } = bankAccount;
+
+console.log(`${name} from ${city} has ₹${balance} in account.`);
+
+
+✅ Output:
+
+Neha Sharma from Mumbai has ₹75000 in account.
+
+
+👉 Use case: When accessing nested JSON data (like API response from banking systems).
+
+📌 Example 4: Function Parameters (Clean API) 🌍
+function displayUser({ username, age, country }) {
+  console.log(`${username} is ${age} years old from ${country}`);
+}
+
+let user = { username: "Amit", age: 30, country: "India" };
+displayUser(user);
+
+
+✅ Output:
+
+Amit is 30 years old from India
+
+
+👉 Use case: Clean function parameters instead of writing user.username, user.age, etc.
+
+📌 Example 5: Default Values ⚡
+let product = {
+  name: "Mobile",
+  price: 20000
+};
+
+// stock is missing → default used
+let { name, price, stock = 50 } = product;
+
+console.log(`${name} costs ₹${price}. Available stock: ${stock}`);
+
+
+✅ Output:
+
+Mobile costs ₹20000. Available stock: 50
+
+
+👉 Use case: Ensures API or DB missing fields still have safe defaults.
+
+⚡ Summary
+Feature	Example	Real-Life Use
+Basic Destructuring	{ name, city } = customer	Quick access to customer details
+Rename	{ product: item } = order	Avoid variable conflicts
+Nested	{ holder: { name, city } } = bankAccount	Extract from complex JSON
+Function Params	function({ username, age })	Cleaner API function calls
+Default Values	{ stock = 50 } = product	Handle missing data safely
+
+✅ Object Destructuring = clean, readable, and real-world ready code.
 
 =============================================================
 Array Methods (map, filter, reduce, forEach, find, some, every, sort)
 =============================================================
+🔹 1. map() → Transform Each Item
+
+👉 Returns a new array after applying a function.
+
+📌 Example: Add tax to product prices
+
+let products = [100, 200, 300];
+
+// Add 18% GST to each price
+let pricesWithGST = products.map(price => price + price * 0.18);
+
+console.log(pricesWithGST); // [118, 236, 354]
+
+
+✅ Use case: Updating all product prices with tax/discount.
+
+🔹 2. filter() → Select Items Based on Condition
+
+👉 Returns a new array with items that pass the condition.
+
+📌 Example: Get students who passed
+
+let students = [
+  { name: "Amit", marks: 45 },
+  { name: "Neha", marks: 80 },
+  { name: "Raj", marks: 30 }
+];
+
+let passed = students.filter(s => s.marks >= 40);
+console.log(passed);
+// [ { name: 'Amit', marks: 45 }, { name: 'Neha', marks: 80 } ]
+
+
+✅ Use case: Filtering students, products in stock, active users, etc.
+
+🔹 3. reduce() → Accumulate Values
+
+👉 Reduces an array into a single value.
+
+📌 Example: Total bill in shopping cart
+
+let cart = [
+  { item: "Shoes", price: 2000 },
+  { item: "Bag", price: 1500 },
+  { item: "Watch", price: 3000 }
+];
+
+let total = cart.reduce((sum, product) => sum + product.price, 0);
+console.log(`Total Bill: ₹${total}`); 
+// Total Bill: ₹6500
+
+
+✅ Use case: Summing cart total, salaries, votes, etc.
+
+🔹 4. forEach() → Loop Over Each Item
+
+👉 Executes a function for each element (no new array).
+
+📌 Example: Notify users via email
+
+let users = ["suraj@example.com", "neha@example.com", "amit@example.com"];
+
+users.forEach(email => {
+  console.log(`📧 Sending email to ${email}`);
+});
+
+
+✅ Use case: Running side effects like sending notifications, logging.
+
+🔹 5. find() → Find First Match
+
+👉 Returns the first item that matches condition.
+
+📌 Example: Find employee by ID
+
+let employees = [
+  { id: 101, name: "Suraj" },
+  { id: 102, name: "Neha" },
+  { id: 103, name: "Raj" }
+];
+
+let emp = employees.find(e => e.id === 102);
+console.log(emp); // { id: 102, name: "Neha" }
+
+
+✅ Use case: Lookup in database results.
+
+🔹 6. some() → Check if at least one item matches
+
+👉 Returns true / false.
+
+📌 Example: Check if any product is out of stock
+
+let inventory = [
+  { item: "Laptop", stock: 5 },
+  { item: "Phone", stock: 0 },
+  { item: "Tablet", stock: 3 }
+];
+
+let isOutOfStock = inventory.some(p => p.stock === 0);
+console.log(isOutOfStock); // true
+
+
+✅ Use case: Validate if at least one condition is true.
+
+🔹 7. every() → Check if all items match
+
+👉 Returns true / false.
+
+📌 Example: Check if all students passed
+
+let marks = [55, 60, 70, 40];
+
+let allPassed = marks.every(m => m >= 40);
+console.log(allPassed); // true
+
+
+✅ Use case: Validation rules (all fields filled, all students passed).
+
+🔹 8. sort() → Sort Array
+
+👉 Sorts in place (changes original array).
+
+📌 Example: Sort products by price
+
+let items = [
+  { name: "Shoes", price: 2000 },
+  { name: "Watch", price: 1500 },
+  { name: "Bag", price: 3000 }
+];
+
+items.sort((a, b) => a.price - b.price);
+
+console.log(items);
+// [ { name: 'Watch', price: 1500 }, { name: 'Shoes', price: 2000 }, { name: 'Bag', price: 3000 } ]
+
+
+✅ Use case: Sorting products, names, scores, etc.
+
+⚡ Summary Table
+Method	Purpose	Real Use Case
+map()	Transform	Add tax to prices
+filter()	Select items	Find passed students
+reduce()	Accumulate	Calculate shopping total
+forEach()	Loop with side effects	Send emails
+find()	Find first match	Get employee by ID
+some()	At least one true	Any product out of stock?
+every()	All must be true	Did all students pass?
+sort()	Arrange items	Sort products by price
 
 =============================================================
 Array & Object Spread/Rest
 =============================================================
+🔹 1. Spread Operator (...)
+
+👉 Used to expand elements of an array or properties of an object.
+
+✅ Example 1: Array Spread → Shopping Cart 🛒
+let cart1 = ["Shoes", "Watch"];
+let cart2 = ["Bag", "Laptop"];
+
+// Combine carts
+let finalCart = [...cart1, ...cart2, "Sunglasses"];
+
+console.log(finalCart);
+// ["Shoes", "Watch", "Bag", "Laptop", "Sunglasses"]
+
+
+✔ Real use case: Merging shopping carts.
+
+✅ Example 2: Object Spread → Employee Update 🏢
+let employee = {
+  id: 101,
+  name: "Suraj",
+  role: "Developer"
+};
+
+// Promote employee (spread + new property)
+let updatedEmployee = {
+  ...employee,
+  role: "Team Lead",
+  department: "IT"
+};
+
+console.log(updatedEmployee);
+// { id: 101, name: "Suraj", role: "Team Lead", department: "IT" }
+
+
+✔ Real use case: Updating employee details without modifying original object.
+
+✅ Example 3: Copying Arrays → Student Marks 🎓
+let marks = [80, 70, 90];
+let copiedMarks = [...marks]; // independent copy
+
+copiedMarks.push(100);
+
+console.log("Original:", marks);     // [80, 70, 90]
+console.log("Copied:", copiedMarks); // [80, 70, 90, 100]
+
+
+✔ Real use case: Prevent modifying original student data.
+
+🔹 2. Rest Operator (...)
+
+👉 Used to collect multiple elements into an array or object.
+
+✅ Example 4: Function Parameters → Restaurant Order 🍽️
+function placeOrder(customer, ...items) {
+  console.log(`Customer: ${customer}`);
+  console.log(`Items Ordered: ${items.join(", ")}`);
+}
+
+placeOrder("Neha", "Pizza", "Burger", "Coke");
+// Customer: Neha
+// Items Ordered: Pizza, Burger, Coke
+
+
+✔ Real use case: Taking unlimited food orders.
+
+✅ Example 5: Object Rest → User Data 🧑‍💻
+let user = {
+  id: 1,
+  name: "Raj",
+  email: "raj@example.com",
+  password: "secret123"
+};
+
+// Extract only required data
+let { password, ...publicData } = user;
+
+console.log(publicData);
+// { id: 1, name: "Raj", email: "raj@example.com" }
+
+
+✔ Real use case: Hiding sensitive info (passwords) before showing user profile.
+
+✅ Example 6: Array Destructuring with Rest → Students 🏫
+let students = ["Amit", "Neha", "Raj", "Pooja"];
+
+// First student is leader, rest are team members
+let [leader, ...teamMembers] = students;
+
+console.log("Leader:", leader);           // Amit
+console.log("Team Members:", teamMembers); // ["Neha", "Raj", "Pooja"]
+
+
+✔ Real use case: Assigning leader and team members.
+
+⚡ Summary
+Operator	Works in	Purpose	Real Use Case
+Spread (...)	Array/Object	Expand values	Merge carts, update employee
+Rest (...)	Function/Object/Array	Collect values	Order items, hide password, group team
 
 =============================================================
 JSON (JSON.stringify, JSON.parse)
 =============================================================
+🔹 What is JSON?
+
+JSON (JavaScript Object Notation) → lightweight data format for storing & exchanging data.
+
+Data is in key-value pairs (similar to JS objects).
+
+Commonly used in APIs and databases.
+
+🔹 1. JSON.stringify() → Convert JS Object → JSON String
+
+📌 Example: Sending Employee Data to Server (API request)
+
+let employee = {
+  id: 101,
+  name: "Suraj",
+  role: "Developer",
+  skills: ["JavaScript", "React", "Node.js"]
+};
+
+// Convert object to JSON string before sending to server
+let jsonData = JSON.stringify(employee);
+
+console.log(jsonData);
 
 
+✅ Output:
+
+{"id":101,"name":"Suraj","role":"Developer","skills":["JavaScript","React","Node.js"]}
+
+
+✔ Real use case: Sending employee details to backend/API.
+
+🔹 2. JSON.parse() → Convert JSON String → JS Object
+
+📌 Example: Receiving Order Data from API (Server Response)
+
+let orderData = '{"orderId":501,"customer":"Neha","items":["Laptop","Bag"],"total":56000}';
+
+// Convert JSON string to JS object
+let order = JSON.parse(orderData);
+
+console.log(order.customer); // Neha
+console.log(order.items[0]); // Laptop
+
+
+✔ Real use case: Parsing API response to access order details.
+
+🔹 3. Using Both Together
+
+📌 Example: Save & Retrieve User Data in Local Storage (Browser)
+
+// User profile object
+let user = {
+  id: 1,
+  name: "Raj",
+  email: "raj@example.com",
+  isLoggedIn: true
+};
+
+// Store in localStorage (needs string format)
+localStorage.setItem("user", JSON.stringify(user));
+
+// Retrieve from localStorage
+let userData = JSON.parse(localStorage.getItem("user"));
+
+console.log(userData.name);   // Raj
+console.log(userData.isLoggedIn); // true
+
+
+✔ Real use case: Saving user session in browser.
+
+🔹 4. Nested JSON Example
+
+📌 Example: Student Report Card
+
+let student = {
+  id: 10,
+  name: "Amit",
+  subjects: {
+    math: 90,
+    science: 85,
+    english: 88
+  },
+  passed: true
+};
+
+// Convert to JSON string
+let jsonString = JSON.stringify(student);
+
+console.log("JSON String:", jsonString);
+
+// Parse back to object
+let studentObj = JSON.parse(jsonString);
+
+console.log("Math Marks:", studentObj.subjects.math); // 90
+
+
+✔ Real use case: Storing structured data (marks, addresses, etc.) in databases/APIs.
+
+⚡ Summary
+Method	Purpose	Real Use Case
+JSON.stringify(obj)	Object → JSON String	Send data to server, save in localStorage
+JSON.parse(str)	JSON String → Object	Read API response, get saved data
+
+
+=============================================================
+6. DOM Manipulation
+=============================================================
+🔹 What is DOM?
+
+DOM (Document Object Model) = A tree structure that represents HTML elements in a web page.
+👉 Using JavaScript, we can select, create, update, delete, and handle events on DOM elements.
+
+🔹 1. Selecting Elements
+
+📌 Example: Selecting a Button
+
+<button id="loginBtn">Login</button>
+
+// Different ways to select elements
+let btn1 = document.getElementById("loginBtn");
+let btn2 = document.querySelector("#loginBtn"); // CSS selector
+let btn3 = document.getElementsByTagName("button")[0];
+
+console.log(btn1.textContent); // Login
+
+
+✔ Real use case: Selecting buttons, forms, headings to manipulate them.
+
+🔹 2. Changing Content
+
+📌 Example: Online Exam System
+
+<h2 id="status">Exam not started</h2>
+<button onclick="startExam()">Start Exam</button>
+
+function startExam() {
+  document.getElementById("status").textContent = "Exam is running...";
+}
+
+
+✔ Real use case: Updating exam status dynamically.
+
+🔹 3. Changing Styles
+
+📌 Example: Highlight Low Stock Products
+
+<p id="product">Laptop - Only 2 left!</p>
+
+let product = document.getElementById("product");
+product.style.color = "red";
+product.style.fontWeight = "bold";
+
+
+✔ Real use case: Highlight warnings, errors, discounts.
+
+🔹 4. Creating & Adding Elements
+
+📌 Example: Adding New Chat Message
+
+<ul id="chatBox"></ul>
+
+function addMessage(user, message) {
+  let li = document.createElement("li");
+  li.textContent = `${user}: ${message}`;
+  document.getElementById("chatBox").appendChild(li);
+}
+
+addMessage("Suraj", "Hello, how are you?");
+
+
+✔ Real use case: Adding chat messages, comments, notifications dynamically.
+
+🔹 5. Removing Elements
+
+📌 Example: Remove Item from Cart
+
+<ul id="cart">
+  <li id="item1">Shoes <button onclick="removeItem('item1')">Remove</button></li>
+</ul>
+
+function removeItem(itemId) {
+  let item = document.getElementById(itemId);
+  item.remove(); // or item.parentNode.removeChild(item);
+}
+
+
+✔ Real use case: Deleting items from shopping cart.
+
+🔹 6. Handling Events
+
+📌 Example: Login Button Click
+
+<button id="loginBtn">Login</button>
+
+let loginBtn = document.getElementById("loginBtn");
+
+loginBtn.addEventListener("click", function() {
+  alert("You clicked Login!");
+});
+
+
+✔ Real use case: Handling clicks, form submissions, mouseover, keypress events.
+
+🔹 7. Changing Attributes
+
+📌 Example: Change Profile Picture
+
+<img id="profilePic" src="default.jpg" width="150">
+
+document.getElementById("profilePic").setAttribute("src", "user1.jpg");
+
+
+✔ Real use case: Updating image source, links, input values.
+
+🔹 8. Form Handling
+
+📌 Example: Get User Input
+
+<input type="text" id="username" placeholder="Enter name">
+<button onclick="showUser()">Submit</button>
+<p id="output"></p>
+
+function showUser() {
+  let name = document.getElementById("username").value;
+  document.getElementById("output").textContent = `Welcome, ${name}!`;
+}
+
+
+✔ Real use case: Taking user input from forms.
+
+🔹 9. Class Manipulation
+
+📌 Example: Toggle Dark Mode
+
+<body id="page">
+  <button onclick="toggleTheme()">Toggle Dark Mode</button>
+</body>
+
+function toggleTheme() {
+  document.getElementById("page").classList.toggle("dark-mode");
+}
+
+
+✔ Real use case: Switching between light/dark mode.
+
+⚡ Summary of DOM Manipulation
+Type	Method	Real Example
+Select	getElementById, querySelector	Select button, form
+Content	textContent, innerHTML	Update exam status
+Style	.style	Highlight low stock
+Create/Add	createElement, appendChild	Add chat message
+Remove	.remove()	Remove cart item
+Events	addEventListener	Login button click
+Attributes	setAttribute	Change profile picture
+Forms	.value	Get user input
+Class	classList.add/remove/toggle	Dark mode
+
+
+=============================================================
+Selecting Elements (getElementById, querySelector, querySelectorAll)
+=============================================================
+🔹 1. document.getElementById()
+
+👉 Selects one element by its id.
+
+📌 Example: Online Exam Portal (Change Exam Status)
+
+<h2 id="examStatus">Exam not started</h2>
+<button onclick="startExam()">Start Exam</button>
+
+<script>
+function startExam() {
+  let status = document.getElementById("examStatus");
+  status.textContent = "✅ Exam is now live!";
+}
+</script>
+
+
+✅ Real use case: Updating text, button labels, or status messages.
+
+🔹 2. document.querySelector()
+
+👉 Selects the first matching element (using CSS selectors).
+
+📌 Example: E-commerce Site (Highlight Discount Product)
+
+<div class="product">Shoes - ₹2000</div>
+<div class="product discount">Watch - ₹1500 (10% OFF)</div>
+<div class="product">Bag - ₹3000</div>
+
+<script>
+let firstDiscount = document.querySelector(".discount");
+firstDiscount.style.color = "red";
+firstDiscount.style.fontWeight = "bold";
+</script>
+
+
+✅ Real use case: Target first matching product, form field, or element with class.
+
+🔹 3. document.querySelectorAll()
+
+👉 Selects all matching elements (returns a NodeList).
+
+📌 Example: News Website (Style All Headlines)
+
+<h2 class="headline">Breaking: Market News</h2>
+<h2 class="headline">Sports: India Wins</h2>
+<h2 class="headline">Weather: Rain Expected</h2>
+
+<script>
+let headlines = document.querySelectorAll(".headline");
+
+headlines.forEach(h => {
+  h.style.background = "yellow";
+  h.style.padding = "5px";
+});
+</script>
+
+
+✅ Real use case: Applying styles/actions to multiple elements (headings, cards, inputs).
+
+⚡ Quick Comparison
+Method	Selects	Example Selector	Real Use Case
+getElementById	One element (by id)	"examStatus"	Update exam status
+querySelector	First match (CSS selector)	".discount"	Highlight first discount
+querySelectorAll	All matches (NodeList)	".headline"	Apply style to all headlines
+
+=====================================================================
+Changing Content & Styles (innerHTML, textContent, style)
+=====================================================================
+🔹 1. innerHTML → Change HTML Content
+
+👉 Lets you change the HTML inside an element (can include tags).
+
+📌 Example: E-commerce Site – Show Product Details
+
+<div id="product"></div>
+<button onclick="showProduct()">Show Product</button>
+
+<script>
+function showProduct() {
+  document.getElementById("product").innerHTML = 
+    "<h3>👜 Leather Bag</h3><p>Price: ₹3000</p><strong>In Stock</strong>";
+}
+</script>
+
+
+✅ Real use case: Display product details, notifications, or formatted content.
+
+🔹 2. textContent → Change Only Text
+
+👉 Updates only the text, ignores HTML tags.
+
+📌 Example: Exam System – Update Status
+
+<h2 id="examStatus">Exam not started</h2>
+<button onclick="startExam()">Start Exam</button>
+
+<script>
+function startExam() {
+  document.getElementById("examStatus").textContent = 
+    "✅ Exam is live! Good luck!";
+}
+</script>
+
+
+✅ Real use case: Updating labels, messages, or preventing unwanted HTML injection.
+
+🔹 3. style → Change CSS Styles
+
+👉 Allows you to change inline CSS styles dynamically.
+
+📌 Example: Stock Management – Highlight Low Stock Items
+
+<p id="stock">⚠️ Only 2 Laptops left!</p>
+<button onclick="highlight()">Highlight</button>
+
+<script>
+function highlight() {
+  let stock = document.getElementById("stock");
+  stock.style.color = "red";
+  stock.style.fontWeight = "bold";
+  stock.style.background = "yellow";
+}
+</script>
+
+
+✅ Real use case: Highlighting errors, warnings, offers, or themes (dark mode).
+
+⚡ Quick Comparison
+Method	Purpose	Can Handle HTML?	Real Use Case
+innerHTML	Set/replace HTML content	✅ Yes	Display product details
+textContent	Set/retrieve plain text	❌ No	Update exam status
+style	Modify inline CSS styles	❌ N/A	Highlight low stock
+
+=====================================================================
+Adding & Removing Elements (appendChild, remove, insertBefore)
+=====================================================================
+🔹 1. appendChild() → Add New Element at the End
+
+📌 Example: Chat Application – Add New Message
+
+<ul id="chatBox"></ul>
+<button onclick="sendMessage()">Send Message</button>
+
+<script>
+function sendMessage() {
+  let li = document.createElement("li");  // create new list item
+  li.textContent = "Suraj: Hello, how are you?";
+  document.getElementById("chatBox").appendChild(li);
+}
+</script>
+
+
+✅ Real use case: Adding chat messages, comments, notifications dynamically.
+
+🔹 2. remove() → Remove an Element
+
+📌 Example: Shopping Cart – Remove Item
+
+<ul id="cart">
+  <li id="item1">Shoes <button onclick="removeItem('item1')">Remove</button></li>
+  <li id="item2">Bag <button onclick="removeItem('item2')">Remove</button></li>
+</ul>
+
+<script>
+function removeItem(itemId) {
+  document.getElementById(itemId).remove();
+}
+</script>
+
+
+✅ Real use case: Deleting items from cart, removing posts, clearing fields.
+
+🔹 3. insertBefore() → Insert New Element Before Another
+
+📌 Example: Task List – Add Urgent Task Before First Task
+
+<ul id="tasks">
+  <li>Do Homework</li>
+  <li>Clean Room</li>
+</ul>
+<button onclick="addUrgentTask()">Add Urgent Task</button>
+
+<script>
+function addUrgentTask() {
+  let li = document.createElement("li");
+  li.textContent = "🔥 Submit Project Report";
+
+  let taskList = document.getElementById("tasks");
+  let firstTask = taskList.firstElementChild; // first task
+  taskList.insertBefore(li, firstTask);       // insert before first
+}
+</script>
+
+
+✅ Real use case: Prioritizing tasks, inserting ads before posts, showing urgent alerts.
+
+⚡ Quick Comparison
+Method	Action	Real Example
+appendChild()	Adds new element at end	Add chat message
+remove()	Removes element	Remove cart item
+insertBefore()	Inserts before specific element	Insert urgent task
+
+=====================================================================
+Attributes & Classes (setAttribute, classList)
+=====================================================================
+🔹 1. setAttribute() → Set or Change an Attribute
+
+📌 Example: Change Profile Picture Dynamically
+
+<img id="profilePic" src="default.jpg" alt="Profile" width="150">
+<button onclick="changePic()">Change Picture</button>
+
+<script>
+function changePic() {
+  let img = document.getElementById("profilePic");
+  img.setAttribute("src", "user.jpg"); // change image
+  img.setAttribute("alt", "User Profile");
+}
+</script>
+
+
+✅ Real use case: Update image, link, input attributes dynamically (e.g., when user uploads profile photo).
+
+🔹 2. classList.add() → Add a Class
+
+📌 Example: Highlight Error Input
+
+<input type="text" id="username" placeholder="Enter username">
+<button onclick="showError()">Submit</button>
+
+<script>
+function showError() {
+  let input = document.getElementById("username");
+  input.classList.add("error"); // add error class
+}
+</script>
+
+<style>
+.error {
+  border: 2px solid red;
+  background: #ffe5e5;
+}
+</style>
+
+
+✅ Real use case: Highlight invalid form fields.
+
+🔹 3. classList.remove() → Remove a Class
+
+📌 Example: Hide Notification After Closing
+
+<div id="notification" class="alert">New message received! 
+  <button onclick="closeNotification()">X</button>
+</div>
+
+<script>
+function closeNotification() {
+  document.getElementById("notification").classList.remove("alert");
+}
+</script>
+
+<style>
+.alert {
+  padding: 10px;
+  background: yellow;
+  border: 1px solid orange;
+}
+</style>
+
+
+✅ Real use case: Remove highlight, hide popups, clear validation messages.
+
+🔹 4. classList.toggle() → Switch Class On/Off
+
+📌 Example: Dark Mode Toggle
+
+<button onclick="toggleTheme()">Toggle Dark Mode</button>
+<p id="text">Hello, this is my website!</p>
+
+<script>
+function toggleTheme() {
+  document.body.classList.toggle("dark");
+}
+</script>
+
+<style>
+.dark {
+  background: black;
+  color: white;
+}
+</style>
+
+
+✅ Real use case: Light/Dark mode switch, show/hide menus.
+
+🔹 5. classList.contains() → Check if Class Exists
+
+📌 Example: Prevent Duplicate Styling
+
+<div id="box">I am a box</div>
+<button onclick="highlightBox()">Highlight Box</button>
+
+<script>
+function highlightBox() {
+  let box = document.getElementById("box");
+  if (!box.classList.contains("highlight")) {
+    box.classList.add("highlight");
+  }
+}
+</script>
+
+<style>
+.highlight {
+  border: 3px solid green;
+  padding: 10px;
+}
+</style>
+
+
+✅ Real use case: Prevent duplicate styling or repeated animations.
+
+⚡ Summary
+Method	Action	Real Use Case
+setAttribute(name,val)	Sets/changes attribute	Change profile pic dynamically
+classList.add()	Adds class	Show validation error
+classList.remove()	Removes class	Hide notification
+classList.toggle()	Toggles class	Dark mode switch
+classList.contains()	Checks class	Avoid duplicate style
+
+=====================================================================
+Event Handling (addEventListener, event bubbling, delegation)
+=====================================================================
+🔹 1. addEventListener() → Attach Multiple Event Listeners
+
+📌 Example: Button Click & Mouseover
+
+<button id="buyBtn">Buy Now</button>
+
+<script>
+let btn = document.getElementById("buyBtn");
+
+// Click event
+btn.addEventListener("click", function() {
+  alert("Item added to cart!");
+});
+
+// Mouse hover event
+btn.addEventListener("mouseover", function() {
+  btn.style.background = "lightgreen";
+});
+</script>
+
+
+✅ Real use case: Attach multiple events (click, hover, focus) to a button without overwriting.
+
+🔹 2. Event Bubbling → Event flows from child → parent
+
+📌 Example: Clicking a Child Triggers Parent Too
+
+<div id="parent" style="padding:20px; background:#f1f1f1;">
+  Parent Div
+  <button id="child">Click Me</button>
+</div>
+
+<script>
+document.getElementById("parent").addEventListener("click", function() {
+  alert("Parent Div Clicked!");
+});
+
+document.getElementById("child").addEventListener("click", function() {
+  alert("Child Button Clicked!");
+});
+</script>
+
+
+🔎 If you click Child Button:
+
+First → "Child Button Clicked!"
+
+Then → "Parent Div Clicked!" (because of bubbling)
+
+✅ Real use case: Detect clicks both on items and their containers (like clicking product + product card).
+
+🔹 3. Event Delegation → Handle Events on Parent Instead of Each Child
+
+📌 Example: Shopping Cart (Multiple Buttons)
+
+<ul id="productList">
+  <li><button class="addToCart">Add Apple</button></li>
+  <li><button class="addToCart">Add Mango</button></li>
+  <li><button class="addToCart">Add Orange</button></li>
+</ul>
+
+<script>
+document.getElementById("productList").addEventListener("click", function(event) {
+  if (event.target.classList.contains("addToCart")) {
+    alert(event.target.innerText + " clicked!");
+  }
+});
+</script>
+
+
+✅ Real use case: Instead of attaching event listeners to each product button, attach one listener to the parent <ul> → saves performance in large lists.
+
+⚡ Summary
+Concept	Meaning	Real Use Case
+addEventListener()	Attach events (multiple allowed)	Button click, hover
+Event Bubbling	Events propagate child → parent	Modal close when clicking outside
+Event Delegation	Use parent to handle child events	Shopping cart, menus, chat apps
+
+=====================================================================
+7. Advanced JavaScript (Done)
+=====================================================================
+🔹 1. Closures
+
+📌 A function “remembers” variables from its outer scope, even after the outer function has finished.
+
+Example: Banking App – Balance Privacy
+
+function createAccount(initialBalance) {
+  let balance = initialBalance; // private variable
+
+  return {
+    deposit: function(amount) {
+      balance += amount;
+      return `Deposited ₹${amount}, New Balance: ₹${balance}`;
+    },
+    withdraw: function(amount) {
+      if (amount <= balance) {
+        balance -= amount;
+        return `Withdrawn ₹${amount}, Remaining Balance: ₹${balance}`;
+      } else {
+        return "Insufficient funds!";
+      }
+    }
+  };
+}
+
+const myAccount = createAccount(500);
+console.log(myAccount.deposit(200)); // Deposited ₹200, New Balance: ₹700
+console.log(myAccount.withdraw(1000)); // Insufficient funds!
+
+
+✅ Real use case → Keeping data private in apps (like bank balance).
+
+🔹 2. Promises & Async/Await
+
+📌 Handle asynchronous operations (e.g., API calls, DB queries).
+
+Example: Fetch Weather Data
+
+// Using Promise
+function fetchWeather(city) {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      if (city === "Pune") {
+        resolve("☀️ Sunny in Pune");
+      } else {
+        reject("City not found!");
+      }
+    }, 1000);
+  });
+}
+
+// Using async/await
+async function showWeather() {
+  try {
+    let result = await fetchWeather("Pune");
+    console.log(result); 
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+showWeather();
+
+
+✅ Real use case → APIs in weather apps, payment processing.
+
+🔹 3. Event Loop & Concurrency
+
+📌 JS executes code line by line (single-threaded), but async tasks go to event loop queue.
+
+Example: Order Food App
+
+console.log("1. Place order 🍔");
+
+setTimeout(() => console.log("2. Cooking food ⏳"), 2000);
+
+console.log("3. Continue scrolling Instagram 📱");
+
+
+Output order:
+
+1. Place order 🍔
+3. Continue scrolling Instagram 📱
+2. Cooking food ⏳
+
+
+✅ Real use case → Non-blocking apps (chat apps, food ordering).
+
+🔹 4. Prototypes & Inheritance
+
+📌 Objects inherit properties/methods via prototype chain.
+
+Example: Vehicle Inheritance
+
+function Vehicle(type) {
+  this.type = type;
+}
+Vehicle.prototype.drive = function() {
+  return `${this.type} is moving 🚗`;
+};
+
+function Car(model) {
+  Vehicle.call(this, "Car");
+  this.model = model;
+}
+Car.prototype = Object.create(Vehicle.prototype);
+
+const myCar = new Car("Tesla");
+console.log(myCar.drive()); // Car is moving 🚗
+
+
+✅ Real use case → Reuse code in OOP design.
+
+🔹 5. Modules (import/export)
+
+📌 Split code into files for better maintainability.
+
+Example: E-commerce Cart
+
+📁 cart.js
+
+export function addToCart(item) {
+  return `${item} added to cart 🛒`;
+}
+
+
+📁 app.js
+
+import { addToCart } from './cart.js';
+
+console.log(addToCart("Laptop")); // Laptop added to cart 🛒
+
+
+✅ Real use case → Modular code in projects (React, Node.js).
+
+🔹 6. Currying
+
+📌 Break a function with multiple arguments into smaller functions.
+
+Example: Online Order Discount
+
+function applyDiscount(discount) {
+  return function(price) {
+    return price - (price * discount);
+  };
+}
+
+let studentDiscount = applyDiscount(0.2);
+console.log(studentDiscount(1000)); // 800
+
+
+✅ Real use case → Reusable functions (discounts, tax calculation).
+
+🔹 7. Debouncing & Throttling
+
+📌 Improve performance by controlling how often a function runs.
+
+Example: Search Suggestions (Debouncing)
+
+let timer;
+function search(query) {
+  clearTimeout(timer);
+  timer = setTimeout(() => {
+    console.log("Searching for:", query);
+  }, 500);
+}
+
+// Simulating typing
+search("a");
+search("ap");
+search("app");
+
+
+✅ Real use case → Google search suggestions, scroll events.
+
+🔹 8. LocalStorage & SessionStorage
+
+📌 Store data in the browser.
+
+Example: Remember User Login
+
+// Save login
+localStorage.setItem("username", "Suraj");
+
+// Retrieve
+console.log(localStorage.getItem("username")); // Suraj
+
+// Remove
+localStorage.removeItem("username");
+
+
+✅ Real use case → Store theme, login state, cart items.
+
+⚡ Summary (Advanced JS Topics)
+
+✅ Closures → Private variables (Bank account)
+✅ Promises/Async → Handle async (Weather API)
+✅ Event Loop → Non-blocking tasks (Food app)
+✅ Prototypes → Inheritance (Car from Vehicle)
+✅ Modules → Split files (Cart system)
+✅ Currying → Reuse functions (Discounts)
+✅ Debounce/Throttle → Performance (Search, scroll)
+✅ Storage → Save data (Login, theme, cart)
+
+=====================================================================
+ES6+ Features (let/const, template literals, destructuring, modules, etc.)
+=====================================================================
+🔹 1. let & const
+
+📌 Block-scoped, unlike var.
+
+Example: Shopping Cart Item Count
+
+let itemsInCart = 3;
+const maxItems = 10;
+
+if (itemsInCart < maxItems) {
+  let newItem = "Laptop";
+  console.log(`${newItem} added to cart 🛒`);
+}
+
+// ❌ newItem is not accessible here (block scope)
+
+
+✅ Real use case → Prevent accidental variable overwrites.
+
+🔹 2. Template Literals (Backticks ``)
+
+📌 Easier string concatenation + multi-line strings.
+
+Example: Invoice Generation
+
+let customer = "Suraj";
+let amount = 1500;
+
+let invoice = `Hello ${customer}, 
+Your total bill is ₹${amount}.
+Thank you for shopping!`;
+
+console.log(invoice);
+
+
+✅ Real use case → Create formatted messages, emails, invoices.
+
+🔹 3. Object & Array Destructuring
+
+📌 Extract values easily.
+
+Example: User Profile Data
+
+let user = { name: "Riya", age: 25, city: "Pune" };
+let { name, city } = user;
+
+console.log(`${name} lives in ${city}`); // Riya lives in Pune
+
+let fruits = ["Apple", "Mango", "Banana"];
+let [first, , third] = fruits;
+
+console.log(first, third); // Apple Banana
+
+
+✅ Real use case → Handle API responses easily.
+
+🔹 4. Default Parameters
+
+📌 Provide fallback values.
+
+Example: Food Delivery Charges
+
+function orderFood(item, deliveryCharge = 50) {
+  return `${item} ordered with delivery charge ₹${deliveryCharge}`;
+}
+
+console.log(orderFood("Pizza"));      // delivery charge ₹50
+console.log(orderFood("Burger", 0));  // free delivery
+
+
+✅ Real use case → Optional function arguments.
+
+🔹 5. Arrow Functions () => {}
+
+📌 Shorter syntax + lexical this.
+
+Example: Filter Online Users
+
+let users = [
+  { name: "Amit", online: true },
+  { name: "Sneha", online: false }
+];
+
+let onlineUsers = users.filter(user => user.online);
+console.log(onlineUsers); // [{ name: "Amit", online: true }]
+
+
+✅ Real use case → Clean callbacks (map, filter, reduce).
+
+🔹 6. Spread Operator ...
+
+📌 Expand arrays/objects.
+
+Example: Combine Two Shopping Carts
+
+let cart1 = ["Laptop", "Phone"];
+let cart2 = ["Headphones", "Charger"];
+
+let mergedCart = [...cart1, ...cart2];
+console.log(mergedCart); 
+// ["Laptop", "Phone", "Headphones", "Charger"]
+
+
+✅ Real use case → Merge lists, clone objects.
+
+🔹 7. Rest Operator ...
+
+📌 Collect remaining arguments.
+
+Example: Restaurant Bill Split
+
+function splitBill(person1, person2, ...others) {
+  console.log(`Main payers: ${person1}, ${person2}`);
+  console.log(`Others: ${others.join(", ")}`);
+}
+
+splitBill("Amit", "Riya", "Suraj", "Sneha", "Priya");
+// Main payers: Amit, Riya
+// Others: Suraj, Sneha, Priya
+
+
+✅ Real use case → Flexible functions (multiple inputs).
+
+🔹 8. Modules (import/export)
+
+📌 Organize code into files.
+
+Example: Online Store
+
+📁 cart.js
+
+export function addToCart(item) {
+  return `${item} added to cart 🛒`;
+}
+
+
+📁 app.js
+
+import { addToCart } from './cart.js';
+
+console.log(addToCart("Laptop")); // Laptop added to cart 🛒
+
+
+✅ Real use case → Modular, maintainable apps.
+
+🔹 9. Classes
+
+📌 OOP-style syntax in JS.
+
+Example: Online Booking System
+
+class Booking {
+  constructor(name, seat) {
+    this.name = name;
+    this.seat = seat;
+  }
+  confirm() {
+    return `Booking confirmed for ${this.name}, Seat: ${this.seat}`;
+  }
+}
+
+let ticket = new Booking("Suraj", "A12");
+console.log(ticket.confirm());
+
+
+✅ Real use case → Reusable blueprints (Bookings, Orders, Users).
+
+🔹 10. Promises & Async/Await
+
+📌 Handle async tasks cleanly.
+
+Example: Fetching Movie Data
+
+function fetchMovie() {
+  return new Promise(resolve => {
+    setTimeout(() => resolve("🎬 Movie: Interstellar"), 1000);
+  });
+}
+
+async function showMovie() {
+  let movie = await fetchMovie();
+  console.log(movie);
+}
+
+showMovie();
+
+
+✅ Real use case → API calls in apps.
+
+⚡ Summary (ES6+ Features in Real Life)
+Feature	Real Use Case
+let/const	Prevent overwrites in cart
+Template Literals	Invoices, notifications
+Destructuring	API responses, configs
+Default Parameters	Delivery charges, defaults
+Arrow Functions	Clean callbacks
+Spread Operator	Merge carts, clone data
+Rest Operator	Handle multiple inputs
+Modules	Organized code
+Classes	Bookings, orders, models
+Async/Await	Fetch API data
+
+=====================================================================
+Spread & Rest Operator
+=====================================================================
+🔹 1. Spread Operator (...)
+✅ Example 1: Merging Shopping Carts
+let cart1 = ["Laptop", "Phone"];
+let cart2 = ["Headphones", "Charger"];
+
+let mergedCart = [...cart1, ...cart2];
+console.log(mergedCart);
+// ["Laptop", "Phone", "Headphones", "Charger"]
+
+
+📌 Real Use Case: Merging multiple shopping carts in an e-commerce website.
+
+✅ Example 2: Copying an Object (User Profile)
+let user = { name: "Suraj", age: 25 };
+let updatedUser = { ...user, city: "Pune" };
+
+console.log(updatedUser);
+// { name: "Suraj", age: 25, city: "Pune" }
+
+
+📌 Real Use Case: Cloning objects and adding extra details (like when updating user profiles).
+
+✅ Example 3: Passing Array Values to Function
+function calculateBill(a, b, c) {
+  return a + b + c;
+}
+
+let prices = [100, 200, 300];
+console.log(calculateBill(...prices)); // 600
+
+
+📌 Real Use Case: Expanding price arrays when calculating total bills.
+
+🔹 2. Rest Operator (...)
+✅ Example 1: Restaurant Bill Split
+function splitBill(mainPayer, ...others) {
+  console.log(`Main payer: ${mainPayer}`);
+  console.log(`Others sharing: ${others.join(", ")}`);
+}
+
+splitBill("Amit", "Riya", "Sneha", "Suraj");
+// Main payer: Amit
+// Others sharing: Riya, Sneha, Suraj
+
+
+📌 Real Use Case: Handling variable number of arguments (bill splitting, group payments).
+
+✅ Example 2: Extracting Remaining Properties
+let user = { name: "Riya", age: 24, city: "Mumbai", country: "India" };
+
+let { name, ...details } = user;
+console.log(name);     // Riya
+console.log(details);  // { age: 24, city: "Mumbai", country: "India" }
+
+
+📌 Real Use Case: Get required property (name) and keep the rest (user details).
+
+✅ Example 3: Dynamic Sum of Numbers
+function totalAmount(...amounts) {
+  return amounts.reduce((sum, amt) => sum + amt, 0);
+}
+
+console.log(totalAmount(200, 500, 300, 100)); // 1100
+
+
+📌 Real Use Case: Summing variable number of payments in a payment app.
+
+⚡ Key Difference
+Operator	Meaning	Example Use Case
+Spread	Expands array/object	Merge shopping carts, clone user profile
+Rest	Collects arguments into array	Split bills, dynamic functions, extract details
+
+=====================================================================
+Default & Named Exports / Imports
+=====================================================================
+🔹 1. Named Exports / Imports
+
+📌 You can export multiple functions/variables from a file.
+📌 Import them using curly braces {}.
+
+✅ Example: mathUtils.js
+// Named Exports
+export function add(a, b) {
+  return a + b;
+}
+
+export function subtract(a, b) {
+  return a - b;
+}
+
+export const TAX_RATE = 0.18;
+
+✅ Example: app.js
+// Named Imports
+import { add, subtract, TAX_RATE } from './mathUtils.js';
+
+console.log(add(10, 5));        // 15
+console.log(subtract(10, 5));   // 5
+console.log("Tax Rate:", TAX_RATE); // 0.18
+
+
+📌 Real Use Case → Utility functions for billing, tax calculation, discounts.
+
+🔹 2. Default Exports / Imports
+
+📌 Each file can have only one default export.
+📌 Import without curly braces.
+
+✅ Example: payment.js
+// Default Export
+export default function processPayment(amount) {
+  return `Payment of ₹${amount} processed successfully ✅`;
+}
+
+✅ Example: app.js
+// Default Import
+import processPayment from './payment.js';
+
+console.log(processPayment(1500));
+// Payment of ₹1500 processed successfully ✅
+
+
+📌 Real Use Case → One main function/class per module (like a payment processor).
+
+🔹 3. Mixing Default & Named Exports
+✅ Example: cart.js
+export default function addToCart(item) {
+  return `${item} added to cart 🛒`;
+}
+
+export function removeFromCart(item) {
+  return `${item} removed from cart ❌`;
+}
+
+export const SHIPPING_CHARGE = 50;
+
+✅ Example: app.js
+// Import default + named exports
+import addToCart, { removeFromCart, SHIPPING_CHARGE } from './cart.js';
+
+console.log(addToCart("Laptop"));      
+// Laptop added to cart 🛒
+
+console.log(removeFromCart("Laptop")); 
+// Laptop removed from cart ❌
+
+console.log("Shipping:", SHIPPING_CHARGE); 
+// Shipping: 50
+
+
+📌 Real Use Case →
+
+default → Primary feature (addToCart).
+
+named → Extra utilities (removeFromCart, SHIPPING_CHARGE).
+
+⚡ Summary
+Export Type	Import Syntax	Use Case
+Named Export	import { fn } from	Multiple utilities from one file
+Default Export	import fn from	One main feature per file
+Mixing Both	import fn, { utils }	Main + extra features
+
+=====================================================================
+Promises (then, catch, finally)
+=====================================================================
+🔹 What is a Promise?
+
+A Promise in JavaScript is an object that represents the eventual completion (resolved) or failure (rejected) of an asynchronous operation.
+
+It has 3 states:
+
+Pending – still working.
+
+Fulfilled (Resolved) – success.
+
+Rejected – failure.
+
+🔹 Syntax
+new Promise((resolve, reject) => {
+  // async work
+  if (success) resolve(value);
+  else reject(error);
+})
+
+🔹 Real-World Examples
+✅ Example 1: Online Food Order
+function orderFood(item) {
+  return new Promise((resolve, reject) => {
+    console.log(`Ordering ${item}... 🍔`);
+    setTimeout(() => {
+      if (item === "Pizza") {
+        resolve("Pizza delivered! ✅");
+      } else {
+        reject("Sorry, item not available ❌");
+      }
+    }, 2000);
+  });
+}
+
+orderFood("Pizza")
+  .then(response => {
+    console.log("Success:", response);
+  })
+  .catch(error => {
+    console.log("Error:", error);
+  })
+  .finally(() => {
+    console.log("Thank you for ordering with us 🙏");
+  });
+
+🔎 Output if item = "Pizza":
+Ordering Pizza... 🍔
+Success: Pizza delivered! ✅
+Thank you for ordering with us 🙏
+
+🔎 Output if item = "Burger":
+Ordering Burger... 🍔
+Error: Sorry, item not available ❌
+Thank you for ordering with us 🙏
+
+
+📌 Real Use Case → Food delivery apps (Zomato, Swiggy).
+
+✅ Example 2: Payment Gateway
+function processPayment(amount) {
+  return new Promise((resolve, reject) => {
+    console.log("Processing payment of ₹" + amount);
+    setTimeout(() => {
+      let success = Math.random() > 0.3; // 70% chance success
+      success ? resolve("Payment Successful ✅") : reject("Payment Failed ❌");
+    }, 1500);
+  });
+}
+
+processPayment(1000)
+  .then(msg => console.log(msg))
+  .catch(err => console.log(err))
+  .finally(() => console.log("Transaction Complete 🏦"));
+
+
+📌 Real Use Case → Handling payments in online shopping apps.
+
+✅ Example 3: Fetch User Data (API Simulation)
+function fetchUser(id) {
+  return new Promise((resolve, reject) => {
+    console.log("Fetching user data...");
+    setTimeout(() => {
+      if (id === 1) {
+        resolve({ id: 1, name: "Suraj", role: "Admin" });
+      } else {
+        reject("User not found!");
+      }
+    }, 1000);
+  });
+}
+
+fetchUser(1)
+  .then(user => console.log("User Data:", user))
+  .catch(err => console.log("Error:", err))
+  .finally(() => console.log("API call finished ✅"));
+
+
+📌 Real Use Case → Fetching user details from server.
+
+⚡ Summary
+Method	Purpose	Example Use Case
+then()	Runs when Promise is resolved (success)	Show order delivered message
+catch()	Runs when Promise is rejected (error)	Show error in payment
+finally()	Runs always (success or fail)	Close loaders, thank message
+
+=====================================================================
+Async/Await
+=====================================================================
+🔹 What is async/await?
+
+async/await is a cleaner and more readable way to work with Promises.
+
+Instead of chaining .then() and .catch(), you can write asynchronous code like synchronous code.
+
+🔹 Rules
+
+async keyword → makes a function return a Promise.
+
+await keyword → pauses the function until the Promise is resolved or rejected.
+
+Use try...catch for error handling.
+
+🔹 Real-World Examples
+✅ Example 1: Online Food Order (Async/Await)
+function orderFood(item) {
+  return new Promise((resolve, reject) => {
+    console.log(`Ordering ${item}... 🍔`);
+    setTimeout(() => {
+      if (item === "Pizza") {
+        resolve("Pizza delivered! ✅");
+      } else {
+        reject("Sorry, item not available ❌");
+      }
+    }, 2000);
+  });
+}
+
+async function placeOrder() {
+  try {
+    let result = await orderFood("Pizza");
+    console.log("Success:", result);
+  } catch (error) {
+    console.log("Error:", error);
+  } finally {
+    console.log("Thank you for ordering with us 🙏");
+  }
+}
+
+placeOrder();
+
+
+📌 Cleaner than .then().catch().finally()
+
+✅ Example 2: Payment Gateway (Async/Await)
+function processPayment(amount) {
+  return new Promise((resolve, reject) => {
+    console.log("Processing payment of ₹" + amount);
+    setTimeout(() => {
+      let success = Math.random() > 0.3; // 70% chance success
+      success ? resolve("Payment Successful ✅") : reject("Payment Failed ❌");
+    }, 1500);
+  });
+}
+
+async function makePayment() {
+  try {
+    let status = await processPayment(1000);
+    console.log(status);
+  } catch (err) {
+    console.log(err);
+  } finally {
+    console.log("Transaction Complete 🏦");
+  }
+}
+
+makePayment();
+
+
+📌 Looks like synchronous flow but still async.
+
+✅ Example 3: Fetch User Data (API Simulation)
+function fetchUser(id) {
+  return new Promise((resolve, reject) => {
+    console.log("Fetching user data...");
+    setTimeout(() => {
+      if (id === 1) {
+        resolve({ id: 1, name: "Suraj", role: "Admin" });
+      } else {
+        reject("User not found!");
+      }
+    }, 1000);
+  });
+}
+
+async function getUser() {
+  try {
+    let user = await fetchUser(1);
+    console.log("User Data:", user);
+  } catch (err) {
+    console.log("Error:", err);
+  } finally {
+    console.log("API call finished ✅");
+  }
+}
+
+getUser();
+
+
+📌 Perfect for working with APIs (like fetch() in real apps).
+
+⚡ Comparison: then/catch vs async/await
+Feature	then/catch	async/await
+Readability	More callbacks (nested)	Cleaner, looks synchronous
+Error Handling	catch()	try...catch
+Usage	Useful for chaining	Useful for step-by-step async tasks
+Real World	API calls, payment, orders	Same, but easier to manage
+
+=====================================================================
+Fetch API & AJAX
+=====================================================================
+🔹 1. What is AJAX?
+
+AJAX (Asynchronous JavaScript and XML) is a technique to send & receive data asynchronously from a server without reloading the page.
+
+Old way → XMLHttpRequest (XHR).
+
+Modern way → fetch() API (simpler, Promise-based).
+
+🔹 2. Fetch API Basics
+fetch("https://api.example.com/data")
+  .then(response => response.json()) // Convert to JSON
+  .then(data => console.log(data))   // Use the data
+  .catch(error => console.error("Error:", error));
+
+🔹 3. Real-World Examples
+✅ Example 1: Fetch Weather Data 🌦️
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Weather App</title>
+</head>
+<body>
+  <h2>🌤️ Check Weather</h2>
+  <button id="getWeather">Get Weather</button>
+  <p id="weatherResult"></p>
+
+  <script>
+    document.getElementById("getWeather").addEventListener("click", () => {
+      fetch("https://api.open-meteo.com/v1/forecast?latitude=18.5204&longitude=73.8567&current_weather=true")
+        .then(response => response.json())
+        .then(data => {
+          document.getElementById("weatherResult").textContent =
+            `Temperature in Pune: ${data.current_weather.temperature}°C 🌡️`;
+        })
+        .catch(error => console.error("Error fetching weather:", error));
+    });
+  </script>
+</body>
+</html>
+
+
+📌 Real Use Case → Weather apps like AccuWeather.
+
+✅ Example 2: Fetch GitHub User Profile 👨‍💻
+<!DOCTYPE html>
+<html>
+<head>
+  <title>GitHub User</title>
+</head>
+<body>
+  <h2>🔍 Search GitHub User</h2>
+  <input type="text" id="username" placeholder="Enter GitHub username">
+  <button id="search">Search</button>
+  <div id="profile"></div>
+
+  <script>
+    document.getElementById("search").addEventListener("click", () => {
+      let user = document.getElementById("username").value;
+
+      fetch(`https://api.github.com/users/${user}`)
+        .then(response => response.json())
+        .then(data => {
+          document.getElementById("profile").innerHTML = `
+            <p>Name: ${data.name}</p>
+            <p>Followers: ${data.followers}</p>
+            <img src="${data.avatar_url}" width="100">
+          `;
+        })
+        .catch(error => console.error("Error fetching user:", error));
+    });
+  </script>
+</body>
+</html>
+
+
+📌 Real Use Case → GitHub search apps.
+
+✅ Example 3: Submitting a Contact Form (POST Request) 📩
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Contact Form</title>
+</head>
+<body>
+  <h2>📬 Contact Us</h2>
+  <form id="contactForm">
+    <input type="text" id="name" placeholder="Your Name" required><br><br>
+    <input type="email" id="email" placeholder="Your Email" required><br><br>
+    <button type="submit">Send</button>
+  </form>
+  <p id="result"></p>
+
+  <script>
+    document.getElementById("contactForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+
+      let formData = {
+        name: document.getElementById("name").value,
+        email: document.getElementById("email").value
+      };
+
+      fetch("https://jsonplaceholder.typicode.com/posts", {
+        method: "POST",
+        body: JSON.stringify(formData),
+        headers: { "Content-Type": "application/json" }
+      })
+      .then(response => response.json())
+      .then(data => {
+        document.getElementById("result").textContent = 
+          "Thank you, " + data.name + "! Your message has been sent ✅";
+      })
+      .catch(error => console.error("Error sending form:", error));
+    });
+  </script>
+</body>
+</html>
+
+
+📌 Real Use Case → Contact forms, feedback submission.
+
+🔹 4. AJAX with XMLHttpRequest (Old Way)
+let xhr = new XMLHttpRequest();
+xhr.open("GET", "https://jsonplaceholder.typicode.com/posts/1", true);
+
+xhr.onload = function() {
+  if (xhr.status === 200) {
+    console.log("Response:", JSON.parse(xhr.responseText));
+  } else {
+    console.log("Error:", xhr.status);
+  }
+};
+
+xhr.send();
+
+
+📌 Rarely used now, replaced by fetch().
+
+⚡ Summary
+
+AJAX = technique for async data (can use XHR or Fetch).
+
+Fetch API = modern Promise-based way.
+
+Real use cases:
+✅ Weather apps
+✅ GitHub profile search
+✅ Contact form submission
+
+=====================================================================
+Event Loop & Concurrency Model
+=====================================================================
+🔹 1. What is the Event Loop?
+
+JavaScript is single-threaded, meaning it executes one task at a time.
+
+But JS can handle asynchronous tasks (like API calls, timers) using the Event Loop.
+
+The Event Loop checks the call stack and message queue to execute tasks in the correct order.
+
+Key Components:
+
+Call Stack → Where functions are executed (synchronous code).
+
+Web APIs → Browser APIs (like setTimeout, fetch) handle async tasks.
+
+Callback Queue / Task Queue → Holds async callbacks.
+
+Event Loop → Moves tasks from queue to stack when the stack is empty.
+
+🔹 2. Real-Based Examples
+✅ Example 1: setTimeout & Synchronous Code
+console.log("1. Start Cooking 🍳");
+
+setTimeout(() => {
+  console.log("2. Food is Ready 🍲");
+}, 2000);
+
+console.log("3. Scroll Instagram 📱");
+
+🔎 Output:
+1. Start Cooking 🍳
+3. Scroll Instagram 📱
+2. Food is Ready 🍲
+
+
+Explanation:
+
+Synchronous code (console.log) runs first → goes to call stack.
+
+setTimeout callback goes to Web APIs, then to callback queue after 2 sec.
+
+Event Loop executes it after stack is empty.
+
+📌 Real Use Case: Loading spinners while fetching data asynchronously.
+
+✅ Example 2: API Call Simulation (Promise)
+console.log("1. Place Order 🍔");
+
+fetch("https://jsonplaceholder.typicode.com/todos/1")
+  .then(response => response.json())
+  .then(data => console.log("2. Order Delivered:", data));
+
+console.log("3. Check Notifications 🔔");
+
+🔎 Output:
+1. Place Order 🍔
+3. Check Notifications 🔔
+2. Order Delivered: {userId: 1, id: 1, title: "delectus aut ...", completed: false}
+
+
+Explanation:
+
+fetch() is asynchronous → handled by Web API.
+
+.then() callback waits in the microtask queue → executed after stack is empty.
+
+📌 Real Use Case: Async API calls in web apps (e-commerce, social media).
+
+✅ Example 3: setTimeout vs Promise (Microtasks vs Macrotasks)
+console.log("Start 🔥");
+
+setTimeout(() => console.log("Timeout ⏰"), 0);
+
+Promise.resolve().then(() => console.log("Promise ✅"));
+
+console.log("End 🏁");
+
+🔎 Output:
+Start 🔥
+End 🏁
+Promise ✅
+Timeout ⏰
+
+
+Explanation:
+
+Promises go to microtask queue → executed before setTimeout (macrotask).
+
+Even if setTimeout = 0ms, it runs after microtasks.
+
+📌 Real Use Case: Handling UI updates before delayed tasks.
+
+✅ Example 4: Real-Life Analogy (Food Delivery App)
+
+User places order → goes call stack.
+
+Order sent to kitchen → Web API (async).
+
+User scrolls app → synchronous code executes.
+
+Kitchen prepares food → callback in queue.
+
+Event Loop moves callback → console shows “Food Ready”.
+
+⚡ Summary
+Concept	Description	Real Use Case
+Call Stack	Executes synchronous code	Button click handler
+Web APIs	Handles async tasks	setTimeout, fetch
+Callback Queue	Holds async callbacks	API responses
+Event Loop	Moves tasks from queue → stack	Non-blocking UI updates
+Microtask vs Macrotask	Promise vs setTimeout	UI before delayed tasks
+
+✅ Key Takeaway: JS never blocks the UI while waiting for async tasks.
+
+=====================================================================
+JavaScript Engine (V8 basics)
+=====================================================================
+🔹 1. What is a JavaScript Engine?
+
+A JavaScript Engine is a program that reads, parses, and executes JavaScript code.
+
+Converts JS code into machine code that your computer can understand.
+
+Examples:
+
+V8 → Chrome, Node.js
+
+SpiderMonkey → Firefox
+
+JavaScriptCore → Safari
+
+🔹 2. How V8 Works (Basics)
+
+V8 engine has several components:
+
+Parser → Reads your JS code and creates an Abstract Syntax Tree (AST).
+
+Interpreter (Ignition) → Converts AST into bytecode (fast initial execution).
+
+Compiler (TurboFan) → Optimizes bytecode to machine code for better performance.
+
+Garbage Collector → Frees memory used by objects no longer needed.
+
+🔹 3. Real-Based Examples
+✅ Example 1: Synchronous vs Asynchronous Execution
+console.log("1. Start Task");
+
+setTimeout(() => {
+  console.log("2. Async Task Finished");
+}, 1000);
+
+console.log("3. Continue Task");
+
+
+Output:
+
+1. Start Task
+3. Continue Task
+2. Async Task Finished
+
+
+Explanation (V8 internals):
+
+console.log → executed by V8’s interpreter.
+
+setTimeout → handled by Web API, callback queued.
+
+Event Loop triggers callback → V8 executes it later.
+
+📌 Real Use Case: Non-blocking UI updates (like scrolling while fetching data).
+
+✅ Example 2: Just-In-Time (JIT) Compilation
+function sumArray(arr) {
+  return arr.reduce((acc, val) => acc + val, 0);
+}
+
+let nums = [1, 2, 3, 4, 5];
+console.log(sumArray(nums));
+
+
+Explanation (V8 internals):
+
+V8 interprets the function initially.
+
+If sumArray runs multiple times → TurboFan compiler optimizes it into machine code for faster execution.
+
+📌 Real Use Case: Performance-critical functions in apps (calculating totals in e-commerce).
+
+✅ Example 3: Garbage Collection
+function createUser(name) {
+  let user = { name };
+  return user;
+}
+
+let user1 = createUser("Suraj");
+user1 = null; // previous object eligible for garbage collection
+
+
+Explanation (V8 internals):
+
+The object { name: "Suraj" } is now unreachable.
+
+V8’s garbage collector will free memory automatically.
+
+📌 Real Use Case: Prevent memory leaks in long-running web apps (like dashboards).
+
+✅ Example 4: Inline Caching (Optimization)
+function getUserName(user) {
+  return user.name;
+}
+
+let u1 = { name: "Amit" };
+let u2 = { name: "Sneha" };
+
+console.log(getUserName(u1));
+console.log(getUserName(u2));
+
+
+Explanation:
+
+V8 stores hidden classes for objects.
+
+Accessing user.name repeatedly → faster due to inline caching.
+
+📌 Real Use Case: Optimized property access in large datasets.
+
+⚡ Summary (V8 Real-World Concepts)
+Feature	What it Does	Example Use Case
+Parser	Creates AST	Reading code
+Interpreter	Converts JS → bytecode	console.log
+JIT Compiler (TurboFan)	Optimizes to machine code	sumArray repeatedly
+Event Loop Execution	Async tasks	setTimeout, fetch
+Garbage Collector	Frees unused memory	Nullifying objects
+Hidden Classes / Inline Caching	Optimized property access	User objects, e-commerce data
+
+✅ Key Takeaways:
+
+V8 makes JS fast via interpretation + JIT compilation.
+
+Handles async tasks efficiently.
+
+Memory management and optimizations happen automatically.
+
+=====================================================================
+8. Object-Oriented Programming (OOP) 
+=====================================================================
+🔹 1. What is OOP in JavaScript?
+
+OOP is a programming paradigm that organizes code using objects and classes.
+Core Concepts:
+
+Class → Blueprint for creating objects.
+
+Object → Instance of a class.
+
+Constructor → Special method to initialize object properties.
+
+Methods → Functions inside objects/classes.
+
+Inheritance → Child class can inherit properties/methods of parent class.
+
+Encapsulation → Keep data safe inside the object.
+
+Polymorphism → Same method behaves differently based on context.
+
+🔹 2. Real-Based Examples
+✅ Example 1: Classes & Objects (Online Shopping)
+class Product {
+  constructor(name, price) {
+    this.name = name;
+    this.price = price;
+  }
+
+  getDetails() {
+    return `${this.name} costs ₹${this.price}`;
+  }
+}
+
+// Creating objects
+let laptop = new Product("Laptop", 45000);
+let phone = new Product("Phone", 15000);
+
+console.log(laptop.getDetails()); // Laptop costs ₹45000
+console.log(phone.getDetails());  // Phone costs ₹15000
+
+
+📌 Real Use Case: E-commerce apps → Represent products with properties & methods.
+
+✅ Example 2: Inheritance (Customer & Premium Customer)
+class Customer {
+  constructor(name) {
+    this.name = name;
+  }
+  greet() {
+    return `Hello, ${this.name}!`;
+  }
+}
+
+// PremiumCustomer inherits Customer
+class PremiumCustomer extends Customer {
+  constructor(name, discount) {
+    super(name); // call parent constructor
+    this.discount = discount;
+  }
+  greet() {
+    return `${super.greet()} You have ${this.discount}% discount!`;
+  }
+}
+
+let customer1 = new Customer("Suraj");
+let customer2 = new PremiumCustomer("Riya", 20);
+
+console.log(customer1.greet()); // Hello, Suraj!
+console.log(customer2.greet()); // Hello, Riya! You have 20% discount!
+
+
+📌 Real Use Case: Different types of users in an e-commerce platform.
+
+✅ Example 3: Encapsulation (Private Properties)
+class BankAccount {
+  #balance; // private property
+
+  constructor(owner, balance) {
+    this.owner = owner;
+    this.#balance = balance;
+  }
+
+  deposit(amount) {
+    this.#balance += amount;
+    console.log(`₹${amount} deposited. Current balance: ₹${this.#balance}`);
+  }
+
+  getBalance() {
+    return this.#balance;
+  }
+}
+
+let account = new BankAccount("Suraj", 5000);
+account.deposit(2000); // ₹2000 deposited. Current balance: ₹7000
+console.log(account.getBalance()); // 7000
+// console.log(account.#balance); // ❌ Error: Private property
+
+
+📌 Real Use Case: Secure banking apps → hide sensitive data like balance.
+
+✅ Example 4: Polymorphism (Multiple Behavior)
+class Notification {
+  send(message) {
+    console.log(`Notification: ${message}`);
+  }
+}
+
+class EmailNotification extends Notification {
+  send(message) {
+    console.log(`Email sent: ${message}`);
+  }
+}
+
+class SMSNotification extends Notification {
+  send(message) {
+    console.log(`SMS sent: ${message}`);
+  }
+}
+
+let notifications = [
+  new Notification(),
+  new EmailNotification(),
+  new SMSNotification()
+];
+
+notifications.forEach(n => n.send("Your order is confirmed!"));
+
+
+Output:
+
+Notification: Your order is confirmed!
+Email sent: Your order is confirmed!
+SMS sent: Your order is confirmed!
+
+
+📌 Real Use Case: Send notifications through multiple channels (Email, SMS, App).
+
+⚡ Summary
+OOP Concept	JS Feature	Real Use Case
+Class & Object	class, new	Products, Orders
+Inheritance	extends, super	Regular vs Premium Customer
+Encapsulation	#private	Bank account balance
+Polymorphism	Method overriding	Notifications via Email/SMS
+Methods	Functions inside class	Order details, greetings
+
+✅ Key Takeaways:
+
+OOP in JS helps organize complex apps.
+
+Classes & inheritance make code reusable & maintainable.
+
+Private properties & encapsulation secure sensitive data.
+
+=====================================================================
+Constructor Functions
+=====================================================================
+🔹 1. What is a Constructor Function?
+
+A constructor function is a special type of function used to create multiple objects with the same structure.
+
+By convention, its name starts with a capital letter.
+
+You use the new keyword to create objects from it.
+
+🔹 2. Syntax
+function Person(name, age) {
+  this.name = name;
+  this.age = age;
+  this.greet = function() {
+    return `Hello, my name is ${this.name} and I am ${this.age} years old.`;
+  };
+}
+
+let person1 = new Person("Suraj", 25);
+let person2 = new Person("Riya", 24);
+
+console.log(person1.greet());
+console.log(person2.greet());
+
+
+Output:
+
+Hello, my name is Suraj and I am 25 years old.
+Hello, my name is Riya and I am 24 years old.
+
+
+📌 Real Use Case: Creating multiple user objects in a web app.
+
+🔹 3. Example 1: Online Shopping Products
+function Product(name, price, category) {
+  this.name = name;
+  this.price = price;
+  this.category = category;
+  this.getDetails = function() {
+    return `${this.name} (${this.category}) costs ₹${this.price}`;
+  };
+}
+
+let laptop = new Product("Laptop", 45000, "Electronics");
+let phone = new Product("Phone", 15000, "Electronics");
+
+console.log(laptop.getDetails()); // Laptop (Electronics) costs ₹45000
+console.log(phone.getDetails());  // Phone (Electronics) costs ₹15000
+
+
+📌 Real Use Case: E-commerce websites creating multiple product objects dynamically.
+
+🔹 4. Example 2: Bank Accounts
+function BankAccount(owner, balance) {
+  this.owner = owner;
+  this.balance = balance;
+  
+  this.deposit = function(amount) {
+    this.balance += amount;
+    return `₹${amount} deposited. Current balance: ₹${this.balance}`;
+  };
+
+  this.withdraw = function(amount) {
+    if(amount > this.balance) return "Insufficient balance!";
+    this.balance -= amount;
+    return `₹${amount} withdrawn. Remaining balance: ₹${this.balance}`;
+  };
+}
+
+let account1 = new BankAccount("Suraj", 5000);
+console.log(account1.deposit(2000));   // ₹2000 deposited. Current balance: ₹7000
+console.log(account1.withdraw(1000));  // ₹1000 withdrawn. Remaining balance: ₹6000
+
+
+📌 Real Use Case: Banking apps to create multiple user accounts with methods.
+
+🔹 5. Example 3: Employee Management
+function Employee(name, position, salary) {
+  this.name = name;
+  this.position = position;
+  this.salary = salary;
+
+  this.getDetails = function() {
+    return `${this.name} works as ${this.position} with a salary of ₹${this.salary}`;
+  };
+}
+
+let emp1 = new Employee("Amit", "Developer", 50000);
+let emp2 = new Employee("Sneha", "Designer", 45000);
+
+console.log(emp1.getDetails()); // Amit works as Developer with a salary of ₹50000
+console.log(emp2.getDetails()); // Sneha works as Designer with a salary of ₹45000
+
+
+📌 Real Use Case: HR apps managing multiple employees.
+
+🔹 6. Key Points
+Feature	Description	Real Use Case
+this keyword	Refers to the newly created object	Access object properties
+new keyword	Creates a new instance	Generate multiple products/users
+Methods inside function	Functions defined in constructor	Deposit, Withdraw, GetDetails
+
+✅ Key Takeaways:
+
+Constructor functions are pre-ES6 way of creating objects (before class).
+
+Perfect for creating multiple objects with shared structure.
+
+Can include methods and properties for each object.
+
+=====================================================================
+Prototypes & Prototype Chain
+=====================================================================
+🔹 1. What is a Prototype?
+
+Every JavaScript object has a hidden prototype object.
+
+The prototype contains properties and methods that other objects can inherit.
+
+Helps in memory efficiency, because methods can be shared across all instances instead of being recreated.
+
+🔹 2. Prototype Chain
+
+When you access a property or method on an object:
+
+JS first looks on the object itself.
+
+If not found, it looks at the prototype.
+
+This continues up the chain until it reaches Object.prototype.
+
+If not found, returns undefined.
+
+🔹 3. Real-Based Examples
+✅ Example 1: Adding Methods to Prototype (Product)
+function Product(name, price) {
+  this.name = name;
+  this.price = price;
+}
+
+// Adding method to prototype
+Product.prototype.getDetails = function() {
+  return `${this.name} costs ₹${this.price}`;
+};
+
+let laptop = new Product("Laptop", 45000);
+let phone = new Product("Phone", 15000);
+
+console.log(laptop.getDetails()); // Laptop costs ₹45000
+console.log(phone.getDetails());  // Phone costs ₹15000
+
+
+Explanation:
+
+getDetails() is not created for every object, it lives in prototype.
+
+Memory-efficient for many objects.
+
+📌 Real Use Case: E-commerce apps → many products sharing common methods.
+
+✅ Example 2: Inheritance via Prototype Chain (Customer & Premium Customer)
+function Customer(name) {
+  this.name = name;
+}
+
+Customer.prototype.greet = function() {
+  return `Hello, ${this.name}!`;
+};
+
+// PremiumCustomer inherits Customer
+function PremiumCustomer(name, discount) {
+  Customer.call(this, name); // call parent constructor
+  this.discount = discount;
+}
+
+PremiumCustomer.prototype = Object.create(Customer.prototype);
+PremiumCustomer.prototype.constructor = PremiumCustomer;
+
+PremiumCustomer.prototype.greet = function() {
+  return `${Customer.prototype.greet.call(this)} You have ${this.discount}% discount!`;
+};
+
+let customer1 = new Customer("Suraj");
+let customer2 = new PremiumCustomer("Riya", 20);
+
+console.log(customer1.greet()); // Hello, Suraj!
+console.log(customer2.greet()); // Hello, Riya! You have 20% discount!
+
+
+Explanation:
+
+PremiumCustomer inherits methods from Customer via prototype chain.
+
+Can override methods (greet) → Polymorphism.
+
+📌 Real Use Case: Different types of users in apps.
+
+✅ Example 3: Checking Prototype Chain
+console.log(laptop.__proto__ === Product.prototype); // true
+console.log(Product.prototype.__proto__ === Object.prototype); // true
+console.log(Object.prototype.__proto__); // null
+
+
+Explanation:
+
+__proto__ shows the prototype of an object.
+
+The chain ends at Object.prototype.
+
+📌 Real Use Case: Debugging inheritance in large apps.
+
+✅ Example 4: Prototype Methods for Shared Behavior (Bank Account)
+function BankAccount(owner, balance) {
+  this.owner = owner;
+  this.balance = balance;
+}
+
+BankAccount.prototype.deposit = function(amount) {
+  this.balance += amount;
+  return `₹${amount} deposited. Current balance: ₹${this.balance}`;
+};
+
+BankAccount.prototype.withdraw = function(amount) {
+  if(amount > this.balance) return "Insufficient balance!";
+  this.balance -= amount;
+  return `₹${amount} withdrawn. Remaining balance: ₹${this.balance}`;
+};
+
+let acc1 = new BankAccount("Suraj", 5000);
+let acc2 = new BankAccount("Riya", 7000);
+
+console.log(acc1.deposit(2000)); // ₹2000 deposited. Current balance: ₹7000
+console.log(acc2.withdraw(3000)); // ₹3000 withdrawn. Remaining balance: ₹4000
+
+
+📌 Real Use Case: Banking apps → multiple accounts sharing common operations.
+
+⚡ Summary
+Concept	Description	Real Use Case
+Prototype	Object containing shared properties/methods	Product methods, Bank operations
+Prototype Chain	Inheritance chain of objects	Customer → PremiumCustomer
+Object.create()	Create new object with specific prototype	Inheritance setup
+Memory Efficiency	Methods on prototype shared by all instances	Avoid recreating functions for each object
+Method Overriding	Child can override parent method	Premium customer discount
+
+✅ Key Takeaways:
+
+Prototypes allow shared methods → saves memory.
+
+Prototype chain enables inheritance and method lookup.
+
+Essential for understanding JS OOP under the hood.
+
+=====================================================================
+class & extends
+=====================================================================
+🔹 1. What is a Class in JavaScript?
+
+A class is a blueprint to create objects with properties and methods.
+
+Introduced in ES6.
+
+Syntax is cleaner than constructor functions.
+
+🔹 2. What is extends?
+
+extends is used for inheritance.
+
+A child class can inherit properties and methods from a parent class.
+
+Use super() to call the parent constructor.
+
+🔹 3. Real-Based Examples
+✅ Example 1: Classes & Objects (E-commerce Product)
+class Product {
+  constructor(name, price, category) {
+    this.name = name;
+    this.price = price;
+    this.category = category;
+  }
+
+  getDetails() {
+    return `${this.name} (${this.category}) costs ₹${this.price}`;
+  }
+}
+
+let laptop = new Product("Laptop", 45000, "Electronics");
+let phone = new Product("Phone", 15000, "Electronics");
+
+console.log(laptop.getDetails()); // Laptop (Electronics) costs ₹45000
+console.log(phone.getDetails());  // Phone (Electronics) costs ₹15000
+
+
+📌 Real Use Case: Represent products in an e-commerce app.
+
+✅ Example 2: Inheritance with extends (Customer & Premium Customer)
+class Customer {
+  constructor(name) {
+    this.name = name;
+  }
+
+  greet() {
+    return `Hello, ${this.name}!`;
+  }
+}
+
+// PremiumCustomer inherits Customer
+class PremiumCustomer extends Customer {
+  constructor(name, discount) {
+    super(name); // call parent constructor
+    this.discount = discount;
+  }
+
+  greet() {
+    return `${super.greet()} You have ${this.discount}% discount!`;
+  }
+}
+
+let customer1 = new Customer("Suraj");
+let customer2 = new PremiumCustomer("Riya", 20);
+
+console.log(customer1.greet()); // Hello, Suraj!
+console.log(customer2.greet()); // Hello, Riya! You have 20% discount!
+
+
+📌 Real Use Case: Different types of users in an online store.
+
+✅ Example 3: Banking System (Encapsulation & Inheritance)
+class BankAccount {
+  #balance; // private property
+
+  constructor(owner, balance) {
+    this.owner = owner;
+    this.#balance = balance;
+  }
+
+  deposit(amount) {
+    this.#balance += amount;
+    return `₹${amount} deposited. Current balance: ₹${this.#balance}`;
+  }
+
+  getBalance() {
+    return this.#balance;
+  }
+}
+
+// Child class for special account
+class SavingsAccount extends BankAccount {
+  constructor(owner, balance, interestRate) {
+    super(owner, balance);
+    this.interestRate = interestRate;
+  }
+
+  calculateInterest() {
+    return this.getBalance() * (this.interestRate / 100);
+  }
+}
+
+let acc = new SavingsAccount("Suraj", 5000, 5);
+console.log(acc.deposit(2000));        // ₹2000 deposited. Current balance: ₹7000
+console.log(acc.calculateInterest());  // 350 (5% of 7000)
+
+
+📌 Real Use Case: Banking app → savings account with interest calculation.
+
+✅ Example 4: Polymorphism with Classes
+class Notification {
+  send(message) {
+    console.log(`Notification: ${message}`);
+  }
+}
+
+class EmailNotification extends Notification {
+  send(message) {
+    console.log(`Email sent: ${message}`);
+  }
+}
+
+class SMSNotification extends Notification {
+  send(message) {
+    console.log(`SMS sent: ${message}`);
+  }
+}
+
+let notifications = [
+  new Notification(),
+  new EmailNotification(),
+  new SMSNotification()
+];
+
+notifications.forEach(n => n.send("Your order is confirmed!"));
+
+
+Output:
+
+Notification: Your order is confirmed!
+Email sent: Your order is confirmed!
+SMS sent: Your order is confirmed!
+
+
+📌 Real Use Case: Send notifications through multiple channels.
+
+⚡ Summary
+Feature	JS Syntax	Real Use Case
+Class	class	Products, Orders, Employees
+Constructor	constructor()	Initialize object properties
+Method	methodName()	Get product details, deposit money
+Inheritance	extends	Customer → PremiumCustomer
+Super Constructor	super()	Call parent constructor
+Polymorphism	Method overriding	Notifications via Email/SMS
+Encapsulation	#privateProperty	Bank balance, secure data
+
+✅ Key Takeaways:
+
+Classes make OOP in JS cleaner than constructor functions.
+
+extends enables inheritance and method reuse.
+
+Use polymorphism & encapsulation for real-world apps like e-commerce, banking, or notifications.
+
+=====================================================================
+super & constructor
+=====================================================================
+🔹 1. constructor in JS
+
+The constructor is a special method inside a class used to initialize object properties.
+
+Every class can have one constructor.
+
+If you don’t define one, JS provides a default constructor.
+
+🔹 2. super in JS
+
+super is used in child classes to:
+
+Call the parent class constructor
+
+Access parent class methods
+
+Must be called in child constructor before using this.
+
+🔹 3. Real-Based Examples
+✅ Example 1: Basic Constructor
+class Product {
+  constructor(name, price) {
+    this.name = name;
+    this.price = price;
+  }
+
+  getDetails() {
+    return `${this.name} costs ₹${this.price}`;
+  }
+}
+
+let laptop = new Product("Laptop", 45000);
+console.log(laptop.getDetails()); // Laptop costs ₹45000
+
+
+📌 Real Use Case: Create multiple products in an e-commerce platform.
+
+✅ Example 2: super in Child Class (Customer & PremiumCustomer)
+class Customer {
+  constructor(name) {
+    this.name = name;
+  }
+
+  greet() {
+    return `Hello, ${this.name}!`;
+  }
+}
+
+class PremiumCustomer extends Customer {
+  constructor(name, discount) {
+    super(name); // call parent constructor
+    this.discount = discount;
+  }
+
+  greet() {
+    return `${super.greet()} You have ${this.discount}% discount!`;
+  }
+}
+
+let customer1 = new PremiumCustomer("Riya", 20);
+console.log(customer1.greet()); // Hello, Riya! You have 20% discount!
+
+
+Explanation:
+
+super(name) → calls Customer constructor to set name.
+
+super.greet() → calls parent method inside child method.
+
+📌 Real Use Case: Different types of users with shared properties & customized methods.
+
+✅ Example 3: Banking System (Constructor + Super)
+class BankAccount {
+  constructor(owner, balance) {
+    this.owner = owner;
+    this.balance = balance;
+  }
+
+  getBalance() {
+    return `Balance: ₹${this.balance}`;
+  }
+}
+
+class SavingsAccount extends BankAccount {
+  constructor(owner, balance, interestRate) {
+    super(owner, balance); // call parent constructor
+    this.interestRate = interestRate;
+  }
+
+  calculateInterest() {
+    return this.balance * (this.interestRate / 100);
+  }
+}
+
+let acc = new SavingsAccount("Suraj", 5000, 5);
+console.log(acc.getBalance());       // Balance: ₹5000
+console.log(acc.calculateInterest()); // 250
+
+
+📌 Real Use Case: Child account class extends base account with extra features like interest.
+
+✅ Example 4: Polymorphism with super
+class Notification {
+  constructor(sender) {
+    this.sender = sender;
+  }
+
+  send(message) {
+    console.log(`${this.sender} says: ${message}`);
+  }
+}
+
+class EmailNotification extends Notification {
+  send(message) {
+    super.send(message); // call parent send()
+    console.log(`Email sent: ${message}`);
+  }
+}
+
+let email = new EmailNotification("System");
+email.send("Your order is confirmed!");
+
+
+Output:
+
+System says: Your order is confirmed!
+Email sent: Your order is confirmed!
+
+
+📌 Real Use Case: Multi-channel notifications (parent method + extra child behavior).
+
+⚡ Summary
+Feature	Description	Real Use Case
+constructor	Initialize object properties	Product, BankAccount
+super()	Call parent constructor	Child class inheritance
+super.method()	Call parent class method	Polymorphism in notifications
+Usage Rule	Call super() before using this in child	Mandatory in JS
+
+✅ Key Takeaways:
+
+constructor → sets up object data when creating instance.
+
+super → links child to parent for shared properties and methods.
+
+Essential for OOP with classes, inheritance, and polymorphism.
+
+=====================================================================
+Encapsulation, Inheritance, Polymorphism
+=====================================================================
+🔹 1. Encapsulation
+
+Encapsulation is the concept of hiding internal data of an object and controlling access through methods.
+
+In JS (ES6+), we use private properties with # and getter/setter methods.
+
+✅ Real-Based Example: Bank Account
+class BankAccount {
+  #balance; // private property
+
+  constructor(owner, balance) {
+    this.owner = owner;
+    this.#balance = balance;
+  }
+
+  deposit(amount) {
+    this.#balance += amount;
+    console.log(`₹${amount} deposited. Current balance: ₹${this.#balance}`);
+  }
+
+  withdraw(amount) {
+    if(amount > this.#balance) {
+      console.log("Insufficient balance!");
+    } else {
+      this.#balance -= amount;
+      console.log(`₹${amount} withdrawn. Remaining balance: ₹${this.#balance}`);
+    }
+  }
+
+  getBalance() {
+    return this.#balance;
+  }
+}
+
+let acc = new BankAccount("Suraj", 5000);
+acc.deposit(2000);       // ₹2000 deposited. Current balance: ₹7000
+acc.withdraw(1000);      // ₹1000 withdrawn. Remaining balance: ₹6000
+console.log(acc.getBalance()); // 6000
+// console.log(acc.#balance); // ❌ Error: Private property
+
+
+📌 Real Use Case: Banking app → keep balance safe from direct access.
+
+🔹 2. Inheritance
+
+Inheritance allows a child class to reuse properties and methods from a parent class.
+
+Use extends and super() in JS.
+
+✅ Real-Based Example: Customer & Premium Customer
+class Customer {
+  constructor(name) {
+    this.name = name;
+  }
+
+  greet() {
+    return `Hello, ${this.name}!`;
+  }
+}
+
+class PremiumCustomer extends Customer {
+  constructor(name, discount) {
+    super(name); // call parent constructor
+    this.discount = discount;
+  }
+
+  greet() {
+    return `${super.greet()} You have ${this.discount}% discount!`;
+  }
+}
+
+let c1 = new Customer("Suraj");
+let c2 = new PremiumCustomer("Riya", 20);
+
+console.log(c1.greet()); // Hello, Suraj!
+console.log(c2.greet()); // Hello, Riya! You have 20% discount!
+
+
+📌 Real Use Case: Different types of users with shared properties and customized behavior.
+
+🔹 3. Polymorphism
+
+Polymorphism means same method behaves differently depending on the object.
+
+Achieved by method overriding in child classes.
+
+✅ Real-Based Example: Notifications
+class Notification {
+  send(message) {
+    console.log(`Notification: ${message}`);
+  }
+}
+
+class EmailNotification extends Notification {
+  send(message) {
+    console.log(`Email sent: ${message}`);
+  }
+}
+
+class SMSNotification extends Notification {
+  send(message) {
+    console.log(`SMS sent: ${message}`);
+  }
+}
+
+let notifications = [
+  new Notification(),
+  new EmailNotification(),
+  new SMSNotification()
+];
+
+notifications.forEach(n => n.send("Your order is confirmed!"));
+
+
+Output:
+
+Notification: Your order is confirmed!
+Email sent: Your order is confirmed!
+SMS sent: Your order is confirmed!
+
+
+📌 Real Use Case: Multi-channel notifications system (parent + child behavior).
+
+🔹 4. Full Real-Based Example (Banking System)
+class BankAccount {
+  #balance;
+  constructor(owner, balance) {
+    this.owner = owner;
+    this.#balance = balance;
+  }
+  deposit(amount) { this.#balance += amount; }
+  withdraw(amount) { this.#balance -= amount; }
+  getBalance() { return this.#balance; }
+}
+
+class SavingsAccount extends BankAccount {
+  constructor(owner, balance, interestRate) {
+    super(owner, balance);
+    this.interestRate = interestRate;
+  }
+  calculateInterest() { return this.getBalance() * (this.interestRate / 100); }
+}
+
+class CurrentAccount extends BankAccount {
+  constructor(owner, balance, overdraftLimit) {
+    super(owner, balance);
+    this.overdraftLimit = overdraftLimit;
+  }
+  withdraw(amount) {
+    if(amount > this.getBalance() + this.overdraftLimit) {
+      console.log("Exceeded overdraft limit!");
+    } else {
+      super.withdraw(amount);
+      console.log(`₹${amount} withdrawn. Remaining balance: ₹${this.getBalance()}`);
+    }
+  }
+}
+
+let sAcc = new SavingsAccount("Suraj", 5000, 5);
+console.log(sAcc.calculateInterest()); // 250
+
+let cAcc = new CurrentAccount("Riya", 3000, 1000);
+cAcc.withdraw(3500); // ₹3500 withdrawn. Remaining balance: ₹-500
+cAcc.withdraw(5000); // Exceeded overdraft limit!
+
+
+✅ What’s Demonstrated:
+
+Encapsulation → #balance private.
+
+Inheritance → SavingsAccount & CurrentAccount inherit BankAccount.
+
+Polymorphism → CurrentAccount overrides withdraw method.
+
+⚡ Summary
+Concept	JS Feature	Real Use Case
+Encapsulation	#private, getter/setter	Secure bank balance
+Inheritance	extends, super()	Customer → PremiumCustomer
+Polymorphism	Method overriding	Notifications, Custom withdraw
+
+=====================================================================
+Object.create()
+=====================================================================
+🔹 1. What is Object.create()?
+
+Object.create() is a method to create a new object using an existing object as its prototype.
+
+Useful for prototypal inheritance without using classes or constructor functions.
+
+Syntax:
+
+let newObj = Object.create(protoObj);
+
+
+protoObj → The object to be used as the prototype of the new object.
+
+🔹 2. Real-Based Examples
+✅ Example 1: Basic Object Inheritance
+const productProto = {
+  getDetails: function() {
+    return `${this.name} costs ₹${this.price}`;
+  }
+};
+
+const laptop = Object.create(productProto);
+laptop.name = "Laptop";
+laptop.price = 45000;
+
+const phone = Object.create(productProto);
+phone.name = "Phone";
+phone.price = 15000;
+
+console.log(laptop.getDetails()); // Laptop costs ₹45000
+console.log(phone.getDetails());  // Phone costs ₹15000
+
+
+📌 Real Use Case: E-commerce app → multiple products sharing common methods.
+
+✅ Example 2: Banking System (Prototype Inheritance)
+const bankAccountProto = {
+  deposit: function(amount) {
+    this.balance += amount;
+    console.log(`₹${amount} deposited. Current balance: ₹${this.balance}`);
+  },
+  withdraw: function(amount) {
+    if(amount > this.balance) console.log("Insufficient balance!");
+    else {
+      this.balance -= amount;
+      console.log(`₹${amount} withdrawn. Remaining balance: ₹${this.balance}`);
+    }
+  }
+};
+
+const acc1 = Object.create(bankAccountProto);
+acc1.owner = "Suraj";
+acc1.balance = 5000;
+
+const acc2 = Object.create(bankAccountProto);
+acc2.owner = "Riya";
+acc2.balance = 7000;
+
+acc1.deposit(2000);  // ₹2000 deposited. Current balance: ₹7000
+acc2.withdraw(3000); // ₹3000 withdrawn. Remaining balance: ₹4000
+
+
+📌 Real Use Case: Multiple bank accounts sharing deposit/withdraw functionality.
+
+✅ Example 3: Inheritance Chain
+const customerProto = {
+  greet: function() {
+    return `Hello, ${this.name}!`;
+  }
+};
+
+const premiumCustomerProto = Object.create(customerProto);
+premiumCustomerProto.greet = function() {
+  return `${customerProto.greet.call(this)} You have ${this.discount}% discount!`;
+};
+
+const customer1 = Object.create(customerProto);
+customer1.name = "Suraj";
+
+const customer2 = Object.create(premiumCustomerProto);
+customer2.name = "Riya";
+customer2.discount = 20;
+
+console.log(customer1.greet()); // Hello, Suraj!
+console.log(customer2.greet()); // Hello, Riya! You have 20% discount!
+
+
+📌 Real Use Case: Customer system → Regular & Premium customers sharing behavior through prototypes.
+
+✅ Example 4: Shared Methods Without Classes
+const notificationProto = {
+  send: function(message) {
+    console.log(`Notification: ${message}`);
+  }
+};
+
+const emailNotification = Object.create(notificationProto);
+emailNotification.send = function(message) {
+  console.log(`Email sent: ${message}`);
+};
+
+const smsNotification = Object.create(notificationProto);
+smsNotification.send = function(message) {
+  console.log(`SMS sent: ${message}`);
+};
+
+emailNotification.send("Order confirmed!"); // Email sent: Order confirmed!
+smsNotification.send("Order confirmed!");   // SMS sent: Order confirmed!
+
+
+📌 Real Use Case: Multi-channel notifications without classes.
+
+⚡ Summary
+Feature	Description	Real Use Case
+Object.create(proto)	Creates object with specified prototype	Products, Bank Accounts
+Prototypal Inheritance	Methods shared across multiple objects	Customer → PremiumCustomer
+Memory Efficient	Methods stored on prototype, not instance	Notifications, Banking system
+Alternative to Classes	Simple inheritance without ES6 class	Lightweight apps, utility objects
+
+✅ Key Takeaways:
+
+Object.create() is a powerful tool for prototypal inheritance.
+
+Allows shared methods without using classes or constructor functions.
+
+Great for memory-efficient, real-world apps like e-commerce, banking, and notification systems.
+
+
+===================================================================
+🔵 9. Functional Programming
+
+Pure Functions
+
+Immutability
+
+First-class Functions
+
+Higher-Order Functions
+
+Currying & Partial Application
+
+Composition & Pipelines
+
+🟢 10. Browser APIs
+
+LocalStorage & SessionStorage
+
+Geolocation API
+
+Fetch & API Calls
+
+Web Workers
+
+Canvas API
+
+Notifications & Clipboard API
+
+🟡 11. Asynchronous JavaScript (Deep Dive)
+
+Callbacks
+
+Promises (chaining)
+
+Async/Await with try...catch
+
+Parallel vs Sequential Execution
+
+Promise.all, Promise.race, Promise.any
+
+🔴 12. Advanced Topics
+
+Event Bubbling vs Capturing
+
+Debouncing & Throttling
+
+Modules (ESM vs CommonJS)
+
+Polyfills & Transpilers (Babel)
+
+Bundlers (Webpack, Vite, Parcel)
+
+Error Handling & Debugging (console, debugger)
+
+===================================================================
 
 
 
