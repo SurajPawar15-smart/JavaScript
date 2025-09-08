@@ -6904,57 +6904,1088 @@ Great for memory-efficient, real-world apps like e-commerce, banking, and notifi
 
 ===================================================================
 🔵 9. Functional Programming
+===================================================================
+🔹 1. What is Functional Programming (FP)?
 
+Functional Programming is a programming paradigm where:
+
+Functions are first-class citizens (they can be passed, returned, stored like data).
+
+Focus on immutability (not changing data directly).
+
+Functions are pure (same input → same output, no side effects).
+
+Uses higher-order functions, recursion, and composition.
+
+📌 Real Use Case: Data processing in e-commerce, banking, analytics, etc.
+
+🔹 2. Types / Core Concepts of Functional Programming
+✅ 1. Pure Functions
+
+A function that always returns the same output for the same input and has no side effects.
+
+// Pure Function: Tax Calculation
+function calculateTax(price, taxRate) {
+  return price * taxRate;
+}
+
+console.log(calculateTax(1000, 0.18)); // 180
+console.log(calculateTax(1000, 0.18)); // 180 (always same)
+
+
+📌 Real Use Case: Tax/discount calculations in an e-commerce cart.
+
+✅ 2. Immutability
+
+Data is not modified, instead new copies are created.
+
+const cart = ["Laptop", "Phone"];
+
+// Instead of modifying directly
+const newCart = [...cart, "Tablet"];
+
+console.log(cart);    // ["Laptop", "Phone"]
+console.log(newCart); // ["Laptop", "Phone", "Tablet"]
+
+
+📌 Real Use Case: Shopping cart system (original cart should not be mutated directly).
+
+✅ 3. Higher-Order Functions
+
+Functions that take other functions as arguments or return a function.
+
+function applyDiscount(discountFn, price) {
+  return discountFn(price);
+}
+
+const studentDiscount = price => price * 0.8;
+const festiveDiscount = price => price * 0.9;
+
+console.log(applyDiscount(studentDiscount, 1000)); // 800
+console.log(applyDiscount(festiveDiscount, 1000)); // 900
+
+
+📌 Real Use Case: Flexible discount strategies in billing.
+
+✅ 4. First-Class Functions
+
+Functions can be stored in variables, passed, and returned.
+
+const notify = (msg) => console.log("Notification:", msg);
+
+function sendNotification(fn, message) {
+  fn(message);
+}
+
+sendNotification(notify, "Order Shipped!"); 
+// Notification: Order Shipped!
+
+
+📌 Real Use Case: Notification service where the sending mechanism (email, SMS, push) can change.
+
+✅ 5. Function Composition
+
+Combining small functions to build more complex functions.
+
+const addGST = price => price + price * 0.18;
+const applyCoupon = price => price - 100;
+
+const finalPrice = (price) => applyCoupon(addGST(price));
+
+console.log(finalPrice(1000)); // 1080
+
+
+📌 Real Use Case: Billing system → Apply GST → Apply coupon discount.
+
+✅ 6. Recursion
+
+Using a function to call itself instead of loops.
+
+function factorial(n) {
+  if (n === 0) return 1;
+  return n * factorial(n - 1);
+}
+
+console.log(factorial(5)); // 120
+
+
+📌 Real Use Case: Calculating factorials, tree structures, or nested categories in e-commerce.
+
+✅ 7. Map, Filter, Reduce (Functional Iteration)
+
+Instead of for loops, FP uses these built-in higher-order functions.
+
+const orders = [500, 1200, 3000, 700];
+
+// Apply 10% discount to all orders
+const discounted = orders.map(o => o * 0.9);
+
+// Get only high-value orders
+const highValue = orders.filter(o => o > 1000);
+
+// Total revenue
+const total = orders.reduce((sum, o) => sum + o, 0);
+
+console.log(discounted); // [450, 1080, 2700, 630]
+console.log(highValue);  // [1200, 3000]
+console.log(total);      // 5400
+
+
+📌 Real Use Case: Analytics dashboard for e-commerce orders.
+
+🔹 3. Summary Table of FP Concepts
+Concept	Meaning	Real Use Case
+Pure Functions	Same input → Same output	Tax, Discount calculations
+Immutability	Don’t modify original data	Shopping cart, banking balance
+Higher-Order Functions	Functions taking/returning functions	Discounts, Callbacks
+First-Class Functions	Treat functions as values	Notifications, APIs
+Function Composition	Combine smaller functions	Billing pipeline
+Recursion	Function calls itself	Factorial, Tree navigation
+Map/Filter/Reduce	Functional iteration	Reports, Analytics
+⚡ Real Example: E-commerce Order Processing (All FP Concepts Together)
+const orders = [
+  { id: 1, price: 1000, category: "electronics" },
+  { id: 2, price: 500, category: "clothing" },
+  { id: 3, price: 2000, category: "electronics" }
+];
+
+// Pure Function
+const addGST = price => price + price * 0.18;
+
+// Higher-Order Function
+const applyDiscount = discount => price => price - discount;
+
+// Composition
+const finalPrice = (price) => applyDiscount(100)(addGST(price));
+
+// Map / Filter / Reduce
+const electronicsRevenue = orders
+  .filter(order => order.category === "electronics")
+  .map(order => finalPrice(order.price))
+  .reduce((sum, price) => sum + price, 0);
+
+console.log("Total Electronics Revenue:", electronicsRevenue);
+
+
+📌 Output → Total Electronics Revenue: 3420
+
+👉 So, Functional Programming in JS = writing clean, reusable, predictable code with functions as building blocks.
+
+===================================================================
 Pure Functions
+===================================================================
+🔹 What is a Pure Function?
 
+A Pure Function is a function that:
+
+Always returns the same output for the same input.
+
+Has no side effects (it doesn’t change external variables, DOM, or state).
+
+✅ Example 1: Tax Calculation (E-commerce Checkout)
+// Pure Function
+function calculateTax(price, taxRate) {
+  return price * taxRate;
+}
+
+console.log(calculateTax(1000, 0.18)); // 180
+console.log(calculateTax(1000, 0.18)); // 180 (same input, same output)
+
+
+📌 Real Use Case: While calculating tax in an e-commerce cart.
+
+✅ Example 2: Discount Price
+// Pure Function
+function applyDiscount(price, discount) {
+  return price - discount;
+}
+
+console.log(applyDiscount(500, 50)); // 450
+console.log(applyDiscount(500, 50)); // 450
+
+
+📌 Real Use Case: Applying discount coupons in online shopping.
+
+✅ Example 3: Banking - Interest Calculation
+// Pure Function
+function calculateInterest(principal, rate, time) {
+  return (principal * rate * time) / 100;
+}
+
+console.log(calculateInterest(10000, 5, 2)); // 1000
+console.log(calculateInterest(10000, 5, 2)); // 1000
+
+
+📌 Real Use Case: Calculating simple interest for loans/deposits.
+
+✅ Example 4: Delivery Fee Calculation (Food Delivery App)
+// Pure Function
+function deliveryFee(distanceKm, ratePerKm) {
+  return distanceKm * ratePerKm;
+}
+
+console.log(deliveryFee(10, 5)); // 50
+console.log(deliveryFee(10, 5)); // 50
+
+
+📌 Real Use Case: Calculating delivery charges based on distance.
+
+🚫 Example of NOT a Pure Function
+let discount = 50;
+
+function applyDiscount(price) {
+  // ❌ Not pure: uses external variable
+  return price - discount;
+}
+
+console.log(applyDiscount(500)); // depends on external `discount`
+discount = 100;
+console.log(applyDiscount(500)); // output changes!
+
+
+⚠️ Problem → This function depends on an external variable, so it’s not pure.
+
+✨ Summary:
+
+Pure functions = predictable, testable, reusable.
+
+Useful in e-commerce checkout, banking apps, delivery apps, billing systems.
+
+
+===================================================================
 Immutability
+===================================================================
+🔹 What is Immutability?
 
+Immutability means not modifying the original data.
+
+Instead, a new copy of the data is created and returned.
+
+This is important in functional programming and real-world apps like banking, e-commerce, ticket booking, etc.
+
+✅ Example 1: Shopping Cart (E-commerce)
+const cart = ["Laptop", "Phone"];
+
+// Function that follows immutability
+function addItem(cart, item) {
+  return [...cart, item]; // creates a new array, doesn't modify original
+}
+
+const newCart = addItem(cart, "Tablet");
+
+console.log("Original Cart:", cart);     // ["Laptop", "Phone"]
+console.log("Updated Cart:", newCart);   // ["Laptop", "Phone", "Tablet"]
+
+
+📌 Real Use Case: When a customer adds an item to the cart, the old cart remains unchanged (important for undo/redo or order history).
+
+✅ Example 2: Bank Balance Update (Banking System)
+const account = { name: "Suraj", balance: 5000 };
+
+// Immutable function
+function deposit(account, amount) {
+  return { ...account, balance: account.balance + amount };
+}
+
+const updatedAccount = deposit(account, 2000);
+
+console.log("Old Account:", account);            // balance: 5000
+console.log("Updated Account:", updatedAccount); // balance: 7000
+
+
+📌 Real Use Case: Keeps transaction history safe — old balance isn’t lost.
+
+✅ Example 3: Employee Records (HR System)
+const employee = { id: 1, name: "Akash", role: "Developer" };
+
+// Immutable update
+function promoteEmployee(employee, newRole) {
+  return { ...employee, role: newRole };
+}
+
+const promoted = promoteEmployee(employee, "Team Lead");
+
+console.log("Old Employee:", employee);  // role: Developer
+console.log("Promoted Employee:", promoted); // role: Team Lead
+
+
+📌 Real Use Case: Employee record updates should not overwrite history (audit trail).
+
+✅ Example 4: Food Delivery Orders
+const order = { id: 101, items: ["Burger", "Fries"] };
+
+// Immutable add item
+function addOrderItem(order, newItem) {
+  return { ...order, items: [...order.items, newItem] };
+}
+
+const updatedOrder = addOrderItem(order, "Coke");
+
+console.log("Original Order:", order);       // items: ["Burger", "Fries"]
+console.log("Updated Order:", updatedOrder); // items: ["Burger", "Fries", "Coke"]
+
+
+📌 Real Use Case: Customer modifies order, but old state is preserved for records.
+
+🚫 Example of Mutable Function (Bad Practice)
+let numbers = [1, 2, 3];
+
+function addNumber(arr, num) {
+  arr.push(num); // ❌ modifies original array
+  return arr;
+}
+
+addNumber(numbers, 4);
+console.log(numbers); // [1, 2, 3, 4] → Original changed!
+
+
+⚠️ Problem: Mutating functions make debugging harder (unexpected changes in shared data).
+
+✨ Benefits of Immutability in Functions
+
+Predictable behavior (no hidden changes).
+
+Undo/Redo features (shopping cart, forms).
+
+Time-travel debugging (used in Redux, React apps).
+
+Safer in concurrency/multi-user apps (banking, stock trading).
+
+
+===================================================================
 First-class Functions
+===================================================================
+🔹 What are First-Class Functions?
 
+In JavaScript, functions are first-class citizens.
+That means:
+
+Functions can be stored in variables.
+
+Functions can be passed as arguments.
+
+Functions can be returned from other functions.
+
+📌 This is the foundation of functional programming.
+
+✅ Example 1: Storing Function in a Variable (Notifications)
+// Function stored in a variable
+const notify = function(message) {
+  console.log("Notification:", message);
+};
+
+notify("Your order has been shipped!");
+
+
+📌 Real Use Case: Notification systems (storing SMS, Email, Push functions in variables).
+
+✅ Example 2: Passing Function as an Argument (Payment Gateway)
+function processPayment(amount, paymentMethod) {
+  paymentMethod(amount);
+}
+
+// Different payment methods
+const payWithCard = amt => console.log(`Paid ₹${amt} using Card`);
+const payWithUPI = amt => console.log(`Paid ₹${amt} using UPI`);
+
+// Passing functions
+processPayment(1000, payWithCard);
+processPayment(500, payWithUPI);
+
+
+📌 Real Use Case: Payment gateways use functions to handle different payment methods dynamically.
+
+✅ Example 3: Returning a Function (Discount Generator)
+function createDiscount(discountPercent) {
+  return function(price) {
+    return price - (price * discountPercent / 100);
+  };
+}
+
+const studentDiscount = createDiscount(20);
+const festiveDiscount = createDiscount(10);
+
+console.log(studentDiscount(1000)); // 800
+console.log(festiveDiscount(1000)); // 900
+
+
+📌 Real Use Case: E-commerce systems generate dynamic discounts.
+
+✅ Example 4: Array Methods (Map / Filter / Reduce use functions)
+const orders = [500, 1200, 800];
+
+// Using function as argument
+const withGST = orders.map(price => price + price * 0.18);
+
+console.log(withGST); // [590, 1416, 944]
+
+
+📌 Real Use Case: Processing order amounts with GST in billing.
+
+✅ Example 5: Event Handling (Web Apps)
+document.getElementById("btn").addEventListener("click", function() {
+  console.log("Button Clicked!");
+});
+
+
+📌 Real Use Case: Passing a function directly to handle UI events.
+
+🚫 Example (Not First-Class Functions in Some Languages)
+
+In some older languages, functions are not treated as data (you cannot assign them to variables or return them).
+👉 JavaScript’s first-class functions make it powerful for callbacks, promises, async/await, and functional programming.
+
+✨ Summary
+
+Store in variables → Notification example
+
+Pass as arguments → Payment gateway example
+
+Return from function → Discount system example
+
+Use in array methods → Order processing example
+
+Event handling → Web apps
+
+===================================================================
 Higher-Order Functions
+===================================================================
+🔹 What is a Higher-Order Function (HOF)?
 
+A Higher-Order Function is a function that does one or both of the following:
+
+Takes another function as an argument.
+
+Returns another function.
+
+👉 All Higher-Order Functions are built upon the concept of first-class functions.
+
+✅ Example 1: Payment Processing (Takes Function as Argument)
+function processPayment(amount, paymentMethod) {
+  return paymentMethod(amount);  // HOF calls another function
+}
+
+const payWithCard = amt => `Paid ₹${amt} using Card 💳`;
+const payWithUPI  = amt => `Paid ₹${amt} using UPI 📱`;
+
+console.log(processPayment(1000, payWithCard));
+console.log(processPayment(500, payWithUPI));
+
+
+📌 Real Use Case: Payment gateways call different payment methods dynamically.
+
+✅ Example 2: Discount Generator (Returns Function)
+function createDiscount(discountPercent) {
+  return function(price) {  // Returning a function
+    return price - (price * discountPercent / 100);
+  };
+}
+
+const studentDiscount = createDiscount(20);
+const festiveDiscount = createDiscount(10);
+
+console.log(studentDiscount(1000)); // 800
+console.log(festiveDiscount(1000)); // 900
+
+
+📌 Real Use Case: E-commerce apps create different discount strategies.
+
+✅ Example 3: Array Methods (Built-in HOFs → map, filter, reduce)
+const orders = [500, 1200, 300, 800];
+
+// 1. Apply GST (map)
+const withGST = orders.map(price => price + price * 0.18);
+
+// 2. Filter high-value orders
+const highValue = orders.filter(price => price > 1000);
+
+// 3. Calculate total revenue
+const total = orders.reduce((sum, price) => sum + price, 0);
+
+console.log("With GST:", withGST);
+console.log("High Value:", highValue);
+console.log("Total Revenue:", total);
+
+
+📌 Real Use Case: Processing e-commerce orders efficiently.
+
+✅ Example 4: Middleware in Authentication
+function authenticateUser(role) {
+  return function(req) {
+    if (req.userRole === role) {
+      return "Access Granted ✅";
+    } else {
+      return "Access Denied ❌";
+    }
+  };
+}
+
+const adminAuth = authenticateUser("admin");
+const userAuth  = authenticateUser("user");
+
+console.log(adminAuth({ userRole: "admin" })); // ✅
+console.log(userAuth({ userRole: "guest" })); // ❌
+
+
+📌 Real Use Case: Web apps use HOFs in authentication middleware.
+
+✅ Example 5: Event Handling with HOF
+function addEvent(id, handler) {
+  document.getElementById(id).addEventListener("click", handler);
+}
+
+addEvent("buyBtn", () => console.log("Item Purchased 🛒"));
+addEvent("cancelBtn", () => console.log("Order Cancelled ❌"));
+
+
+📌 Real Use Case: Reusable function for attaching multiple event listeners.
+
+✨ Summary Table
+Concept	Example Code	Real Use Case
+Takes function as arg	processPayment(fn)	Payment methods
+Returns function	createDiscount()	Dynamic discount
+Built-in HOFs	map, filter, reduce	Order processing
+Middleware	authenticateUser(role)	Authentication
+Event Handling	addEvent(id, fn)	UI interactions
+
+⚡ In short:
+
+First-Class Functions → Functions can be treated as values.
+
+Higher-Order Functions → Functions that use other functions (take or return them).
+
+
+===================================================================
 Currying & Partial Application
+===================================================================
+🔹 1. Currying in JavaScript
 
+👉 Definition:
+Currying is the process of transforming a function with multiple arguments into a sequence of functions, each taking a single argument.
+
+// Normal function
+function calculateTotal(price, quantity, tax) {
+  return price * quantity + tax;
+}
+
+// Curried version
+function curriedCalculateTotal(price) {
+  return function(quantity) {
+    return function(tax) {
+      return price * quantity + tax;
+    };
+  };
+}
+
+console.log(curriedCalculateTotal(100)(2)(10)); // 210
+
+
+✅ Real Use Case: E-commerce Checkout
+You can reuse curried functions to partially apply known values (like tax or default quantity).
+
+const priceWithTax = curriedCalculateTotal(100); 
+const withTwoQty   = priceWithTax(2); 
+
+console.log(withTwoQty(10));  // 210
+console.log(withTwoQty(20));  // 220
+
+🔹 2. Partial Application in JavaScript
+
+👉 Definition:
+Partial application is when you fix some arguments of a function and create a new function with the remaining arguments.
+
+function calculateTotal(price, quantity, tax) {
+  return price * quantity + tax;
+}
+
+// Partial Application: Fix price = 100
+const calculateForItem = calculateTotal.bind(null, 100);
+
+console.log(calculateForItem(2, 10)); // 210
+console.log(calculateForItem(3, 5));  // 305
+
+
+✅ Real Use Case: Food Delivery App
+Fixing the item price in a food delivery system.
+
+const pizzaOrder = calculateTotal.bind(null, 250);
+console.log(pizzaOrder(2, 20)); // 520
+
+🔹 3. Currying vs Partial Application
+Feature	Currying	Partial Application
+Definition	Breaks a function into nested single-argument functions	Fixes some arguments and creates a new function
+Example	f(a)(b)(c)	f.bind(null, a)
+Flexibility	Always takes one argument at a time	Can fix one or more arguments at once
+Real Use Case	Checkout system where tax/discount is applied step by step	Food order where price is fixed, but quantity & tax vary
+🔹 4. Real-World Example: Online Food Ordering System
+// Normal function
+function orderTotal(price, quantity, tax) {
+  return price * quantity + tax;
+}
+
+// Currying
+function curriedOrder(price) {
+  return function(quantity) {
+    return function(tax) {
+      return price * quantity + tax;
+    };
+  };
+}
+
+// Partial Application
+const burgerOrder = orderTotal.bind(null, 150); // Fix price of burger
+
+console.log("Curried Pizza:", curriedOrder(200)(2)(30)); // 430
+console.log("Burger Order:", burgerOrder(3, 20));        // 470
+
+
+📌 Explanation:
+
+Currying: Breaks order into steps → Price → Quantity → Tax.
+
+Partial Application: Fixes burger price, only quantity & tax change.
+
+✨ Summary
+
+Currying → Chain of single-argument functions.
+
+Partial Application → Pre-fills some arguments, keeps rest open.
+
+Both are useful in e-commerce, billing, food delivery, and payment gateways for reusability & clean code.
+
+===================================================================
 Composition & Pipelines
+===================================================================
+🔹 1. What is Function Composition?
 
-🟢 10. Browser APIs
+👉 Function Composition = combining two or more small functions into a new function.
+It allows you to build complex logic from reusable pieces.
 
+const addGST = price => price + price * 0.18;
+const applyDiscount = price => price - 100;
+
+// Composition
+const finalPrice = price => applyDiscount(addGST(price));
+
+console.log(finalPrice(1000)); // 1080
+
+
+📌 Real Use Case: E-commerce checkout system → Apply GST → Apply discount.
+
+🔹 2. What is a Pipeline?
+
+👉 Pipeline = executing functions in sequence, passing output of one as input to the next (left-to-right flow).
+It’s like a factory assembly line.
+
+// Simple pipeline function
+const pipe = (...fns) => (value) => fns.reduce((acc, fn) => fn(acc), value);
+
+const addGST = price => price + price * 0.18;
+const applyDiscount = price => price - 100;
+const addDelivery = price => price + 50;
+
+// Pipeline
+const checkoutPipeline = pipe(addGST, applyDiscount, addDelivery);
+
+console.log(checkoutPipeline(1000)); // 1130
+
+
+📌 Real Use Case: Food delivery app billing → GST → Discount → Delivery charge.
+
+🔹 3. Real-World Example: Bank Loan Processing
+// Functions
+const addProcessingFee = amount => amount + 500;
+const addInterest = amount => amount + amount * 0.1;
+const deductTax = amount => amount - 200;
+
+// Composition (manual nesting)
+const finalLoanAmount = amount => deductTax(addInterest(addProcessingFee(amount)));
+
+console.log(finalLoanAmount(10000)); // 11200
+
+
+📌 Use Case: Bank loan calculation → Processing fee → Interest → Tax.
+
+🔹 4. Real-World Example: Data Cleaning in Analytics
+const trimSpaces = str => str.trim();
+const toLowerCase = str => str.toLowerCase();
+const removeSpecialChars = str => str.replace(/[^a-z0-9 ]/gi, "");
+
+// Pipeline
+const cleanData = pipe(trimSpaces, toLowerCase, removeSpecialChars);
+
+console.log(cleanData("   Hello@World!!  ")); // "helloworld"
+
+
+📌 Use Case: Cleaning user input for analytics or search engines.
+
+🔹 5. Comparison: Composition vs Pipeline
+Feature	Composition	Pipeline
+Flow	Usually right-to-left (nested)	Left-to-right (assembly line)
+Example	f(g(h(x)))	pipe(f, g, h)(x)
+Readability	Harder when deeply nested	Cleaner, step-by-step
+Use Case	Mathematical/logical operations	Data transformations, ETL, checkout systems
+🔹 6. Advanced Example: E-commerce Checkout Pipeline
+// Step functions
+const addGST = price => price + price * 0.18;
+const applyDiscount = price => price - 200;
+const addDelivery = price => price + 50;
+const roundOff = price => Math.round(price);
+
+// Pipe function
+const pipe = (...fns) => (val) => fns.reduce((acc, fn) => fn(acc), val);
+
+// Build pipeline
+const checkout = pipe(addGST, applyDiscount, addDelivery, roundOff);
+
+console.log("Final Bill:", checkout(1200)); // Final Bill: 1266
+
+
+📌 Real Use Case: Checkout pipeline ensures billing is consistent, reusable, and testable.
+
+✨ Summary
+
+Composition = combine functions (f(g(x))).
+
+Pipeline = sequence of functions (pipe(f, g, h)(x)).
+
+Used in e-commerce billing, banking, food delivery, and data processing systems.
+
+===================================================================
+10. Browser APIs
+===================================================================
+🔹 1. What are Browser APIs?
+
+👉 Browser APIs are built-in interfaces provided by the browser that let JavaScript interact with the browser environment (outside the core JS language).
+
+📌 Example: Handling DOM, making HTTP requests, using camera, local storage, geolocation, etc.
+
+🔹 2. Types of Browser APIs with Real Examples
+✅ A. DOM (Document Object Model) API
+
+Used for interacting with HTML & CSS.
+
+Example: Dynamic To-Do App
+
+<button id="add">Add Task</button>
+<ul id="tasks"></ul>
+
+<script>
+document.getElementById("add").addEventListener("click", () => {
+  const task = document.createElement("li");
+  task.textContent = "✅ New Task";
+  document.getElementById("tasks").appendChild(task);
+});
+</script>
+
+
+📌 Real Use Case: Adding/removing tasks in a to-do list.
+
+✅ B. Fetch API
+
+Used for making HTTP requests.
+
+Example: Weather App
+
+fetch("https://api.open-meteo.com/v1/forecast?latitude=18.52&longitude=73.85&current_weather=true")
+  .then(res => res.json())
+  .then(data => console.log("Current Temperature:", data.current_weather.temperature))
+  .catch(err => console.error(err));
+
+
+📌 Real Use Case: Fetching live weather data for a city.
+
+✅ C. Storage APIs
+
+localStorage → persists data even after browser reload.
+
+sessionStorage → clears data when tab closes.
+
+Example: Remember Dark Mode Preference
+
+// Save preference
+localStorage.setItem("theme", "dark");
+
+// Load preference
+const theme = localStorage.getItem("theme");
+console.log("Theme:", theme); // dark
+
+
+📌 Real Use Case: Remember user theme (dark/light) in apps.
+
+✅ D. Geolocation API
+
+Used for accessing the user’s location.
+
+Example: Food Delivery App
+
+navigator.geolocation.getCurrentPosition(
+  position => {
+    console.log("Latitude:", position.coords.latitude);
+    console.log("Longitude:", position.coords.longitude);
+  },
+  error => console.error("Error getting location", error)
+);
+
+
+📌 Real Use Case: Auto-detect delivery location in Zomato/Swiggy.
+
+✅ E. Canvas API
+
+Used for 2D graphics, charts, games.
+
+Example: Drawing a Circle
+
+<canvas id="myCanvas" width="200" height="200"></canvas>
+<script>
+const canvas = document.getElementById("myCanvas");
+const ctx = canvas.getContext("2d");
+ctx.beginPath();
+ctx.arc(100, 100, 50, 0, 2 * Math.PI);
+ctx.fillStyle = "blue";
+ctx.fill();
+</script>
+
+
+📌 Real Use Case: Drawing charts, signatures, or animations.
+
+✅ F. Web Storage & IndexedDB API
+
+For structured storage in the browser.
+
+Example: Storing User Profile
+
+indexedDB.open("UserDB", 1).onsuccess = function(event) {
+  console.log("Database opened successfully!");
+};
+
+
+📌 Real Use Case: Offline storage in apps like Google Keep.
+
+✅ G. Notifications API
+
+Show native notifications.
+
+Example: Chat App
+
+if (Notification.permission === "granted") {
+  new Notification("🔔 New Message from Akash!");
+} else {
+  Notification.requestPermission();
+}
+
+
+📌 Real Use Case: WhatsApp Web notifications.
+
+✅ H. Media APIs
+
+Access camera, microphone.
+
+Example: Video Call
+
+navigator.mediaDevices.getUserMedia({ video: true, audio: true })
+  .then(stream => {
+    document.querySelector("video").srcObject = stream;
+  })
+  .catch(err => console.error("Camera error:", err));
+
+
+📌 Real Use Case: Zoom/Google Meet camera access.
+
+✅ I. Web Workers API
+
+Run scripts in background (multithreading).
+
+Example: Heavy Calculation without Freezing UI
+
+const worker = new Worker("worker.js");
+worker.postMessage(50000000);
+
+worker.onmessage = function(e) {
+  console.log("Sum:", e.data);
+};
+
+
+📌 Real Use Case: Processing large data files in background.
+
+✅ J. Clipboard API
+
+Read & write to clipboard.
+
+Example: Copy Text
+
+navigator.clipboard.writeText("Hello World!")
+  .then(() => console.log("Copied to clipboard!"));
+
+
+📌 Real Use Case: "Copy OTP" button in banking apps.
+
+🔹 3. Categories of Browser APIs
+
+DOM & UI APIs → document, classList, canvas.
+
+Network APIs → fetch, WebSocket, XMLHttpRequest.
+
+Storage APIs → localStorage, sessionStorage, IndexedDB.
+
+Multimedia APIs → MediaDevices, Audio, Canvas.
+
+Device APIs → Geolocation, Battery, Vibration, Clipboard.
+
+Background APIs → Web Workers, Service Workers.
+
+Notification APIs → Notifications, Push API.
+
+✅ Summary:
+
+Browser APIs extend JavaScript beyond core features.
+
+They power real-world apps like Google Maps (Geolocation), WhatsApp Web (Notifications), Zomato (Storage), Canva (Canvas API), Zoom (Media API).
+
+
+===================================================================
 LocalStorage & SessionStorage
+===================================================================
 
+
+===================================================================
 Geolocation API
+===================================================================
 
+
+
+===================================================================
 Fetch & API Calls
+===================================================================
 
+
+
+===================================================================
 Web Workers
+===================================================================
 
+
+
+===================================================================
 Canvas API
+===================================================================
 
+
+
+===================================================================
 Notifications & Clipboard API
+===================================================================
 
-🟡 11. Asynchronous JavaScript (Deep Dive)
 
+
+
+===================================================================
+11. Asynchronous JavaScript (Deep Dive)
+===================================================================
+
+
+
+===================================================================
 Callbacks
+===================================================================
 
+
+
+
+
+
+
+
+
+
+===================================================================
 Promises (chaining)
+===================================================================
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+===================================================================
 Async/Await with try...catch
+===================================================================
 
+
+
+
+
+
+
+===================================================================
 Parallel vs Sequential Execution
+===================================================================
 
+
+
+
+===================================================================
 Promise.all, Promise.race, Promise.any
+===================================================================
 
+
+===================================================================
 🔴 12. Advanced Topics
+===================================================================
 
+
+
+
+
+
+
+===================================================================
 Event Bubbling vs Capturing
+===================================================================
 
+
+
+
+
+===================================================================
 Debouncing & Throttling
+===================================================================
 
+
+
+
+
+===================================================================
 Modules (ESM vs CommonJS)
+===================================================================
 
+
+
+
+
+===================================================================
 Polyfills & Transpilers (Babel)
+===================================================================
 
+
+
+
+
+===================================================================
 Bundlers (Webpack, Vite, Parcel)
+===================================================================
 
+
+
+===================================================================
 Error Handling & Debugging (console, debugger)
 
 ===================================================================
