@@ -10141,50 +10141,1351 @@ Real Use: Payments, logins, API calls, cart systems, validations.
 ==================================================================================
 Memory Management & Garbage Collection
 ==================================================================================
+🔹 What is Memory Management?
 
+Every program needs memory to store values, objects, and variables.
+JavaScript (like most high-level languages) automatically allocates and frees memory, so developers don’t need to manage it manually (like in C/C++).
+
+The process has 2 main parts:
+
+Allocation → Reserving memory for variables, objects, functions.
+
+Garbage Collection → Freeing memory that is no longer needed.
+
+🔹 Garbage Collection (GC)
+
+JavaScript uses automatic garbage collection.
+
+The main strategy: Reachability
+
+If a value is reachable (can be accessed by some reference), it stays in memory.
+
+If nothing references it anymore, it becomes garbage → collected.
+
+Example:
+let user = { name: "Suraj" }; // memory allocated for object
+console.log(user.name);       // "Suraj"
+
+// Reassigning the variable
+user = null; // the object { name: "Suraj" } has no reference now
+
+// Garbage Collector will eventually remove it from memory
+
+🔹 Real-Life Analogy
+
+Think of memory like a hotel:
+
+When a guest (variable) checks in → a room (memory) is allocated.
+
+If the guest checks out and nobody else needs the room → the room becomes free again.
+
+Garbage Collector = hotel staff cleaning up empty rooms.
+
+🔹 Common Memory Management Scenarios
+✅ Example 1: Function Scope
+function greeting() {
+  let message = "Hello World"; // allocated
+  console.log(message);
+}
+greeting(); // message is no longer reachable after function ends
+// Garbage Collector frees memory
+
+✅ Example 2: Objects Without References
+let car = { brand: "Tesla" };
+car = { brand: "BMW" }; // Tesla object lost reference
+// Garbage Collector will clean up "Tesla"
+
+✅ Example 3: Closures (Memory stays allocated)
+function counter() {
+  let count = 0;
+  return function () {
+    count++;
+    console.log(count);
+  };
+}
+
+const myCounter = counter();
+myCounter(); // 1
+myCounter(); // 2
+
+// Even though 'counter()' finished, 'count' is still reachable via closure.
+// So memory is NOT freed until 'myCounter' is set to null.
+
+✅ Example 4: Memory Leak (Bad Practice)
+let elements = [];
+function createLeak() {
+  elements.push(new Array(1000000).join("x")); // keeps adding big strings
+}
+setInterval(createLeak, 1000); // Memory keeps growing
+
+
+⚠️ Here, memory is never freed because elements keeps references → memory leak.
+
+🔹 Best Practices for Memory Management
+
+Nullify references when not needed (obj = null).
+
+Be careful with global variables (they live until the program ends).
+
+Avoid unnecessary closures holding memory.
+
+Clear intervals/timeouts (clearInterval, clearTimeout).
+
+Use WeakMap / WeakSet for objects you don’t want to prevent GC.
+
+✅ In short:
+
+JavaScript automatically manages memory.
+
+Garbage Collector frees unreachable objects.
+
+Developers should avoid memory leaks by managing references wisely.
 
 ==================================================================================
 Closures (Advanced use cases)
 ==================================================================================
+🔒 Closures in JavaScript (Advanced Use Cases)
+🔹 Quick Recap
 
+A closure happens when an inner function “remembers” variables from its outer function’s scope, even after the outer function has finished execution.
+
+🔹 Advanced Use Cases of Closures
+1️⃣ Data Privacy & Encapsulation
+
+Closures allow us to create private variables that can’t be accessed directly.
+👉 Like private properties in classes.
+
+function bankAccount(initialBalance) {
+  let balance = initialBalance; // private variable
+
+  return {
+    deposit: function(amount) {
+      balance += amount;
+      console.log(`Deposited: ${amount}, Balance: ${balance}`);
+    },
+    withdraw: function(amount) {
+      if (amount <= balance) {
+        balance -= amount;
+        console.log(`Withdrawn: ${amount}, Balance: ${balance}`);
+      } else {
+        console.log("Insufficient funds");
+      }
+    },
+    getBalance: function() {
+      return balance;
+    }
+  };
+}
+
+const account = bankAccount(1000);
+account.deposit(500);   // Deposited: 500, Balance: 1500
+account.withdraw(300);  // Withdrawn: 300, Balance: 1200
+console.log(account.getBalance()); // 1200
+
+
+✅ Here, balance is private — can’t be modified directly outside.
+
+2️⃣ Function Factories (Dynamic Function Creation)
+
+Closures let us generate functions with preconfigured behavior.
+
+function multiplier(factor) {
+  return function(num) {
+    return num * factor; // factor is remembered via closure
+  };
+}
+
+const double = multiplier(2);
+const triple = multiplier(3);
+
+console.log(double(5)); // 10
+console.log(triple(5)); // 15
+
+
+✅ Useful for customized functions without repeating logic.
+
+3️⃣ Maintaining State (Counters, Games, UI)
+
+Closures keep track of state across function calls.
+
+function makeCounter() {
+  let count = 0;
+  return {
+    increment: function() { count++; return count; },
+    decrement: function() { count--; return count; },
+    reset: function() { count = 0; return count; }
+  };
+}
+
+const counter = makeCounter();
+console.log(counter.increment()); // 1
+console.log(counter.increment()); // 2
+console.log(counter.decrement()); // 1
+console.log(counter.reset());     // 0
+
+
+✅ Common in games, UI clicks, or form counters.
+
+4️⃣ Once Functions (Execute Only Once)
+
+Closures help in ensuring a function executes only one time.
+
+function once(fn) {
+  let executed = false;
+  return function(...args) {
+    if (!executed) {
+      executed = true;
+      return fn(...args);
+    }
+  };
+}
+
+const startApp = once(() => console.log("App Started!"));
+startApp(); // App Started!
+startApp(); // No effect
+
+
+✅ Useful in initialization logic (e.g., connecting to a DB, app setup).
+
+5️⃣ Memoization (Caching Results)
+
+Closures help in caching function results for performance.
+
+function memoizedAdd() {
+  let cache = {};
+  return function(num) {
+    if (num in cache) {
+      console.log("Fetching from cache:", num);
+      return cache[num];
+    } else {
+      console.log("Calculating result...");
+      let result = num + 10;
+      cache[num] = result;
+      return result;
+    }
+  };
+}
+
+const add = memoizedAdd();
+console.log(add(5)); // Calculating result... 15
+console.log(add(5)); // Fetching from cache: 5 → 15
+
+
+✅ Common in expensive operations (API calls, calculations).
+
+6️⃣ Iterators with Closures
+
+Closures can create custom iterator logic.
+
+function createIdGenerator() {
+  let id = 0;
+  return function() {
+    id++;
+    return `USER_${id}`;
+  };
+}
+
+const getId = createIdGenerator();
+console.log(getId()); // USER_1
+console.log(getId()); // USER_2
+console.log(getId()); // USER_3
+
+
+✅ Useful for unique IDs in apps, DB records, or UI elements.
+
+7️⃣ Event Listeners with Closures
+
+Closures let event handlers retain access to variables.
+
+function attachEventListeners() {
+  let count = 0;
+  document.getElementById("myBtn").addEventListener("click", function() {
+    count++;
+    console.log(`Button clicked ${count} times`);
+  });
+}
+attachEventListeners();
+
+
+✅ The count variable persists across button clicks.
+
+🔑 Summary
+
+Closures are powerful for:
+
+✅ Data privacy (bank accounts, secure variables)
+
+✅ Function factories (customized functions)
+
+✅ State management (counters, UI)
+
+✅ Run once logic
+
+✅ Memoization (performance)
+
+✅ Iterators & generators
+
+✅ Event handling
 
 
 ==================================================================================
 Currying & Memoization
 ==================================================================================
+🥤 Currying in JavaScript
+🔹 What is Currying?
 
+Currying is the process of transforming a function with multiple arguments into a sequence of functions, each taking one argument at a time.
+
+👉 Instead of: f(a, b, c)
+We do: f(a)(b)(c)
+
+✅ Example 1: Simple Currying
+function add(a) {
+  return function(b) {
+    return function(c) {
+      return a + b + c;
+    };
+  };
+}
+
+console.log(add(2)(3)(4)); // 9
+
+✅ Example 2: Real-Life Currying (Discount Calculator)
+function discount(rate) {
+  return function(price) {
+    return price - (price * rate);
+  };
+}
+
+const studentDiscount = discount(0.2); // 20% off
+const festiveDiscount = discount(0.5); // 50% off
+
+console.log(studentDiscount(1000)); // 800
+console.log(festiveDiscount(1000)); // 500
+
+
+🔑 Here, we preload the discount rate and apply it multiple times without repeating logic.
+
+✅ Example 3: Logging Utility (Currying for Reusability)
+function log(level) {
+  return function(message) {
+    console.log(`[${level.toUpperCase()}]: ${message}`);
+  };
+}
+
+const info = log("info");
+const error = log("error");
+
+info("Server started");  // [INFO]: Server started
+error("Server crashed!"); // [ERROR]: Server crashed!
+
+
+🔑 Helps create specialized functions from one general function.
+
+⚡ Memoization in JavaScript
+🔹 What is Memoization?
+
+Memoization is an optimization technique where we cache the results of expensive function calls, so when the same inputs occur again, we return from cache instead of recalculating.
+
+✅ Example 1: Fibonacci (Expensive Calculation)
+function fibonacci(n, cache = {}) {
+  if (n in cache) return cache[n];
+  if (n <= 1) return n;
+
+  cache[n] = fibonacci(n - 1, cache) + fibonacci(n - 2, cache);
+  return cache[n];
+}
+
+console.log(fibonacci(40)); // much faster due to memoization
+
+
+🔑 Without memoization, fibonacci(40) takes a long time. With caching, it’s instant.
+
+✅ Example 2: Memoized API Calls (Real-Life Use Case)
+function memoizedFetch() {
+  let cache = {};
+
+  return async function(url) {
+    if (cache[url]) {
+      console.log("Fetching from cache:", url);
+      return cache[url];
+    }
+
+    console.log("Fetching from API:", url);
+    const response = await fetch(url);
+    const data = await response.json();
+    cache[url] = data;
+    return data;
+  };
+}
+
+const fetchData = memoizedFetch();
+
+// First call: hits API
+fetchData("https://jsonplaceholder.typicode.com/posts/1").then(console.log);
+
+// Second call: served from cache
+fetchData("https://jsonplaceholder.typicode.com/posts/1").then(console.log);
+
+
+🔑 Saves network requests by caching previous responses.
+
+✅ Example 3: Memoized Expensive Calculation
+function memoize(fn) {
+  let cache = {};
+  return function(...args) {
+    let key = JSON.stringify(args);
+    if (cache[key]) {
+      console.log("Fetching from cache:", key);
+      return cache[key];
+    }
+    console.log("Calculating result...");
+    cache[key] = fn(...args);
+    return cache[key];
+  };
+}
+
+function slowSquare(n) {
+  for (let i = 0; i < 1e8; i++); // simulate heavy work
+  return n * n;
+}
+
+const fastSquare = memoize(slowSquare);
+
+console.log(fastSquare(5)); // calculates
+console.log(fastSquare(5)); // fetches from cache
+
+
+🔑 Great for repeated expensive calculations like image processing, analytics, or rendering.
+
+🔑 Summary
+✅ Currying
+
+Breaks down a function into smaller, reusable parts.
+
+Useful for function factories, configuration, and partial application.
+
+✅ Memoization
+
+Caches function results to avoid redundant work.
+
+Useful in expensive calculations, API calls, rendering optimizations.
 
 
 ==================================================================================
 Shadowing & Temporal Dead Zone (TDZ)
 ==================================================================================
+🌑 Shadowing in JavaScript
+🔹 What is Shadowing?
 
+Shadowing happens when a variable declared in a local scope (block/function) has the same name as a variable in an outer scope.
+👉 The inner variable shadows/hides the outer one inside its scope.
+
+✅ Example 1: Function Scope Shadowing
+let name = "Suraj";
+
+function greet() {
+  let name = "Akshata"; // shadows outer 'name'
+  console.log("Hello " + name);
+}
+
+greet(); // Hello Akshata
+console.log(name); // Suraj
+
+
+🔑 Inside greet(), the outer name is shadowed by the local one.
+
+✅ Example 2: Block Scope Shadowing (with let)
+let city = "Pune";
+
+if (true) {
+  let city = "Mumbai"; // shadows outer 'city'
+  console.log(city);   // Mumbai
+}
+
+console.log(city); // Pune
+
+✅ Example 3: Real-Life Analogy
+
+Imagine a teacher named “Raj” in school. At home, your uncle is also named “Raj”.
+👉 If you say “Raj” at school → teacher responds.
+👉 If you say “Raj” at home → uncle responds.
+Both exist, but the closer scope wins.
+
+⚠️ Illegal Shadowing:
+Using var inside block scope can cause conflicts with let/const in the same scope.
+
+let x = 10;
+{
+  var x = 20; // ❌ Error: Illegal shadowing
+}
+
+
+✅ But let shadowing let is fine if they’re in different scopes.
+
+⏳ Temporal Dead Zone (TDZ) in JavaScript
+🔹 What is TDZ?
+
+The Temporal Dead Zone (TDZ) is the time between when a variable is hoisted and when it is initialized.
+
+let and const are hoisted but not initialized.
+
+Accessing them before initialization throws a ReferenceError.
+
+✅ Example 1: TDZ with let
+console.log(a); // ❌ ReferenceError (TDZ)
+let a = 5;
+
+✅ Example 2: TDZ with const
+{
+  console.log(value); // ❌ ReferenceError
+  const value = 100;
+}
+
+✅ Example 3: Real-Life Analogy
+
+Think of TDZ like checking into a hotel room:
+
+The hotel knows a guest is coming (hoisting).
+
+But until check-in (initialization) is complete, the guest (variable) can’t be used.
+
+If you try to enter early → 🚫 denied access (ReferenceError).
+
+✅ Example 4: TDZ in Function Default Parameters
+function test(x = y, y = 2) {
+  console.log(x, y);
+}
+test(); // ❌ ReferenceError (y is in TDZ when x is evaluated)
+
+🔑 Summary
+🌑 Shadowing
+
+Inner variable hides outer variable in its scope.
+
+Legal when different scopes (let in block vs global).
+
+Illegal when var shadows let/const in same scope.
+
+⏳ Temporal Dead Zone (TDZ)
+
+Exists for let and const between hoisting and initialization.
+
+Accessing a variable in TDZ → ReferenceError.
+
+Helps prevent bugs by not allowing premature access.
 
 
 ==================================================================================
 Design Patterns in JS (Singleton, Factory, Observer, etc.)
 ==================================================================================
+🏗️ Design Patterns in JavaScript
 
+Design patterns are proven solutions to common problems in software design.
+They make code more reusable, scalable, and maintainable.
+
+1️⃣ Singleton Pattern
+
+Ensures only one instance of a class/object exists throughout the application.
+
+✅ Real Example: Database Connection
+class Database {
+  constructor() {
+    if (Database.instance) {
+      return Database.instance; // return existing instance
+    }
+    this.connection = "Connected to DB";
+    Database.instance = this;
+  }
+}
+
+const db1 = new Database();
+const db2 = new Database();
+
+console.log(db1 === db2); // true
+console.log(db1.connection); // Connected to DB
+
+
+🔑 Use case: Database connections, logging service, config settings.
+
+2️⃣ Factory Pattern
+
+Provides a method to create objects without specifying the exact class type.
+
+✅ Real Example: Vehicle Factory
+class Car {
+  drive() { console.log("Driving a Car 🚗"); }
+}
+class Bike {
+  drive() { console.log("Riding a Bike 🏍️"); }
+}
+
+class VehicleFactory {
+  static createVehicle(type) {
+    if (type === "car") return new Car();
+    if (type === "bike") return new Bike();
+    return null;
+  }
+}
+
+const myCar = VehicleFactory.createVehicle("car");
+myCar.drive(); // Driving a Car 🚗
+
+const myBike = VehicleFactory.createVehicle("bike");
+myBike.drive(); // Riding a Bike 🏍️
+
+
+🔑 Use case: UI elements, payment gateways (PayPal, Stripe), notification systems (Email, SMS, Push).
+
+3️⃣ Observer Pattern (Pub/Sub)
+
+Defines a one-to-many dependency between objects.
+When one object (Subject) changes, all its dependents (Observers) are notified.
+
+✅ Real Example: YouTube Subscriber System
+class YouTubeChannel {
+  constructor() {
+    this.subscribers = [];
+  }
+
+  subscribe(observer) {
+    this.subscribers.push(observer);
+  }
+
+  unsubscribe(observer) {
+    this.subscribers = this.subscribers.filter(sub => sub !== observer);
+  }
+
+  notify(message) {
+    this.subscribers.forEach(sub => sub.update(message));
+  }
+}
+
+class Subscriber {
+  constructor(name) {
+    this.name = name;
+  }
+  update(message) {
+    console.log(`${this.name} received: ${message}`);
+  }
+}
+
+const channel = new YouTubeChannel();
+const user1 = new Subscriber("Suraj");
+const user2 = new Subscriber("Akshata");
+
+channel.subscribe(user1);
+channel.subscribe(user2);
+
+channel.notify("New video uploaded! 🎥");
+// Suraj received: New video uploaded!
+// Akshata received: New video uploaded!
+
+
+🔑 Use case: Event systems, chat apps, notifications, stock price updates.
+
+4️⃣ Module Pattern
+
+Encapsulates related functions/variables inside a module, exposing only what’s necessary.
+
+✅ Real Example: Shopping Cart Module
+const CartModule = (function () {
+  let cart = []; // private variable
+
+  function addItem(item) {
+    cart.push(item);
+    console.log(`${item} added to cart`);
+  }
+
+  function getItems() {
+    return cart;
+  }
+
+  return {
+    addItem,
+    getItems
+  };
+})();
+
+CartModule.addItem("Shoes"); // Shoes added to cart
+CartModule.addItem("Watch"); // Watch added to cart
+console.log(CartModule.getItems()); // ["Shoes", "Watch"]
+
+
+🔑 Use case: Organizing code, hiding implementation details.
+
+5️⃣ Strategy Pattern
+
+Defines a family of algorithms and makes them interchangeable.
+
+✅ Real Example: Payment Methods
+class PayPal {
+  pay(amount) {
+    console.log(`Paid ${amount} using PayPal`);
+  }
+}
+class CreditCard {
+  pay(amount) {
+    console.log(`Paid ${amount} using Credit Card`);
+  }
+}
+
+class Payment {
+  constructor(strategy) {
+    this.strategy = strategy;
+  }
+  setStrategy(strategy) {
+    this.strategy = strategy;
+  }
+  pay(amount) {
+    this.strategy.pay(amount);
+  }
+}
+
+const payment = new Payment(new PayPal());
+payment.pay(1000); // Paid 1000 using PayPal
+
+payment.setStrategy(new CreditCard());
+payment.pay(2000); // Paid 2000 using Credit Card
+
+
+🔑 Use case: Payment systems, sorting algorithms, shipping methods.
+
+6️⃣ Decorator Pattern
+
+Allows you to add new functionality to objects without modifying their structure.
+
+✅ Real Example: Coffee Shop (Adding Extras)
+function coffee() {
+  return "Coffee";
+}
+
+function withMilk(coffeeFunc) {
+  return coffeeFunc() + " + Milk";
+}
+
+function withSugar(coffeeFunc) {
+  return coffeeFunc() + " + Sugar";
+}
+
+console.log(withMilk(coffee())); // Coffee + Milk
+console.log(withSugar(withMilk(coffee))); // Coffee + Milk + Sugar
+
+
+🔑 Use case: Middleware in Express.js, UI components, adding features dynamically.
+
+🔑 Summary
+
+Singleton → Only one instance (DB connection, config).
+
+Factory → Object creation without specifying exact class (vehicles, UI, payments).
+
+Observer → Publisher/Subscriber (notifications, events).
+
+Module → Encapsulation + data privacy (shopping cart, utilities).
+
+Strategy → Choose algorithm/behavior at runtime (payments, sorting).
+
+Decorator → Extend functionality without modifying code (middleware, UI features).
 
 ==================================================================================
 14. Testing in JavaScript
 ==================================================================================
+🧪 Testing in JavaScript
 
+Testing ensures that your JavaScript code works as expected, is maintainable, and prevents bugs when new features are added.
+
+1. Types of Testing
+
+Unit Testing
+
+Tests small, individual pieces of code (like a function).
+
+Example: Testing a function that adds two numbers.
+
+Integration Testing
+
+Tests how multiple modules/components work together.
+
+Example: Checking if a login function works correctly with the database.
+
+End-to-End (E2E) Testing
+
+Simulates real user interactions in the browser.
+
+Example: Automating a test that opens a site, logs in, and verifies the dashboard.
+
+Functional Testing
+
+Ensures the application behaves according to requirements.
+
+Performance Testing
+
+Tests speed and responsiveness.
+
+2. Popular Testing Frameworks/Libraries
+
+Jest → Used widely for unit testing (by Facebook, works with React, Node.js, etc.).
+
+Mocha + Chai → Flexible testing library with assertion support.
+
+Jasmine → Older but popular testing framework.
+
+Cypress → Great for end-to-end (E2E) testing.
+
+Playwright / Puppeteer → For browser automation testing.
+
+3. Unit Testing Example (Jest)
+
+👉 Function to test:
+
+// math.js
+function add(a, b) {
+  return a + b;
+}
+module.exports = add;
+
+
+👉 Test file:
+
+// math.test.js
+const add = require('./math');
+
+test('adds 2 + 3 to equal 5', () => {
+  expect(add(2, 3)).toBe(5);
+});
+
+
+✅ Run with Jest → output will confirm test passed.
+
+4. Integration Testing Example (Mocha + Chai)
+
+👉 Login function:
+
+function login(username, password) {
+  if (username === "admin" && password === "1234") {
+    return "Login successful";
+  }
+  return "Login failed";
+}
+module.exports = login;
+
+
+👉 Test:
+
+const chai = require('chai');
+const expect = chai.expect;
+const login = require('./login');
+
+describe('Login Function', () => {
+  it('should return success for correct credentials', () => {
+    expect(login("admin", "1234")).to.equal("Login successful");
+  });
+
+  it('should return failure for wrong credentials', () => {
+    expect(login("user", "wrong")).to.equal("Login failed");
+  });
+});
+
+5. E2E Testing Example (Cypress)
+
+👉 Test that visits a site and checks login form:
+
+describe('Login Page', () => {
+  it('should login with correct credentials', () => {
+    cy.visit('http://localhost:3000/login');
+    cy.get('input[name="username"]').type('admin');
+    cy.get('input[name="password"]').type('1234');
+    cy.get('button[type="submit"]').click();
+    cy.contains('Welcome, admin').should('be.visible');
+  });
+});
+
+6. Mocking & Spying
+
+Mocking → Fake an API or database call.
+
+Spying → Track if a function was called.
+
+Example (Jest Mock):
+
+const fetchData = jest.fn(() => "mocked data");
+
+test('mock example', () => {
+  expect(fetchData()).toBe("mocked data");
+  expect(fetchData).toHaveBeenCalled();
+});
+
+7. Code Coverage
+
+Measures how much of your code is tested.
+
+Jest provides --coverage option to generate reports.
+
+✅ Real-World Example
+Imagine an E-commerce app:
+
+Unit Test → Check if calculateTotal(cart) returns correct total.
+
+Integration Test → Verify checkout calls payment API correctly.
+
+E2E Test → Automate adding an item to cart → checkout → order confirmation.
 
 ==================================================================================
 Unit Testing (Jest, Mocha, Jasmine)
 ==================================================================================
+🧪 Unit Testing in JavaScript
+🔹 What is Unit Testing?
 
+Definition: Unit testing is testing individual pieces of code (units) like functions or classes in isolation.
+
+Goal: Ensure that each part of the program works correctly before integrating.
+
+1. Unit Testing with Jest
+
+👉 Install Jest:
+
+npm install --save-dev jest
+
+
+Add in package.json:
+
+"scripts": {
+  "test": "jest"
+}
+
+Example: Shopping Cart
+// cart.js
+function calculateTotal(cart) {
+  return cart.reduce((sum, item) => sum + item.price * item.qty, 0);
+}
+module.exports = calculateTotal;
+
+
+👉 Test file:
+
+// cart.test.js
+const calculateTotal = require('./cart');
+
+test('calculates total price of cart', () => {
+  const cart = [
+    { name: 'Laptop', price: 50000, qty: 1 },
+    { name: 'Mouse', price: 1000, qty: 2 }
+  ];
+  expect(calculateTotal(cart)).toBe(52000);
+});
+
+
+✅ Run: npm test
+
+2. Unit Testing with Mocha + Chai
+
+👉 Install Mocha + Chai:
+
+npm install --save-dev mocha chai
+
+
+Run with:
+
+npx mocha
+
+Example: Banking App
+// bank.js
+function deposit(balance, amount) {
+  if (amount <= 0) throw new Error("Invalid deposit");
+  return balance + amount;
+}
+module.exports = deposit;
+
+
+👉 Test file:
+
+// test/bank.test.js
+const chai = require('chai');
+const expect = chai.expect;
+const deposit = require('../bank');
+
+describe('Bank Deposit Function', () => {
+  it('should increase balance on deposit', () => {
+    expect(deposit(1000, 500)).to.equal(1500);
+  });
+
+  it('should throw error for invalid deposit', () => {
+    expect(() => deposit(1000, -200)).to.throw("Invalid deposit");
+  });
+});
+
+
+✅ Run: npx mocha
+
+3. Unit Testing with Jasmine
+
+👉 Install Jasmine:
+
+npm install --save-dev jasmine
+npx jasmine init
+
+Example: User Authentication
+// auth.js
+function isValidUser(username, password) {
+  return username === "admin" && password === "1234";
+}
+module.exports = isValidUser;
+
+
+👉 Test file:
+
+// spec/authSpec.js
+const isValidUser = require('../auth');
+
+describe("User Authentication", () => {
+  it("should return true for correct credentials", () => {
+    expect(isValidUser("admin", "1234")).toBe(true);
+  });
+
+  it("should return false for wrong credentials", () => {
+    expect(isValidUser("user", "wrong")).toBe(false);
+  });
+});
+
+
+✅ Run:
+
+npx jasmine
+
+🔑 Real-World Scenarios for Unit Testing
+
+E-commerce: Test calculateTotal(cart) or applyDiscount(price, coupon).
+
+Banking App: Test deposit(), withdraw(), and transferFunds().
+
+Authentication System: Test isValidUser(username, password).
+
+Weather App: Test convertCelsiusToFahrenheit(temp).
+
+✅ Summary:
+
+Jest → Best for frontend + backend (React, Node).
+
+Mocha + Chai → Flexible, widely used for backend Node.js apps.
+
+Jasmine → Classic, good for simple projects or legacy apps.
 
 ==================================================================================
 Integration & End-to-End Testing (Cypress, Playwright)
 ==================================================================================
+🧩 Integration Testing vs End-to-End Testing in JavaScript
+🔹 Integration Testing
+
+Tests how multiple modules/components work together.
+
+Example: Testing if a login function works correctly with database + authentication module.
+
+🔹 End-to-End (E2E) Testing
+
+Simulates real user flows in a browser.
+
+Example: Open app → Login → Add to cart → Checkout → Verify confirmation.
+
+1. Integration Testing Example
+
+👉 Scenario: Banking App – Deposit & Withdraw functions.
+
+// bank.js
+function deposit(balance, amount) {
+  if (amount <= 0) throw new Error("Invalid deposit");
+  return balance + amount;
+}
+
+function withdraw(balance, amount) {
+  if (amount > balance) throw new Error("Insufficient funds");
+  return balance - amount;
+}
+
+function transferFunds(accountA, accountB, amount) {
+  const newBalanceA = withdraw(accountA, amount);
+  const newBalanceB = deposit(accountB, amount);
+  return { newBalanceA, newBalanceB };
+}
+
+module.exports = { deposit, withdraw, transferFunds };
+
+
+👉 Integration Test (Mocha + Chai):
+
+// test/bank.test.js
+const chai = require('chai');
+const expect = chai.expect;
+const { deposit, withdraw, transferFunds } = require('../bank');
+
+describe("Bank Integration Tests", () => {
+  it("should transfer funds between two accounts", () => {
+    const result = transferFunds(1000, 500, 200);
+    expect(result.newBalanceA).to.equal(800);
+    expect(result.newBalanceB).to.equal(700);
+  });
+
+  it("should throw error for insufficient funds", () => {
+    expect(() => transferFunds(100, 500, 200)).to.throw("Insufficient funds");
+  });
+});
+
+
+✅ This ensures withdraw() and deposit() work together properly.
+
+2. End-to-End Testing with Cypress
+
+👉 Install Cypress:
+
+npm install --save-dev cypress
+npx cypress open
+
+
+👉 Scenario: E-commerce Login & Cart Checkout.
+
+// cypress/e2e/cart.cy.js
+describe('E-commerce Checkout', () => {
+  it('should login and add product to cart', () => {
+    cy.visit('http://localhost:3000/login');
+
+    // Login
+    cy.get('input[name="username"]').type('admin');
+    cy.get('input[name="password"]').type('1234');
+    cy.get('button[type="submit"]').click();
+    cy.contains('Welcome, admin').should('be.visible');
+
+    // Add product
+    cy.visit('http://localhost:3000/products');
+    cy.get('.product-card').first().find('button.add-to-cart').click();
+
+    // Checkout
+    cy.get('#cart').click();
+    cy.contains('Checkout').click();
+    cy.contains('Order Confirmed!').should('be.visible');
+  });
+});
+
+
+✅ This mimics a real customer journey.
+
+3. End-to-End Testing with Playwright
+
+👉 Install Playwright:
+
+npm init playwright@latest
+
+
+👉 Scenario: User Login Flow
+
+// tests/login.spec.js
+const { test, expect } = require('@playwright/test');
+
+test('User can login successfully', async ({ page }) => {
+  await page.goto('http://localhost:3000/login');
+
+  await page.fill('input[name="username"]', 'admin');
+  await page.fill('input[name="password"]', '1234');
+  await page.click('button[type="submit"]');
+
+  await expect(page.locator('h1')).toContainText('Welcome, admin');
+});
+
+
+✅ Playwright works across Chromium, Firefox, Safari and supports parallel tests.
+
+🔑 When to Use What?
+
+Integration Testing → Validate multiple functions/components working together (backend, services).
+
+Cypress → Best for frontend UI E2E testing.
+
+Playwright → Best for cross-browser E2E testing, supports screenshots, videos, CI/CD.
+
+🌍 Real-World Examples
+
+Banking App: Test money transfer (Integration), test full flow from login → transfer → confirmation (E2E).
+
+E-commerce: Test applyDiscount() + calculateTotal() (Integration), test user adds item → checkout → order success (E2E).
+
+Social Media: Test postTweet() + notifyFollowers() (Integration), test full flow login → post tweet → check feed (E2E).
 
 
 ==================================================================================
 Test-Driven Development (TDD)
 ==================================================================================
+🧪 Test-Driven Development (TDD) in JavaScript
+🔹 What is TDD?
 
+TDD (Test-Driven Development) is a software development approach where you:
+
+Write a failing test first (RED).
+
+Write the minimum code to make the test pass (GREEN).
+
+Refactor the code while keeping the test passing (REFACTOR).
+
+👉 Known as the Red → Green → Refactor cycle.
+
+1. TDD Workflow
+
+Write a test for a small piece of functionality.
+
+Run the test → it fails (RED).
+
+Write code to make the test pass.
+
+Run the test → it passes (GREEN).
+
+Refactor the code to improve it without breaking tests.
+
+2. TDD Example (Calculator using Jest)
+Step 1: Write Test First (RED)
+// calculator.test.js
+const Calculator = require('./calculator');
+
+test('adds two numbers', () => {
+  const calc = new Calculator();
+  expect(calc.add(2, 3)).toBe(5);
+});
+
+test('subtracts two numbers', () => {
+  const calc = new Calculator();
+  expect(calc.subtract(10, 4)).toBe(6);
+});
+
+
+👉 Run tests → Fails ❌ (since Calculator is not implemented yet).
+
+Step 2: Write Minimum Code (GREEN)
+// calculator.js
+class Calculator {
+  add(a, b) {
+    return a + b;
+  }
+  subtract(a, b) {
+    return a - b;
+  }
+}
+module.exports = Calculator;
+
+
+👉 Run tests → Pass ✅.
+
+Step 3: Refactor (Optional)
+
+You can later optimize (e.g., validate inputs, throw errors).
+
+Since tests exist, refactoring won’t break functionality.
+
+3. TDD Example (Bank Account with Mocha + Chai)
+Step 1: Write Test (RED)
+// test/account.test.js
+const { expect } = require('chai');
+const Account = require('../account');
+
+describe('Bank Account', () => {
+  it('should deposit money', () => {
+    const acc = new Account(1000);
+    acc.deposit(500);
+    expect(acc.getBalance()).to.equal(1500);
+  });
+
+  it('should withdraw money', () => {
+    const acc = new Account(1000);
+    acc.withdraw(400);
+    expect(acc.getBalance()).to.equal(600);
+  });
+
+  it('should not allow overdraft', () => {
+    const acc = new Account(500);
+    expect(() => acc.withdraw(600)).to.throw("Insufficient funds");
+  });
+});
+
+
+👉 Run → Tests fail ❌.
+
+Step 2: Write Code (GREEN)
+// account.js
+class Account {
+  constructor(balance = 0) {
+    this.balance = balance;
+  }
+
+  deposit(amount) {
+    this.balance += amount;
+  }
+
+  withdraw(amount) {
+    if (amount > this.balance) throw new Error("Insufficient funds");
+    this.balance -= amount;
+  }
+
+  getBalance() {
+    return this.balance;
+  }
+}
+module.exports = Account;
+
+
+👉 Run → All tests pass ✅.
+
+4. TDD Example (Login System with Jasmine)
+Step 1: Write Test
+// spec/loginSpec.js
+const login = require('../login');
+
+describe("Login System", () => {
+  it("should return success for valid credentials", () => {
+    expect(login("admin", "1234")).toBe("Login successful");
+  });
+
+  it("should return failure for invalid credentials", () => {
+    expect(login("user", "wrong")).toBe("Login failed");
+  });
+});
+
+Step 2: Implement Code
+// login.js
+function login(username, password) {
+  if (username === "admin" && password === "1234") {
+    return "Login successful";
+  }
+  return "Login failed";
+}
+module.exports = login;
+
+
+✅ Tests now pass.
+
+5. Benefits of TDD
+
+Ensures code is well-tested from the start.
+
+Encourages modular, clean design.
+
+Makes refactoring safe (tests act as safety net).
+
+Reduces bugs in production.
+
+6. Real-World TDD Use Cases
+
+E-commerce: Write test for calculateDiscount(cart, coupon) before coding logic.
+
+Banking App: Write test for transferFunds(accountA, accountB, amount) before implementing.
+
+API Development: Write tests for GET /users before building the endpoint.
+
+Authentication: Write tests for login before implementing password validation.
+
+✅ Summary:
+TDD = Write Test → Fail → Implement → Pass → Refactor.
+
+Jest → Best for modern JS projects.
+
+Mocha + Chai → Great for Node.js backend.
+
+Jasmine → Legacy/simple setups.
 
 ==================================================================================
 15. Type Safety & Scaling
