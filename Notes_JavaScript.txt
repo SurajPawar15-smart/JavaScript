@@ -12595,6 +12595,151 @@ Use Tailwind CSS if you want full flexibility to craft unique UI designs with mi
 ==================================================================================
 Node.js Basics
 ==================================================================================
+🔹 What is Node.js?
+
+Definition: Node.js is a JavaScript runtime built on Google Chrome’s V8 engine.
+
+Purpose: Allows running JavaScript outside the browser (on servers, CLI tools, APIs).
+
+Key Feature: Non-blocking, event-driven I/O → super fast & scalable.
+
+✅ Example: With Node.js, you can write a backend server in JavaScript.
+
+🔹 Core Features of Node.js
+
+Single-threaded but non-blocking (uses event loop & async I/O).
+
+Cross-platform (Windows, Linux, macOS).
+
+Package ecosystem via npm (Node Package Manager).
+
+Built-in modules (fs, http, path, os, etc.).
+
+Supports JSON natively (great for APIs).
+
+🔹 Installing & Running Node.js
+
+Install from 👉 https://nodejs.org
+
+Check version:
+
+node -v
+npm -v
+
+
+Run a JS file:
+
+node app.js
+
+🔹 Hello World Example
+// app.js
+console.log("Hello, Node.js!");
+
+
+Run:
+
+node app.js
+
+🔹 Built-in Modules (Core)
+
+Node comes with many modules. Common ones:
+
+1. fs (File System)
+const fs = require('fs');
+
+// Write a file
+fs.writeFileSync("hello.txt", "Hello from Node.js");
+
+// Read a file
+const data = fs.readFileSync("hello.txt", "utf-8");
+console.log(data);
+
+2. http (Server)
+const http = require('http');
+
+const server = http.createServer((req, res) => {
+  res.end("Hello World from Node.js Server");
+});
+
+server.listen(3000, () => {
+  console.log("Server running at http://localhost:3000");
+});
+
+3. path
+const path = require('path');
+
+console.log(path.basename(__filename)); // file name
+console.log(path.dirname(__filename));  // directory path
+console.log(path.extname(__filename));  // file extension
+
+🔹 npm (Node Package Manager)
+
+Install packages:
+
+npm init -y   # create package.json
+npm install express
+
+
+Example: Express.js server
+
+const express = require("express");
+const app = express();
+
+app.get("/", (req, res) => {
+  res.send("Hello from Express!");
+});
+
+app.listen(3000, () => console.log("Server running on port 3000"));
+
+🔹 Event Loop & Async
+
+Node.js handles async tasks via callbacks, promises, async/await.
+
+setTimeout(() => console.log("Async Task done!"), 2000);
+console.log("Sync Task");
+
+
+Output:
+
+Sync Task
+Async Task done!
+
+🔑 Where Node.js is Used
+
+Web Servers / APIs (Express.js, Fastify).
+
+Real-time apps (chat apps with Socket.IO).
+
+CLI tools (npm, webpack).
+
+Microservices.
+
+IoT devices.
+
+⚡ Summary:
+
+Node.js lets you run JS on the server.
+
+Provides built-in modules like fs, http, path.
+
+Uses async, event-driven architecture.
+
+npm gives access to thousands of libraries.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 NPM & Package Management
 ==================================================================================
 Express.js Framework
