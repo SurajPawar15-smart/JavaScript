@@ -12726,23 +12726,89 @@ Uses async, event-driven architecture.
 
 npm gives access to thousands of libraries.
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+==================================================================================
 NPM & Package Management
 ==================================================================================
+🔹 What is NPM?
+
+NPM (Node Package Manager) is:
+
+The default package manager for Node.js.
+
+A command-line tool to install, update, and manage packages (libraries/tools).
+
+An online registry (https://www.npmjs.com/
+) that hosts thousands of open-source JavaScript packages.
+
+🔹 Why Use a Package Manager?
+
+Package managers like NPM allow you to:
+
+Easily install external libraries (e.g., React, Express, Lodash).
+
+Manage versions and dependencies.
+
+Share your own packages.
+
+Avoid "dependency hell."
+
+🔹 Basic NPM Commands
+Command	Purpose
+npm init	Creates a package.json file for your project.
+npm install <package>	Installs a package (adds to node_modules/).
+npm install <package> --save	Saves the package as a dependency.
+npm install <package> --save-dev	Saves the package as a devDependency.
+npm uninstall <package>	Removes a package.
+npm update	Updates all installed packages.
+npm run <script>	Runs a script defined in package.json.
+🔹 package.json
+
+This is the metadata file that stores:
+
+Project name, version, description.
+
+Dependencies and devDependencies.
+
+Custom scripts (e.g., build, test).
+
+Author and license info.
+
+Example:
+
+{
+  "name": "my-app",
+  "version": "1.0.0",
+  "scripts": {
+    "start": "node index.js",
+    "test": "jest"
+  },
+  "dependencies": {
+    "express": "^4.18.2"
+  },
+  "devDependencies": {
+    "jest": "^29.6.0"
+  }
+}
+
+🔹 package-lock.json
+
+Automatically generated when you run npm install.
+
+Locks exact versions of installed packages.
+
+Ensures consistent installs across different machines.
+
+🔹 node_modules/
+
+Directory where all installed packages are stored.
+Should not be committed to version control (add to .gitignore).
+
+==================================================================================
 Express.js Framework
+==================================================================================
+
+
+
 ==================================================================================
 REST APIs & CRUD Operations
 ==================================================================================
