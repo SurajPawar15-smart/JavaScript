@@ -12806,12 +12806,186 @@ Should not be committed to version control (add to .gitignore).
 ==================================================================================
 Express.js Framework
 ==================================================================================
+🔹 Express.js (Framework for Node.js)
 
+Definition: Express.js is a minimal and flexible Node.js web application framework.
 
+Purpose: Helps build servers & APIs easily with less boilerplate.
+
+Why Use It?: Node.js http module is low-level → Express adds routing, middleware, and utilities.
+
+🔹 Key Features
+
+Routing – Easily define endpoints (GET, POST, PUT, DELETE).
+
+Middleware – Functions that handle requests before sending a response (e.g., authentication, logging).
+
+Template Engines – Supports rendering views (EJS, Pug, Handlebars).
+
+REST APIs – Perfect for building JSON-based APIs.
+
+Integration – Works with databases (MongoDB, MySQL, etc.).
+
+🔹 Basic Example
+const express = require("express");
+const app = express();
+
+// Middleware (to parse JSON body)
+app.use(express.json());
+
+// Routes
+app.get("/", (req, res) => {
+  res.send("Hello from Express.js!");
+});
+
+app.post("/user", (req, res) => {
+  const user = req.body;
+  res.json({ message: "User created", user });
+});
+
+// Server
+app.listen(3000, () => {
+  console.log("Server running on http://localhost:3000");
+});
+
+🔹 Middleware Example
+function logger(req, res, next) {
+  console.log(`${req.method} ${req.url}`);
+  next(); // continue to next middleware/route
+}
+
+app.use(logger);
+
+🔹 Real-World Use Cases
+
+APIs (REST / GraphQL) → Backend for mobile/web apps.
+
+Web apps → With EJS or React/Vue frontend.
+
+Authentication systems → With JWT or Passport.js.
+
+Microservices → Lightweight & scalable.
+
+⚡ Summary:
+Express.js is the go-to framework for Node.js because it:
+
+Simplifies server creation.
+
+Supports routing & middleware.
+
+Is lightweight, fast, and widely used.
 
 ==================================================================================
 REST APIs & CRUD Operations
 ==================================================================================
+🔹 REST API (Representational State Transfer)
+
+A set of rules for building scalable web services.
+
+Uses HTTP methods to perform operations on resources (data).
+
+Works with JSON or XML (JSON is most common).
+
+Each resource has a unique URL (endpoint).
+
+✅ Example:
+
+GET /users → Get all users
+
+GET /users/1 → Get user with ID = 1
+
+POST /users → Create a new user
+
+PUT /users/1 → Update user with ID = 1
+
+DELETE /users/1 → Delete user with ID = 1
+
+🔹 CRUD Operations
+
+CRUD stands for the 4 basic operations you do on data:
+
+CRUD Operation	HTTP Method	Example Endpoint
+Create	POST	POST /users
+Read	GET	GET /users, GET /users/:id
+Update	PUT / PATCH	PUT /users/:id
+Delete	DELETE	DELETE /users/:id
+🔹 Express.js REST API Example (CRUD with Users)
+const express = require("express");
+const app = express();
+app.use(express.json());
+
+let users = [{ id: 1, name: "Suraj" }];
+
+// CREATE
+app.post("/users", (req, res) => {
+  const user = { id: users.length + 1, name: req.body.name };
+  users.push(user);
+  res.status(201).json(user);
+});
+
+// READ (All users)
+app.get("/users", (req, res) => {
+  res.json(users);
+});
+
+// READ (Single user)
+app.get("/users/:id", (req, res) => {
+  const user = users.find(u => u.id == req.params.id);
+  user ? res.json(user) : res.status(404).send("User not found");
+});
+
+// UPDATE
+app.put("/users/:id", (req, res) => {
+  const user = users.find(u => u.id == req.params.id);
+  if (!user) return res.status(404).send("User not found");
+  user.name = req.body.name;
+  res.json(user);
+});
+
+// DELETE
+app.delete("/users/:id", (req, res) => {
+  users = users.filter(u => u.id != req.params.id);
+  res.send("User deleted");
+});
+
+app.listen(3000, () => console.log("Server running on http://localhost:3000"));
+
+🔹 Real-World Example
+
+In an E-commerce App:
+
+POST /products → Add a product
+
+GET /products → Get all products
+
+PUT /products/:id → Update product price
+
+DELETE /products/:id → Remove a product
+
+⚡ Summary
+
+REST API = rules for accessing/managing resources via HTTP.
+
+CRUD = Create, Read, Update, Delete → basic data operations.
+
+Express.js makes building REST APIs easy and scalable.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 MongoDB / SQL with JS
 ==================================================================================
 18. Tools & Best Practices
