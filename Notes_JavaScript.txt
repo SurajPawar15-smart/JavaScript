@@ -13215,13 +13215,249 @@ Commands = setup, branch, commit, push, pull, stash, reset.
 ==================================================================================
 ESLint & Prettier
 ==================================================================================
+ESLint & Prettier in JavaScript
+🔹 ESLint
 
+ESLint is a static code analysis tool for identifying and fixing problems in JavaScript/TypeScript code.
+
+Ensures consistent code quality.
+
+Catches syntax errors, unused variables, bad practices.
+
+Allows custom rules.
+
+👉 Key Features:
+
+Enforces coding standards.
+
+Detects potential bugs (like unused imports, undefined variables).
+
+Supports plugins (React, TypeScript, Node).
+
+✅ Real Example:
+
+# Install ESLint
+npm install eslint --save-dev
+
+# Initialize ESLint
+npx eslint --init
+
+// bad.js
+let name = "Suraj"
+console.log("Hello")
+
+
+Run ESLint:
+
+npx eslint bad.js
+
+
+📌 Output:
+
+2:7  warning  'name' is assigned a value but never used  no-unused-vars
+
+🔹 Prettier
+
+Prettier is a code formatter that automatically formats your code for readability.
+
+Opinionated (has strict formatting rules).
+
+Works with JS, TS, HTML, CSS, JSON, Markdown, etc.
+
+Ensures consistent style across the team.
+
+👉 Key Features:
+
+Removes code style debates (spaces vs tabs, single vs double quotes).
+
+Formats automatically on save.
+
+Works with ESLint (together).
+
+✅ Real Example:
+
+# Install Prettier
+npm install --save-dev prettier
+
+// ugly.js
+function greet(name){console.log("Hello, "+name);}
+greet("Suraj")
+
+
+Run Prettier:
+
+npx prettier --write ugly.js
+
+
+📌 Output (formatted code):
+
+function greet(name) {
+  console.log("Hello, " + name);
+}
+greet("Suraj");
+
+🔹 Using ESLint + Prettier Together
+
+Install plugin:
+
+npm install --save-dev eslint-config-prettier eslint-plugin-prettier
+
+
+Update .eslintrc.json:
+
+{
+  "extends": ["eslint:recommended", "plugin:prettier/recommended"],
+  "plugins": ["prettier"],
+  "rules": {
+    "prettier/prettier": "error"
+  }
+}
+
+
+Now ESLint will also check Prettier formatting issues.
+
+✅ When to Use What?
+
+ESLint → Finds problems (quality, best practices).
+
+Prettier → Fixes formatting (style consistency).
+
+Both Together → Clean + consistent + bug-free code.
 
 ==================================================================================
 Debugging Tools (Chrome DevTools)
 ==================================================================================
 
+🔎 Debugging with Chrome DevTools
 
+Chrome DevTools is a built-in set of developer tools in Google Chrome that helps debug, profile, and optimize JavaScript, CSS, and HTML in real time.
+
+You can open it with:
+
+Right-click → Inspect
+
+Or press F12 / Ctrl+Shift+I (Windows) / Cmd+Opt+I (Mac)
+
+⚡ Key Features for JavaScript Debugging
+1. Console
+
+Logs values with console.log(), console.error(), console.warn().
+
+Inspect objects and arrays.
+
+Run JavaScript snippets interactively.
+
+✅ Example:
+
+const user = { name: "Suraj", age: 25 };
+console.log("User details:", user);
+console.error("Something went wrong!");
+
+2. Sources Panel
+
+View all loaded JavaScript files.
+
+Add breakpoints to pause execution.
+
+Step through code line by line.
+
+✅ Real Example:
+
+function calculateTotal(price, qty) {
+  let total = price * qty;
+  return total;
+}
+console.log(calculateTotal(100, 3));
+
+
+👉 Add a breakpoint inside calculateTotal() and watch variables in real time.
+
+3. Breakpoints Types
+
+Line-of-code Breakpoint → Pause at a specific line.
+
+Conditional Breakpoint → Pause only when a condition is true.
+
+if (user.age > 18) { console.log("Adult"); }
+
+
+Set breakpoint: Pause only if user.age > 18.
+
+XHR / Fetch Breakpoint → Pause when a network request is made.
+
+DOM Breakpoint → Pause when a DOM element changes (e.g., div.innerHTML).
+
+4. Watch Expressions
+
+Add variables to "Watch" tab.
+
+See live changes in variable values during debugging.
+
+✅ Example:
+While debugging:
+
+let cart = [100, 200, 300];
+let total = cart.reduce((a, b) => a + b, 0);
+
+
+👉 Add cart and total to Watch → They update as code runs.
+
+5. Call Stack
+
+Shows the order of function calls.
+
+Helps identify where an error originates.
+
+✅ Example:
+
+function step1() { step2(); }
+function step2() { step3(); }
+function step3() { throw new Error("Bug here!"); }
+step1();
+
+
+👉 Call Stack will show step1 → step2 → step3 → Error.
+
+6. Network Panel
+
+Monitor API calls (fetch, axios).
+
+See status codes, request payloads, and responses.
+
+✅ Example:
+
+fetch("https://jsonplaceholder.typicode.com/users")
+  .then(res => res.json())
+  .then(data => console.log(data));
+
+
+👉 Open Network tab → Check users API request and response.
+
+7. Performance & Memory
+
+Record CPU usage & JS execution time.
+
+Detect memory leaks.
+
+✅ Example: Detect unnecessary loops:
+
+for (let i = 0; i < 1000000; i++) {
+  // Performance issue
+}
+
+🔑 Real-Life Debugging Workflow
+
+Open DevTools → Sources.
+
+Set breakpoints in suspicious code.
+
+Use Watch Expressions for key variables.
+
+Check Call Stack when errors occur.
+
+Use Network tab for API debugging.
+
+Use Console for quick testing.
 
 
 
