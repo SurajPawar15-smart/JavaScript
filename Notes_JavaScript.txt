@@ -13875,45 +13875,355 @@ Event-Driven Architecture = Producers emit events → Broker transports events �
 ==================================================================================
 WebSockets & Real-time Apps
 ==================================================================================
+🔹 What are WebSockets?
+
+WebSockets are a communication protocol that provides full-duplex, persistent connections between a client (e.g., browser) and a server.
+
+👉 Unlike HTTP (request-response), WebSockets allow both client and server to send data anytime without repeatedly opening new connections.
+
+🔹 How WebSockets Work
+
+Handshake → Client requests an upgrade from HTTP to WebSocket.
+
+Open Connection → A persistent TCP connection is created.
+
+Real-time Communication → Both server and client can push messages.
+
+Close Connection → Either side can close when done.
+
+🔹 Why WebSockets?
+
+🌐 Real-time communication
+
+⚡ Low latency (no need for polling the server repeatedly)
+
+🔄 Bi-directional (both client & server can initiate messages)
+
+🔹 Real-World Use Cases
+
+Chat apps (WhatsApp Web, Slack, Messenger)
+
+Online gaming (multiplayer updates in real time)
+
+Stock trading apps (live price updates)
+
+Live dashboards (monitoring IoT, analytics, crypto prices)
+
+Collaboration tools (Google Docs, Figma live editing)
+
+🔹 Simple WebSocket Example (Node.js + Browser)
+Server (Node.js with ws)
+// Install: npm install ws
+const WebSocket = require('ws');
+const server = new WebSocket.Server({ port: 8080 });
+
+server.on('connection', (socket) => {
+  console.log('🔗 Client connected');
+
+  // Send message to client
+  socket.send('Welcome to WebSocket server!');
+
+  // Listen for messages
+  socket.on('message', (message) => {
+    console.log(`📩 Received: ${message}`);
+    socket.send(`Echo: ${message}`);
+  });
+
+  // Handle disconnect
+  socket.on('close', () => console.log('❌ Client disconnected'));
+});
+
+Client (Browser)
+<script>
+  const socket = new WebSocket('ws://localhost:8080');
+
+  socket.onopen = () => {
+    console.log('Connected to server');
+    socket.send('Hello from client 👋');
+  };
+
+  socket.onmessage = (event) => {
+    console.log('📢 Server says:', event.data);
+  };
+
+  socket.onclose = () => console.log('Disconnected');
+</script>
 
 
+👉 Output:
 
+Connected to server
+📢 Server says: Welcome to WebSocket server!
+📢 Server says: Echo: Hello from client 👋
 
+🔹 Alternatives & Enhancements
 
+Socket.IO (Node.js) → adds fallbacks, rooms, auto-reconnect.
 
+SignalR (ASP.NET) → real-time communication for .NET apps.
+
+Firebase Realtime Database → real-time updates without manual socket handling.
+
+⚡ In short:
+WebSockets enable real-time, two-way communication, making them ideal for chat apps, stock tickers, gaming, and live dashboards.
 
 ==================================================================================
 Microservices with Node.js
 ==================================================================================
+🔹 Why Microservices?
+
+✅ Scalability → Scale only the service that needs more power (e.g., Payment).
+✅ Flexibility → Each microservice can use different technologies.
+✅ Faster development → Teams work independently.
+✅ Resilience → If one service fails, others still work.
+
+🔹 Example: E-Commerce App
+
+Instead of a single backend handling everything, split into:
+
+User Service → manages user login/registration.
+
+Product Service → manages product catalog.
+
+Order Service → handles orders.
+
+Payment Service → processes payments.
+
+🔹 Building Microservices with Node.js
+1. Set Up Independent Services
+
+Each service is a separate Node.js project with its own package.json, routes, and database.
+
+📌 Example: User Service (Express + MongoDB)
+
+// user-service/index.js
+const express = require('express');
+const mongoose = require('mongoose');
+const app = express();
+app.use(express.json());
+
+// MongoDB connection
+mongoose.connect('mongodb://localhost:27017/users');
+
+// User model
+const User = mongoose.model('User', { name: String, email: String });
+
+// Routes
+app.post('/users', async (req, res) => {
+  const user = new User(req.body);
+  await user.save();
+  res.send(user);
+});
+
+app.get('/users', async (req, res) => {
+  const users = await User.find();
+  res.send(users);
+});
+
+// Run service
+app.listen(4000, () => console.log('👤 User Service running on port 4000'));
 
 
+📌 Example: Order Service (Express + MongoDB)
 
+// order-service/index.js
+const express = require('express');
+const mongoose = require('mongoose');
+const axios = require('axios'); // For communication
+const app = express();
+app.use(express.json());
 
+// MongoDB connection
+mongoose.connect('mongodb://localhost:27017/orders');
 
+// Order model
+const Order = mongoose.model('Order', { userId: String, product: String });
 
+// Routes
+app.post('/orders', async (req, res) => {
+  // Check user before placing order
+  const user = await axios.get(`http://localhost:4000/users/${req.body.userId}`);
+  
+  if (!user.data) return res.status(400).send('User not found');
 
+  const order = new Order(req.body);
+  await order.save();
+  res.send(order);
+});
+
+// Run service
+app.listen(5000, () => console.log('📦 Order Service running on port 5000'));
+
+🔹 Communication Between Services
+
+Synchronous → REST APIs (axios, fetch).
+
+Asynchronous → Message brokers (Kafka, RabbitMQ, NATS) for event-driven architecture.
+
+🔹 Tools for Node.js Microservices
+
+Express.js / Fastify → Web framework.
+
+Docker → Containerize each service.
+
+Kubernetes → Deploy and scale services.
+
+NATS / Kafka / RabbitMQ → Messaging between services.
+
+API Gateway (Kong, Nginx, Express Gateway) → Entry point for all requests.
+
+🔹 Real-World Example
+
+👉 Netflix, Uber, Amazon all use microservices:
+
+Netflix → streaming, recommendations, payments → separate services.
+
+Uber → maps, ride-matching, billing, notifications → independent services.
+
+⚡ In short:
+Microservices with Node.js = build small, independent services with Express + DB, make them communicate via REST or messaging, and manage them using Docker & Kubernetes.
 
 ==================================================================================
 GraphQL with JavaScript
 ==================================================================================
+🔹 What is GraphQL?
+
+GraphQL is a query language for APIs and a runtime to execute those queries.
+
+Developed by Facebook (2012), open-sourced in 2015.
+
+Alternative to REST API.
+
+Client specifies exactly the data it needs, and the server responds with just that.
+
+🔹 Why GraphQL (vs REST)?
+Feature	REST	GraphQL
+Data Fetching	Fixed endpoints, may return too much/too little data	Client asks only for needed fields
+Multiple Resources	Multiple requests needed	Single query can fetch related data
+Versioning	Requires /v1, /v2	Schema evolves without breaking clients
+Flexibility	Less flexible	Very flexible
+🔹 Core Concepts
+
+Schema → Defines types and relationships.
+
+Queries → Read data.
+
+Mutations → Modify data (create, update, delete).
+
+Resolvers → Functions that fetch the data.
+
+Subscriptions → Real-time updates (like WebSockets).
+
+🔹 Example: GraphQL with JavaScript (Node.js + Apollo Server)
+Install:
+npm init -y
+npm install apollo-server graphql
+
+Server Code:
+const { ApolloServer, gql } = require('apollo-server');
+
+// Schema
+const typeDefs = gql`
+  type User {
+    id: ID!
+    name: String!
+    email: String!
+  }
+
+  type Query {
+    users: [User]
+    user(id: ID!): User
+  }
+
+  type Mutation {
+    addUser(name: String!, email: String!): User
+  }
+`;
+
+// Fake data
+let users = [
+  { id: '1', name: 'Suraj', email: 'suraj@example.com' },
+  { id: '2', name: 'Pooja', email: 'pooja@example.com' }
+];
+
+// Resolvers
+const resolvers = {
+  Query: {
+    users: () => users,
+    user: (_, { id }) => users.find(u => u.id === id),
+  },
+  Mutation: {
+    addUser: (_, { name, email }) => {
+      const newUser = { id: String(users.length + 1), name, email };
+      users.push(newUser);
+      return newUser;
+    },
+  },
+};
+
+// Create Apollo Server
+const server = new ApolloServer({ typeDefs, resolvers });
+
+// Run server
+server.listen().then(({ url }) => {
+  console.log(`🚀 Server ready at ${url}`);
+});
+
+🔹 How Queries Look in GraphQL
+Example Query:
+query {
+  users {
+    id
+    name
+  }
+}
 
 
+👉 Response:
+
+{
+  "data": {
+    "users": [
+      { "id": "1", "name": "Suraj" },
+      { "id": "2", "name": "Pooja" }
+    ]
+  }
+}
+
+Example Mutation:
+mutation {
+  addUser(name: "Ravi", email: "ravi@example.com") {
+    id
+    name
+    email
+  }
+}
 
 
+👉 Response:
 
+{
+  "data": {
+    "addUser": {
+      "id": "3",
+      "name": "Ravi",
+      "email": "ravi@example.com"
+    }
+  }
+}
 
+🔹 Real-World Use Cases
 
+GitHub API v4 → Fully GraphQL-based.
 
+Shopify, Twitter, Netflix → Use GraphQL for efficient APIs.
 
+Mobile apps → Avoids over-fetching data.
 
+Microservices → GraphQL can act as a unified API gateway.
 
-
-
-
-
-
-
-
+⚡ In short:
+GraphQL with JavaScript = define schema + resolvers, then query data exactly as needed. It’s powerful for flexibility, performance, and developer productivity.
 
 ==================================================================================
 Security in JS (XSS, CSRF, JWT, OAuth)
