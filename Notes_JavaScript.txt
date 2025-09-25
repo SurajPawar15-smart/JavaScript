@@ -14228,14 +14228,107 @@ GraphQL with JavaScript = define schema + resolvers, then query data exactly as 
 ==================================================================================
 Security in JS (XSS, CSRF, JWT, OAuth)
 ==================================================================================
+🔐 1. Cross-Site Scripting (XSS)
+
+What it is:
+An attacker injects malicious JavaScript into your site (via input fields, comments, query params). When other users visit, the script executes in their browser.
+
+Example:
+
+<!-- User enters this as a comment -->
+<script>alert("Hacked!")</script>
 
 
+If not sanitized, it runs on every visitor’s browser.
+
+Prevention:
+
+Escape user input (innerText instead of innerHTML).
+
+Use sanitization libraries (DOMPurify).
+
+Apply Content Security Policy (CSP).
+
+🔐 2. Cross-Site Request Forgery (CSRF)
+
+What it is:
+An attacker tricks a logged-in user into sending unwanted requests to your server.
+
+Example:
+
+You’re logged into a bank site.
+
+A malicious site runs:
+
+<img src="https://bank.com/transfer?amount=1000&to=attacker" />
 
 
+The browser auto-sends your cookies → attacker gets money.
+
+Prevention:
+
+Use CSRF tokens (unique per request).
+
+Use SameSite cookies.
+
+Validate Origin/Referer headers.
+
+🔐 3. JSON Web Tokens (JWT)
+
+What it is:
+A compact, signed token (base64 format) used for authentication and data exchange.
+
+Example:
+
+// JWT payload
+{
+  "userId": "12345",
+  "role": "admin",
+  "exp": 1717023456
+}
 
 
+The server signs this with a secret key. Clients send it in headers:
+
+Authorization: Bearer <jwt-token>
 
 
+Prevention & Best Practices:
+
+Keep tokens short-lived.
+
+Store in HTTP-only cookies (not localStorage).
+
+Verify signature & expiration on the server.
+
+🔐 4. OAuth 2.0
+
+What it is:
+A framework for delegated authorization. Instead of sharing your password, you grant apps limited access.
+
+Example:
+
+You log in to Spotify using Google.
+
+Google sends Spotify an access token, not your password.
+
+Prevention & Best Practices:
+
+Always use HTTPS.
+
+Use PKCE flow for SPAs.
+
+Refresh tokens securely stored (HTTP-only cookies).
+
+✅ Summary:
+
+XSS → sanitize/escape user input.
+
+CSRF → CSRF tokens + SameSite cookies.
+
+JWT → secure, stateless authentication.
+
+OAuth → safe delegated access (Google, GitHub login).
 
 ==================================================================================
 Server-Side Rendering (Next.js, Nuxt.js)
