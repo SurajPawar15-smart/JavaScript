@@ -14334,7 +14334,90 @@ OAuth → safe delegated access (Google, GitHub login).
 Server-Side Rendering (Next.js, Nuxt.js)
 ==================================================================================
 
+🌐 Server-Side Rendering (SSR)
+🔎 What is SSR?
 
+In CSR (Client-Side Rendering) → the browser loads an empty HTML shell + JS bundle, then builds the page. (Slower initial load, bad SEO).
+
+In SSR → the server renders the HTML of the page with actual data before sending it to the browser. The browser just hydrates it with JS.
+
+✅ Benefits of SSR:
+
+Faster First Contentful Paint (FCP)
+
+SEO-friendly (search engines see actual HTML)
+
+Better social media previews (Open Graph tags work)
+
+Good for dynamic content (blogs, e-commerce)
+
+⚛️ Next.js (React SSR Framework)
+
+Built on React.
+
+Uses getServerSideProps for SSR.
+
+Supports SSG (Static Site Generation) + ISR (Incremental Static Regeneration).
+
+Example – SSR in Next.js
+
+// pages/index.js
+export default function Home({ data }) {
+  return <h1>Users: {data.length}</h1>;
+}
+
+export async function getServerSideProps() {
+  const res = await fetch("https://jsonplaceholder.typicode.com/users");
+  const data = await res.json();
+
+  return { props: { data } }; // sent to component as props
+}
+
+
+👉 When user requests /, Next.js server fetches data → renders HTML → sends it to browser.
+
+🖼 Nuxt.js (Vue SSR Framework)
+
+Built on Vue.js.
+
+Supports SSR, SSG, CSR out of the box.
+
+Has file-based routing like Next.js.
+
+Example – SSR in Nuxt.js
+
+<template>
+  <div>
+    <h1>Users: {{ users.length }}</h1>
+  </div>
+</template>
+
+<script setup>
+const { data: users } = await useFetch("https://jsonplaceholder.typicode.com/users");
+</script>
+
+
+👉 Nuxt automatically runs useFetch on server for SSR.
+
+🔄 Next.js vs Nuxt.js (Quick Comparison)
+Feature	Next.js (React)	Nuxt.js (Vue)
+Language	React + JS/TS	Vue + JS/TS
+Data Fetching	getServerSideProps, getStaticProps	useFetch, asyncData
+Rendering Modes	SSR, SSG, ISR, CSR	SSR, SSG, CSR
+Ecosystem	Backed by Vercel	Backed by NuxtLabs
+SEO & Performance	✅	✅
+
+✅ When to use SSR (Next/Nuxt)?
+
+Blogs, News sites (SEO matters).
+
+E-commerce (product pages load instantly).
+
+SaaS dashboards (personalized content).
+
+⚡ When not needed?
+
+Static sites with little dynamic content (use SSG or SPA).
 
 
 
