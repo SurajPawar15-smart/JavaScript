@@ -14415,9 +14415,7 @@ E-commerce (product pages load instantly).
 
 SaaS dashboards (personalized content).
 
-⚡ When not needed?
 
-Static sites with little dynamic content (use SSG or SPA).
 
 
 
