@@ -14415,8 +14415,59 @@ E-commerce (product pages load instantly).
 
 SaaS dashboards (personalized content).
 
+===================================================
+JavaScript Interview Questions & Answers (Zero → Hero)
+===================================================
+🔹 Basics
 
+What is JavaScript?
+👉 A high-level, interpreted programming language used for web development, originally for browsers but now also on servers (Node.js).
 
+Difference between var, let, and const?
+
+var → function scoped, hoisted, allows redeclaration.
+
+let → block scoped, no redeclaration, hoisted in TDZ.
+
+const → block scoped, immutable binding (but object properties can change).
+
+What are data types in JS?
+
+Primitive: string, number, boolean, null, undefined, bigint, symbol.
+
+Reference: objects, arrays, functions.
+
+What is == vs ===?
+
+== → loose equality (performs type coercion).
+
+=== → strict equality (checks value + type).
+
+What are template literals?
+👉 Strings wrapped in backticks (``) that support interpolation:
+
+const name = "Suraj";
+console.log(`Hello ${name}!`);
+
+🔹 Intermediate
+
+What is Hoisting in JavaScript?
+👉 Variables and function declarations are moved to the top of scope before execution.
+
+var hoisted as undefined.
+
+let & const hoisted but stay in TDZ.
+
+Explain Closures.
+👉 A closure is when a function "remembers" variables from its lexical scope even after that scope has ended.
+
+function counter() {
+  let count = 0;
+  return () => ++count;
+}
+const inc = counter();
+console.log(inc()); // 1
+console.log(inc()); // 2
 
 
 
