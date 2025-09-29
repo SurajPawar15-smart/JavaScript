@@ -14469,6 +14469,97 @@ const inc = counter();
 console.log(inc()); // 1
 console.log(inc()); // 2
 
+================================================
+What is Event Loop in JS?
+👉 JS is single-threaded; the Event Loop manages the call stack & callback queue for async operations (setTimeout, Promises).
+
+Difference between null and undefined?
+
+undefined → declared but not assigned.
+
+null → explicitly assigned as "no value".
+
+What are Promises?
+👉 Objects that represent eventual completion/failure of an async operation.
+
+🔹 Advanced
+
+What is this in JavaScript?
+👉 Refers to the execution context.
+
+In global → window (browser).
+
+Inside function → depends on call.
+
+Inside arrow function → inherits from parent scope.
+
+What is Prototype Inheritance?
+👉 Objects in JS inherit properties from their prototype chain.
+
+What is call, apply, bind?
+
+call → calls function with given this & args.
+
+apply → same but args as array.
+
+bind → returns new function with bound this.
+
+What is Currying?
+👉 Transforming a function with multiple args into multiple functions taking one arg each.
+
+const add = a => b => a + b;
+console.log(add(2)(3)); // 5
+
+===================================================
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
