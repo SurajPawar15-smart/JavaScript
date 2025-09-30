@@ -14511,7 +14511,28 @@ const add = a => b => a + b;
 console.log(add(2)(3)); // 5
 
 ===================================================
+Expert / System-Level
 
+Explain Event Delegation.
+👉 Instead of attaching event listeners to multiple child elements, attach it to a parent and use event.target.
+
+What are Generators?
+👉 Functions that can pause & resume using yield.
+
+What is Async/Await?
+👉 Syntactic sugar over promises for cleaner async code.
+
+async function getData() {
+  const res = await fetch('/api');
+  return res.json();
+}
+
+
+Explain WeakMap & WeakSet.
+👉 Special collections where keys are weakly referenced (garbage-collected). Useful for caching.
+
+How does JavaScript handle memory management?
+👉 Automatic Garbage Collection (GC) removes unreferenced objects.
 
 
 
