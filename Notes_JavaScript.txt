@@ -14527,14 +14527,29 @@ async function getData() {
   return res.json();
 }
 
-
 Explain WeakMap & WeakSet.
 👉 Special collections where keys are weakly referenced (garbage-collected). Useful for caching.
 
 How does JavaScript handle memory management?
 👉 Automatic Garbage Collection (GC) removes unreferenced objects.
+=========================================================================
+🔹 Security / Performance
 
+What is XSS & how to prevent it?
+👉 Cross-Site Scripting. Prevent by escaping input, using CSP, sanitizers.
 
+What is CSRF & how to prevent?
+👉 Cross-Site Request Forgery. Prevent with CSRF tokens, SameSite cookies.
+
+How do you optimize JS performance?
+
+Minify & bundle code.
+
+Use lazy loading.
+
+Avoid memory leaks.
+
+Use async/await properly.
 
 
 
