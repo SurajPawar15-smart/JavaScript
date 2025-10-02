@@ -14552,7 +14552,32 @@ Avoid memory leaks.
 Use async/await properly.
 
 
+==========================================================================
+🔹 Latest ECMAScript Features
 
+What is Optional Chaining?
+👉 Safe property access.
+
+console.log(user?.address?.city);
+
+
+What is Nullish Coalescing (??)?
+👉 Returns right-hand value only if left-hand is null or undefined.
+
+What are ES Modules (ESM)?
+👉 Standard import/export syntax.
+
+import { add } from './math.js';
+export const pi = 3.14;
+
+
+What is BigInt?
+👉 A data type for integers beyond Number.MAX_SAFE_INTEGER.
+
+What is Dynamic Import?
+👉 Load modules on demand.
+
+import('./module.js').then(m => m.run());
 
 
 
