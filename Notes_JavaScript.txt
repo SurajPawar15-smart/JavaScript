@@ -14578,10 +14578,33 @@ What is Dynamic Import?
 👉 Load modules on demand.
 
 import('./module.js').then(m => m.run());
+=========================================================
+🔹 Basics
 
+What is JavaScript?
+A high-level, interpreted programming language used mainly for web development (frontend + backend).
 
+Difference between var, let, and const
 
+var: function-scoped, hoisted, can be re-declared.
 
+let: block-scoped, no re-declaration, hoisted but in TDZ.
+
+const: block-scoped, cannot be reassigned.
+
+Data Types
+Primitive (string, number, boolean, null, undefined, bigint, symbol) & Non-primitive (objects, arrays).
+
+Operators
+Arithmetic, Comparison, Logical, Ternary, Nullish coalescing (??), Optional chaining (?.).
+
+Type Conversion (Coercion)
+
+Implicit: "5" + 1 = "51"
+
+Explicit: Number("5") = 5.
+
+=========================================================
 
 
 
