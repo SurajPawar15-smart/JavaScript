@@ -14605,9 +14605,34 @@ Implicit: "5" + 1 = "51"
 Explicit: Number("5") = 5.
 
 =========================================================
+🔹 Functions & Scope
 
+Function Declaration vs Expression vs Arrow
 
+Declaration: function sum(){}
 
+Expression: const sum = function(){}
+
+Arrow: const sum = () => {}
+
+Default Parameters & Rest/Spread
+
+Default: function greet(name="Guest"){}
+
+Rest: function sum(...nums){}
+
+Spread: [...arr1, ...arr2].
+
+Scope & Hoisting
+
+Global, Local, Block scope.
+
+Hoisting: variables & functions are moved to top of scope.
+
+Closures
+A function that remembers variables from its outer scope even after the outer function has finished.
+
+=======================================================
 
 
 
