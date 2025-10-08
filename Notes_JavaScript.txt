@@ -14633,7 +14633,25 @@ Closures
 A function that remembers variables from its outer scope even after the outer function has finished.
 
 =======================================================
+🔹 Objects & Arrays
 
+Objects in JS
+Key-value pairs, created using {} or new Object().
+
+Array Methods
+
+Iteration: forEach, map, filter, reduce.
+
+Mutation: push, pop, shift, unshift, splice.
+
+Destructuring
+
+Arrays: const [a,b] = [1,2]
+
+Objects: const {x,y} = obj.
+
+this keyword
+Depends on context: global, object method, arrow function, event handler.
 
 
 
