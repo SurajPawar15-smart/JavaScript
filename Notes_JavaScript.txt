@@ -14578,14 +14578,80 @@ What is Dynamic Import?
 👉 Load modules on demand.
 
 import('./module.js').then(m => m.run());
+=========================================================
+🔹 Basics
 
+What is JavaScript?
+A high-level, interpreted programming language used mainly for web development (frontend + backend).
 
+Difference between var, let, and const
 
+var: function-scoped, hoisted, can be re-declared.
 
+let: block-scoped, no re-declaration, hoisted but in TDZ.
 
+const: block-scoped, cannot be reassigned.
 
+Data Types
+Primitive (string, number, boolean, null, undefined, bigint, symbol) & Non-primitive (objects, arrays).
 
+Operators
+Arithmetic, Comparison, Logical, Ternary, Nullish coalescing (??), Optional chaining (?.).
 
+Type Conversion (Coercion)
+
+Implicit: "5" + 1 = "51"
+
+Explicit: Number("5") = 5.
+
+=========================================================
+🔹 Functions & Scope
+
+Function Declaration vs Expression vs Arrow
+
+Declaration: function sum(){}
+
+Expression: const sum = function(){}
+
+Arrow: const sum = () => {}
+
+Default Parameters & Rest/Spread
+
+Default: function greet(name="Guest"){}
+
+Rest: function sum(...nums){}
+
+Spread: [...arr1, ...arr2].
+
+Scope & Hoisting
+
+Global, Local, Block scope.
+
+Hoisting: variables & functions are moved to top of scope.
+
+Closures
+A function that remembers variables from its outer scope even after the outer function has finished.
+
+=======================================================
+🔹 Objects & Arrays
+
+Objects in JS
+Key-value pairs, created using {} or new Object().
+
+Array Methods
+
+Iteration: forEach, map, filter, reduce.
+
+Mutation: push, pop, shift, unshift, splice.
+
+Destructuring
+
+Arrays: const [a,b] = [1,2]
+
+Objects: const {x,y} = obj.
+
+this keyword
+Depends on context: global, object method, arrow function, event handler.
 
 
 
