@@ -14578,9 +14578,9 @@ What is Dynamic Import?
 👉 Load modules on demand.
 
 import('./module.js').then(m => m.run());
-=========================================================
+=======================================================
 🔹 Basics
-
+=======================================================
 What is JavaScript?
 A high-level, interpreted programming language used mainly for web development (frontend + backend).
 
@@ -14604,9 +14604,9 @@ Implicit: "5" + 1 = "51"
 
 Explicit: Number("5") = 5.
 
-=========================================================
+=======================================================
 🔹 Functions & Scope
-
+=======================================================
 Function Declaration vs Expression vs Arrow
 
 Declaration: function sum(){}
@@ -14634,7 +14634,7 @@ A function that remembers variables from its outer scope even after the outer fu
 
 =======================================================
 🔹 Objects & Arrays
-
+=======================================================
 Objects in JS
 Key-value pairs, created using {} or new Object().
 
@@ -14653,11 +14653,33 @@ Objects: const {x,y} = obj.
 this keyword
 Depends on context: global, object method, arrow function, event handler.
 
+=======================================================
+🔹 Advanced Concepts
+=======================================================
+Prototype & Inheritance
+JS uses prototype-based inheritance. Objects inherit from their prototype chain.
 
+ES6+ Features
+let/const, arrow functions, template literals, classes, modules (import/export), async/await.
 
+Event Loop & Concurrency
+JS is single-threaded → uses event loop, call stack, task queue, microtasks (Promises).
 
+Promises & Async/Await
 
+Promise: then, catch, finally.
 
+Async/Await: cleaner syntax for asynchronous code.
+
+Modules
+
+CommonJS (require, module.exports)
+
+ES Modules (import, export).
+
+=======================================================
+
+=======================================================
 
 
 
