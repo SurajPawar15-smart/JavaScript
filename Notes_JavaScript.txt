@@ -14678,10 +14678,28 @@ CommonJS (require, module.exports)
 ES Modules (import, export).
 
 =======================================================
+🔹 Browser & DOM
+=======================================================
+DOM Manipulation
+document.getElementById, querySelector, innerHTML, addEventListener.
+
+Events & Event Bubbling
+Capturing → Target → Bubbling phases. Use event.stopPropagation().
+
+LocalStorage, SessionStorage, Cookies
+
+LocalStorage: persistent.
+
+SessionStorage: per session.
+
+Cookies: store data with expiry.
+
+Web APIs
+Fetch API, Geolocation, WebSockets, Notifications.
 
 =======================================================
-
-
+🔹 Security
+=======================================================
 
 
 
