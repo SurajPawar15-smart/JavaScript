@@ -14700,8 +14700,17 @@ Fetch API, Geolocation, WebSockets, Notifications.
 =======================================================
 🔹 Security
 =======================================================
+XSS (Cross-Site Scripting)
+Malicious script injection → prevent with sanitization.
 
+CSRF (Cross-Site Request Forgery)
+Fake requests → prevent with CSRF tokens.
 
+JWT (JSON Web Tokens)
+Securely transmit user data. Used in authentication.
+
+OAuth
+Authorization protocol (e.g., Google login).
 
 
 
