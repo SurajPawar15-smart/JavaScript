@@ -14678,12 +14678,39 @@ CommonJS (require, module.exports)
 ES Modules (import, export).
 
 =======================================================
+🔹 Browser & DOM
+=======================================================
+DOM Manipulation
+document.getElementById, querySelector, innerHTML, addEventListener.
+
+Events & Event Bubbling
+Capturing → Target → Bubbling phases. Use event.stopPropagation().
+
+LocalStorage, SessionStorage, Cookies
+
+LocalStorage: persistent.
+
+SessionStorage: per session.
+
+Cookies: store data with expiry.
+
+Web APIs
+Fetch API, Geolocation, WebSockets, Notifications.
 
 =======================================================
+🔹 Security
+=======================================================
+XSS (Cross-Site Scripting)
+Malicious script injection → prevent with sanitization.
 
+CSRF (Cross-Site Request Forgery)
+Fake requests → prevent with CSRF tokens.
 
+JWT (JSON Web Tokens)
+Securely transmit user data. Used in authentication.
 
-
+OAuth
+Authorization protocol (e.g., Google login).
 
 
 
