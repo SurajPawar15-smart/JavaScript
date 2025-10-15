@@ -14712,8 +14712,39 @@ Securely transmit user data. Used in authentication.
 OAuth
 Authorization protocol (e.g., Google login).
 
+=======================================================
+🔹 Performance & Testing
+=======================================================
+Performance Optimization
+Debouncing, Throttling, Lazy loading, Memoization.
 
+Testing in JS
 
+Unit Testing: Jest, Mocha.
+
+Integration/E2E: Cypress, Playwright.
+
+TDD (Test Driven Development).
+
+=======================================================
+🔹 Frameworks & Tools
+=======================================================
+React, Angular, Vue (SPA frameworks)
+
+React → component-based, virtual DOM.
+
+Angular → full-fledged MVC framework.
+
+Vue → lightweight progressive framework.
+
+Node.js & Express.js
+Backend with JavaScript. REST APIs, middleware, CRUD apps.
+
+Git & GitHub (Collaboration)
+Version control, branching, pull requests.
+
+CI/CD, ESLint, Prettier
+Code quality, formatting, automation in deployment pipelines.
 
 
 
