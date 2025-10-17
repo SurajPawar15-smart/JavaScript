@@ -14749,11 +14749,50 @@ Code quality, formatting, automation in deployment pipelines.
 
 ✅ This roadmap covers everything from basics to expert-level interview prep.
 
+=======================================================
+✅ Theory Questions
+=======================================================
+🧠 MCQs (Multiple Choice Questions)
+
+💻 Coding Output Questions
+
+🧩 Scenario-Based Questions
+
+Here’s a comprehensive JavaScript Interview Question Bank that covers everything from basics to advanced (structured for real-world interviews).
 
 
+🧠 I. Theory Questions (Conceptual)
 
+What is JavaScript and how is it different from Java?
+→ JS is a scripting language for web apps; Java is an OOP compiled language.
 
+Explain Hoisting in JavaScript.
+→ Variables and functions are moved to the top of their scope before execution.
 
+What is the difference between == and ===?
+→ == performs type coercion, === checks both value and type.
+
+Explain Event Bubbling and Capturing.
+→ Event Bubbling: event travels bottom-up.
+→ Capturing: event travels top-down.
+
+What are Closures?
+→ A function that has access to its outer scope even after the outer function has returned.
+
+What are Promises and how do you handle them?
+→ Promises handle async code. Use .then(), .catch(), or async/await.
+
+What is a Higher-Order Function?
+→ A function that takes another function as argument or returns one.
+
+Difference between Call, Apply, and Bind?
+→
+
+call() → calls function with individual args.
+
+apply() → calls function with array args.
+
+bind() → returns a new function with this bound.
 
 
 
