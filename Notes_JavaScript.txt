@@ -14794,7 +14794,18 @@ apply() → calls function with array args.
 
 bind() → returns a new function with this bound.
 
+🧩 II. MCQs (Multiple Choice Questions)
+1️⃣
+console.log(typeof null);
 
+
+A) null
+B) undefined
+C) object ✅
+D) NaN
+
+🟢 Explanation:
+typeof null returns "object" — a legacy bug in JS since its first version.
 
 
 
