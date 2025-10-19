@@ -14794,10 +14794,85 @@ apply() → calls function with array args.
 
 bind() → returns a new function with this bound.
 
+🧩 II. MCQs (Multiple Choice Questions)
+1️⃣
+console.log(typeof null);
 
 
+A) null
+B) undefined
+C) object ✅
+D) NaN
+
+🟢 Explanation:
+typeof null returns "object" — a legacy bug in JS since its first version.
 
 
+✅ Basic import Syntax in JavaScript
+1. Default Import
+
+Used when a module exports a default value:
+
+// math.js
+export default function add(x, y) {
+  return x + y;
+}
+
+// main.js
+import add from './math.js';
+console.log(add(2, 3)); // 5
+
+2. Named Import
+
+Used to import specific exports (non-default) from a module:
+
+// utils.js
+export const multiply = (a, b) => a * b;
+export const divide = (a, b) => a / b;
+
+// main.js
+import { multiply, divide } from './utils.js';
+console.log(multiply(2, 3)); // 6
+
+3. Import All (Namespace Import)
+
+Imports everything into a single object:
+
+// utils.js
+export const multiply = (a, b) => a * b;
+export const divide = (a, b) => a / b;
+
+// main.js
+import * as Utils from './utils.js';
+console.log(Utils.multiply(2, 3)); // 6
+
+4. Mixing Default and Named Imports
+// math.js
+export default function add(a, b) {
+  return a + b;
+}
+export const subtract = (a, b) => a - b;
+
+// main.js
+import add, { subtract } from './math.js';
+
+5. Import for Side Effects Only
+// logger.js
+console.log('Logger initialized');
+
+// main.js
+import './logger.js'; // Runs the file, doesn't import any bindings
+
+⚠️ Notes
+
+JavaScript modules must be loaded with type="module" in HTML:
+
+<script type="module" src="main.js"></script>
+
+
+Or be handled via a bundler like Webpack, Rollup, or in frameworks like React, Vue, etc.
+
+File extensions (.js, .mjs) may be required in native environments (like in the browser or Deno).
 
 
 
