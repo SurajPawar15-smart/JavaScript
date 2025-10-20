@@ -14874,7 +14874,20 @@ Or be handled via a bundler like Webpack, Rollup, or in frameworks like React, V
 
 File extensions (.js, .mjs) may be required in native environments (like in the browser or Deno).
 
+2️⃣
+let x = [1, 2, 3];
+let y = x;
+y.push(4);
+console.log(x);
 
+
+A) [1, 2, 3]
+B) [1, 2, 3, 4] ✅
+C) [4]
+D) Error
+
+🟢 Explanation:
+Arrays are reference types — y and x point to the same memory.
 
 
 
