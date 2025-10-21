@@ -14889,7 +14889,19 @@ D) Error
 🟢 Explanation:
 Arrays are reference types — y and x point to the same memory.
 
+3️⃣
+let a = "5";
+let b = 2;
+console.log(a + b);
 
+
+A) 7
+B) 52 ✅
+C) NaN
+D) Error
+
+🟢 Explanation:
+String + number performs string concatenation.
 
 
 
