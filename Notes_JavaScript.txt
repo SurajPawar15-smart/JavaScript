@@ -14903,7 +14903,15 @@ D) Error
 🟢 Explanation:
 String + number performs string concatenation.
 
+4️⃣
+let a = [1,2,3];
+console.log(typeof a);
 
+
+A) array
+B) object ✅
+C) list
+D) undefined
 
 
 
