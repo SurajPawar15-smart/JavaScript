@@ -14913,7 +14913,20 @@ B) object ✅
 C) list
 D) undefined
 
+5️⃣
+let user = { name: "Suraj" };
+Object.freeze(user);
+user.name = "Rahul";
+console.log(user.name);
 
+
+A) Rahul
+B) undefined
+C) Suraj ✅
+D) Error
+
+🟢 Explanation:
+Object.freeze() makes the object immutable.
 
 
 
