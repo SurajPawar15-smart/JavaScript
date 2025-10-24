@@ -14928,7 +14928,25 @@ D) Error
 🟢 Explanation:
 Object.freeze() makes the object immutable.
 
+💻 III. Coding Output Questions
+1️⃣
+function test() {
+  for (var i = 0; i < 3; i++) {
+    setTimeout(() => console.log(i), 1000);
+  }
+}
+test();
 
+
+🟢 Output:
+
+3
+3
+3
+
+
+✅ Explanation:
+var is function-scoped. By the time setTimeout executes, i becomes 3.
 
 
 
