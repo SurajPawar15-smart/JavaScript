@@ -14948,7 +14948,28 @@ test();
 ✅ Explanation:
 var is function-scoped. By the time setTimeout executes, i becomes 3.
 
+2️⃣
+let count = 0;
+const increment = () => {
+  count++;
+  console.log(count);
+};
+increment();
+increment();
 
+
+🟢 Output:
+
+1
+2
+3️⃣
+const arr = [10, 20, 30];
+const newArr = arr.map(num => num * 2);
+console.log(newArr);
+
+
+🟢 Output:
+[20, 40, 60]
 
 
 
