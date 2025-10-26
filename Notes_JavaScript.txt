@@ -14962,7 +14962,14 @@ increment();
 
 1
 2
+3️⃣
+const arr = [10, 20, 30];
+const newArr = arr.map(num => num * 2);
+console.log(newArr);
 
+
+🟢 Output:
+[20, 40, 60]
 
 
 
