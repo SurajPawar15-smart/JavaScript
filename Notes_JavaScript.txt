@@ -14972,5 +14972,22 @@ console.log(newArr);
 [20, 40, 60]
 
 
+4️⃣
+const promise = new Promise((resolve) => {
+  console.log("Start");
+  resolve("Success");
+});
+promise.then(res => console.log(res));
+console.log("End");
 
+
+🟢 Output:
+
+Start
+End
+Success
+
+
+✅ Explanation:
+Promises execute synchronously until .then(), which runs asynchronously.
 
