@@ -1,0 +1,703 @@
+
+what is Client Side State?
+Memory is allocated on client device and data is kept on cient device.
+JavaScript client side state managemenet techniques.
+
+1) Query String
+2) Local Storage
+3) Session Storage
+4) Cookies
+
+1) Query String:
+-Query string is a key and value collection.
+-It is appended to the URL and added into address bar of browser.
+
+http://server.com/page.html?key=value&key=vallue&key=value...
+
+-Everyone can view your data
+-It is not safe
+-It is saved in browser logs
+-It can be bookmarked.
+-It can't submit complex data like binary
+-There is limit for data 2048 to 65535 chars.
+
+1.Query string is appended using <form> submit on Get request
+
+2.You can access query string by using
+
+"location.search" //return a string ?key=value&key=value
+
+3. Convert the string into a map by using "URLSearchParams()"
+
+const ref=new URLSearchParams(location.search);
+ref.get("key"); //return value
+
+=======================================
+dashboard.html
+=======================================
+<html>
+<head>
+<title></title>
+<script>
+function bodyload(){
+var data=new URLSearchParams(location.search);
+document.querySelector("p").innerHTML=`Hello ! ${data.get("UserName")
+ and your mobile number is ${data.get("Mobile")}}`;
+}
+</script>
+<body onload="bodyload()">
+<h3>Dashboard</h3>
+</body>
+
+=======================================
+login.html
+=======================================
+<form action =./dashboard.html">
+<dl>
+<dt>UserName</dt>
+<dd><input type ="text" name="UserName"></dd>
+<dt>Mobile</dt>
+<dd><input type ="text" name="Mobile"></dd>
+</dl>
+<button type="submit">Login</button>
+</form>
+
+127.0.0.1:5500/dashboard.html?UserName=John&Mobile=9987889908
+
+location.search
+?UserName=John&Mobile=9987889908
+
+URLSearchParams(location.search)
+
+map()
+
+map.set(UserName,John)
+map.set(Mobile,9999999999)
+
+get("UserName")
+get("Mobile")
+
+
+2) Session Storage -
+- It is a local store of browser.
+- Every browser has a session.
+- You can store data in session
+- It allows to access across pages.
+- It is a temporary storage, which is deleted automatically when browser is closed.
+- It is not accessible across browser tabs.
+
+1. You have to manually create session.
+sessionStorage.setItem("key","value");
+
+2. You can access the session by using:
+sessionStorage.getItem("value");
+
+3. You can remove session by using
+sessionStorage.removeItem("key");
+
+=======================================
+dashboard.html
+=======================================
+<html>
+<head>
+<title></title>
+<script>
+function bodyload(){
+if(sessionStorage.getItem("uname")===null){
+location.href="./login.html";
+}
+else{
+document.querySelector("uname").innerHTML=`Hello ! ${sessionStorage.getItem("uname")}`;
+setTimeout(()=>{
+sessionStorage.removeItem("uname")
+location.href="./login.html";
+})
+}
+function SignOut(){
+sessionStorage.removeItem("uname");
+}
+</script>
+<body onload="bodyload()">
+<h3>Dashboard</h3>
+</body>
+
+=======================================
+login.html
+=======================================
+<head>
+<title></title>
+<script>
+function LoginClick(){
+var username=document.getElementById("UserName").value;
+sessionStorage.setItem("uname",username);
+location.href="./dashboard.html";
+}
+</script>
+</head>
+
+<h2>Login</h2>
+<div>
+<dl>
+<dt>UserName</dt>
+<dd><input type ="text" id="UserName"></dd>
+</dl>
+<button onclick="LoginClick()">Login</button>
+</div>
+
+
+3) Local Storage:
+- It is a browser store.
+- It is permanent storage.
+- It is available in your client device memory until removed explicitly.
+- You can access across browser tabs.
+- It is not accessible across browsers.
+
+Syntax:
+localStorage.setItem();
+localStorage.getItem();
+localStorage.removeItem();
+
+4) Cookies
+- Cookies is a simple text document.
+- It can be permanent or temporary.
+- Default cookies is temporary ,deleted automatically when browser is closed.
+- You can make it permanent by configuring expiry.
+- Cookies are primary virus carriers.
+
+Syntax:
+document.cookies="name=value;expires=dataTime" //UTC/ISO/GMT
+
+Note: To remove cookie set and and elapsed data and time for cookies.
+
+Ex:
+dashboard.html
+
+login.html
+
+===================
+Console Output
+===================
+> var date=new Date()
+> data.toUTCString()
+> date.toISOString()
+
+
+==============================================================================
+Date: 21-09-2025 
+Workshop Notes of State Management Sunday
+===============================================================================
+1. What is State?
+A. State is a memory allocated for application, We
+can store data and use across requests.
+
+2. Why we need State?
+A. Web uses http/https like protocols.
+They are stateless protocols.
+They can’t remember information between
+
+requests. HTTP works with “GO-GET-
+FORGET”.
+
+GO - Makes request
+GET - Get Response
+FORGET - Clean up
+
+State is required to keep information available
+across requests.
+State can be configured client side and server
+side.
+
+3. What is Client Side State?
+A. Memory is allocated on client device and data is
+kept on client device.
+JavaScript Client Side State Management
+techniques
+
+a) Query String
+b) Local Storage
+c) Session Storage
+d) Cookies
+
+Query String:
+- Query string is a key and value collection.
+- It is appended to the URL and added into
+address bar of browser.
+
+http://server.com/page.html?
+
+key=value&key=value&key=value..
+
+- Everyone can view your data.
+- It is not safe.
+- It is saved in browser logs.
+- It can be bookmarked.
+- It can’t submit complex data like binary.
+- There is limit for data 2048 to 65535 chars.
+
+1. Query string is appended using <form> submit
+on Get request.
+
+2. You can access query string by using
+
+“location.search” // returns a string ?
+
+key=value&key=value
+
+3. Convert the string into a map by using
+“URLSearchParams()”
+
+const ref = new
+
+URLSearchParams(location.search);
+
+ref.get(“key”); // returns value
+
+Ex:
+1. login.html
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,
+initial-scale=1.0">
+<title>Login</title>
+</head>
+<body>
+<h2>Login</h2>
+<form action="./dashboard.html">
+<dl>
+<dt>User Name</dt>
+<dd><input type="text" name="UserName"></dd>
+<dt>Mobile</dt>
+<dd><input type="text" name="Mobile"></dd>
+</dl>
+<button type="submit">Login</button>
+</form>
+</body>
+</html>
+
+2. Dashboard.html
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,
+initial-scale=1.0">
+
+<title>Document</title>
+<script>
+function bodyload(){
+var data = new
+
+URLSearchParams(location.search);
+
+document.querySelector("p").innerHTML = `Hello !
+
+${data.get("UserName")} your mobile
+${data.get("Mobile")}`;
+}
+</script>
+</head>
+<body onload="bodyload()">
+<h3>Dashboard</h3>
+<p></p>
+</body>
+</html>
+
+Session Storage
+- It is a local store of browser.
+- Every browser has a session.
+- You can store data in session.
+- It allows to access across pages.
+- It is a temporary storage, which is deleted
+automatically when browser is closed.
+- It is not accessible across browser tabs.
+
+1. You have to manually create session
+
+sessionStorage.setItem(“key”, value);
+
+2. You can access the session by using
+
+sessionStorage.getItem(“key”);
+
+3. You can remove session by using
+
+sessionStorage.removeItem(“key”);
+
+Ex:
+1. Login.html
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,
+initial-scale=1.0">
+<title>Login</title>
+<script>
+function LoginClick(){
+var username =
+
+document.getElementById("UserName").value;
+
+sessionStorage.setItem("uname"
+
+, username);
+
+location.href = "./dashboard.html";
+}
+</script>
+</head>
+<body>
+<h2>Login</h2>
+<div>
+<dl>
+<dt>User Name</dt>
+<dd><input type="text" id="UserName"></dd>
+</dl>
+<button onclick="LoginClick()">Login</button>
+
+</div>
+</body>
+</html>
+
+2. Dashboard.html
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,
+initial-scale=1.0">
+<title>Document</title>
+<script>
+function bodyload(){
+if(sessionStorage.getItem("uname")===null){
+location.href = "./login.html";
+} else {
+document.querySelector("p").innerHTML= `Hello !
+
+${sessionStorage.getItem("uname")}`;
+
+setTimeout(()=>{
+alert("Your session timed out\nPlease relogin");
+sessionStorage.removeItem("uname");
+location.href= "./login.html";
+},10000);
+}
+}
+function Signout(){
+sessionStorage.removeItem("uname");
+location.href = "./login.html";
+}
+</script>
+</head>
+
+<body onload="bodyload()">
+<h3>Dashboard <button
+onclick="Signout()">Signout</button> </h3>
+<p></p>
+</body>
+</html>
+
+Local Storage:
+- It is a browser store.
+- It is permanent storage.
+- It is available in your client device memory until
+removed explicitly.
+- You can access across browser tabs.
+- It is not accessible across browsers.
+
+Syntax:
+
+localStorage.setItem()
+localStorage.getItem()
+localStorage.removeItem()
+
+1. Login.html
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,
+initial-scale=1.0">
+<title>Login</title>
+<script>
+function LoginClick(){
+
+var username =
+
+document.getElementById("UserName").value;
+
+localStorage.setItem("uname"
+
+, username);
+
+location.href = "./dashboard.html";
+}
+</script>
+</head>
+<body>
+<h2>Login</h2>
+<div>
+<dl>
+<dt>User Name</dt>
+<dd><input type="text" id="UserName"></dd>
+</dl>
+<button onclick="LoginClick()">Login</button>
+</div>
+</body>
+</html>
+
+2. Dashboard.html
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,
+initial-scale=1.0">
+<title>Document</title>
+<script>
+function bodyload(){
+if(localStorage.getItem("uname")===null){
+location.href = "./login.html";
+} else {
+
+document.querySelector("p").innerHTML= `Hello !
+
+${localStorage.getItem("uname")}`;
+
+}
+}
+function Signout(){
+localStorage.removeItem("uname");
+location.href = "./login.html";
+}
+</script>
+</head>
+<body onload="bodyload()">
+<h3>Dashboard <button
+onclick="Signout()">Signout</button> </h3>
+<p></p>
+</body>
+</html>
+
+Cookies
+- Cookie is a simple text document.
+- It can be permanent or temporary.
+- Default cookie is temporary, deleted
+automatically when browser is closed.
+- You can make it permanent by configuring
+expiry.
+- Cookies are primary virus carriers.
+- It is accessible across the tabs.
+
+Syntax:
+
+document.cookies = “name=value;
+expires=dateTime” // UTC/ISO/GMT
+
+Note : To remove cookie set and elapsed date
+and time for cookies.
+
+Ex:
+1. login.html
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,
+initial-scale=1.0">
+<title>Login</title>
+<script>
+function LoginClick(){
+var username =
+
+document.getElementById("UserName").value;
+
+document.cookie =
+
+`uname=${username};expires=Sun, 24 Sep 2025 06:13:13
+GMT`;
+
+location.href = "./dashboard.html";
+}
+</script>
+</head>
+<body>
+<h2>Login</h2>
+<div>
+<dl>
+<dt>User Name</dt>
+<dd><input type="text" id="UserName"></dd>
+</dl>
+<button onclick="LoginClick()">Login</button>
+</div>
+</body>
+
+</html>
+
+2. dashboard.html
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,
+initial-scale=1.0">
+<title>Document</title>
+<script>
+function bodyload(){
+if(document.cookie===''){
+location.href = "./login.html";
+} else {
+document.querySelector("p").innerHTML= `Hello !
+${document.cookie.slice(document.cookie.indexOf("=")+1)}`;
+
+}
+}
+function Signout(){
+document.cookie = `uname="";expires=Sat, 20 Sep
+
+2025 06:13:13 GMT`;
+
+location.href = "./login.html";
+}
+</script>
+</head>
+<body onload="bodyload()">
+<h3>Dashboard <button
+onclick="Signout()">Signout</button> </h3>
+<p></p>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

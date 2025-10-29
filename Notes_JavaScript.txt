@@ -14991,3 +14991,9 @@ Success
 ✅ Explanation:
 Promises execute synchronously until .then(), which runs asynchronously.
 
+Scenario-Based Questions
+1️⃣ Memory Leak Scenario
+
+You have a JS app getting slower over time. What could be causing it?
+✅ Holding references to unused DOM elements or not clearing event listeners.
+
