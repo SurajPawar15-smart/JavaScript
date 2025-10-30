@@ -2,8 +2,7 @@
 JavaScript Developer Roadmap (Zero to Hero)
 =======================================================
 
-🟢 1. Basics of JavaScript (Done)
-
+🟢 1. Basics of JavaScript (Done the things)
 What is JavaScript? (History & Usage)
 
 Adding JS to HTML (<script> tag, internal, external)
