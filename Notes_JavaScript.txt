@@ -2,8 +2,7 @@
 JavaScript Developer Roadmap (Zero to Hero)
 =======================================================
 
-🟢 1. Basics of JavaScript (Done)
-
+🟢 1. Basics of JavaScript (Done the things)
 What is JavaScript? (History & Usage)
 
 Adding JS to HTML (<script> tag, internal, external)
@@ -14997,3 +14996,12 @@ Scenario-Based Questions
 You have a JS app getting slower over time. What could be causing it?
 ✅ Holding references to unused DOM elements or not clearing event listeners.
 
+1️⃣ Memory Leak Scenario
+
+You have a JS app getting slower over time. What could be causing it?
+✅ Holding references to unused DOM elements or not clearing event listeners.
+
+2️⃣ Real-Life Async Problem
+
+You need to call 3 APIs and show combined data only when all succeed. How to handle it?
+✅ Use Promise.all([api1(), api2(), api3()]).
