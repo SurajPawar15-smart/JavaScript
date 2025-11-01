@@ -15005,3 +15005,34 @@ You have a JS app getting slower over time. What could be causing it?
 
 You need to call 3 APIs and show combined data only when all succeed. How to handle it?
 ✅ Use Promise.all([api1(), api2(), api3()]).
+
+=======================================================================================================
+Leaning JS
+=======================================================================================================
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
