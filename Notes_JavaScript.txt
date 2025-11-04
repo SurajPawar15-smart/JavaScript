@@ -13401,8 +13401,9 @@ let total = cart.reduce((a, b) => a + b, 0);
 
 👉 Add cart and total to Watch → They update as code runs.
 
+=============================
 5. Call Stack
-
+=============================
 Shows the order of function calls.
 
 Helps identify where an error originates.
@@ -15005,3 +15006,37 @@ You have a JS app getting slower over time. What could be causing it?
 
 You need to call 3 APIs and show combined data only when all succeed. How to handle it?
 ✅ Use Promise.all([api1(), api2(), api3()]).
+
+=======================================================================================================
+🧠 JavaScript Interview Questions (Basic → Advanced)
+=======================================================================================================
+🟢 1. JavaScript Fundamentals
+
+1. What is JavaScript?
+→ JavaScript is a high-level, interpreted, single-threaded programming language used to create interactive web applications.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
