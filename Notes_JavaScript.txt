@@ -15015,7 +15015,14 @@ You need to call 3 APIs and show combined data only when all succeed. How to han
 1. What is JavaScript?
 → JavaScript is a high-level, interpreted, single-threaded programming language used to create interactive web applications.
 
+2. What are the data types in JS?
+→ Primitive: string, number, boolean, null, undefined, symbol, bigint
+→ Non-Primitive: object, array, function
 
+3. What is the difference between let, const, and var?
+→ var → function-scoped; allows redeclaration
+→ let → block-scoped; allows reassignment
+→ const → block-scoped; cannot be reassigned
 
 
 
