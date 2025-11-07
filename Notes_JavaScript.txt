@@ -15024,7 +15024,11 @@ You need to call 3 APIs and show combined data only when all succeed. How to han
 → let → block-scoped; allows reassignment
 → const → block-scoped; cannot be reassigned
 
+4. What is Hoisting?
+→ JS moves variable and function declarations to the top of their scope before execution.
 
+5. What is the difference between == and ===?
+→ == compares values with type conversion; === compares both type and value strictly.
 
 
 
