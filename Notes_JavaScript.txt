@@ -15030,7 +15030,13 @@ You need to call 3 APIs and show combined data only when all succeed. How to han
 5. What is the difference between == and ===?
 → == compares values with type conversion; === compares both type and value strictly.
 
+🟢 2. Functions and Scope
 
+6. What is a Closure?
+→ A closure allows a function to access variables from its outer scope even after the outer function has returned.
+
+7. What are Higher-Order Functions?
+→ Functions that take another function as an argument or return one.
 
 
 
