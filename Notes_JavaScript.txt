@@ -15062,7 +15062,11 @@ You need to call 3 APIs and show combined data only when all succeed. How to han
 → filter() → selects elements
 → reduce() → accumulates values
 
+14. What is Destructuring?
+→ Extracting values from arrays or objects into distinct variables.
 
+15. What is Spread and Rest Operator?
+→ Spread (...) expands arrays; Rest (...) collects multiple arguments into one array.
 
 
 
