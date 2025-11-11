@@ -15048,7 +15048,19 @@ You need to call 3 APIs and show combined data only when all succeed. How to han
 10. What is Lexical Scope?
 → The accessibility of variables based on where they are defined in the code hierarchy.
 
+🟢 3. Objects and Arrays
 
+11. How do you copy objects in JS?
+→ Shallow copy: Object.assign({}, obj) or { ...obj }
+→ Deep copy: structuredClone(obj) or JSON.parse(JSON.stringify(obj))
+
+12. What are prototypes in JS?
+→ Every object in JS inherits properties from its prototype object.
+
+13. Difference between map(), filter(), and reduce()?
+→ map() → transforms array elements
+→ filter() → selects elements
+→ reduce() → accumulates values
 
 
 
