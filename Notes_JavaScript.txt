@@ -15068,7 +15068,16 @@ You need to call 3 APIs and show combined data only when all succeed. How to han
 15. What is Spread and Rest Operator?
 → Spread (...) expands arrays; Rest (...) collects multiple arguments into one array.
 
+🟢 4. Asynchronous JavaScript
 
+16. What are Callbacks?
+→ Functions passed as arguments to be executed later.
+
+17. What are Promises?
+→ Objects that represent the eventual completion (or failure) of an asynchronous operation.
+
+18. What is Async/Await?
+→ Syntactic sugar over Promises to write asynchronous code that looks synchronous.
 
 
 
