@@ -15079,7 +15079,11 @@ You need to call 3 APIs and show combined data only when all succeed. How to han
 18. What is Async/Await?
 → Syntactic sugar over Promises to write asynchronous code that looks synchronous.
 
+19. What is the Event Loop?
+→ The mechanism that handles async operations, managing the call stack and callback queue.
 
+20. What is the difference between Microtask and Macrotask?
+→ Microtasks (Promises) run before Macrotasks (setTimeout, setInterval).
 
 
 
