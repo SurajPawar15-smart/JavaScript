@@ -15085,7 +15085,17 @@ You need to call 3 APIs and show combined data only when all succeed. How to han
 20. What is the difference between Microtask and Macrotask?
 → Microtasks (Promises) run before Macrotasks (setTimeout, setInterval).
 
+🟢 5. DOM and Events
 
+21. What is DOM?
+→ Document Object Model represents HTML as a tree structure accessible by JS.
+
+22. What is Event Bubbling and Capturing?
+→ Bubbling: event moves from inner to outer element.
+→ Capturing: event moves from outer to inner element.
+
+23. How do you prevent event bubbling?
+→ Use event.stopPropagation().
 
 
 
