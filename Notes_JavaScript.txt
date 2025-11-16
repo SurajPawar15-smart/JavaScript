@@ -15097,7 +15097,11 @@ You need to call 3 APIs and show combined data only when all succeed. How to han
 23. How do you prevent event bubbling?
 → Use event.stopPropagation().
 
+24. What is Event Delegation?
+→ Attaching one event listener to a parent instead of multiple children.
 
+25. How do you manipulate DOM elements?
+→ document.getElementById(), .innerHTML, .appendChild(), .classList.add() etc.
 
 
 
