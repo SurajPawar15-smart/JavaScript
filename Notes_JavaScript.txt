@@ -15103,7 +15103,13 @@ You need to call 3 APIs and show combined data only when all succeed. How to han
 25. How do you manipulate DOM elements?
 → document.getElementById(), .innerHTML, .appendChild(), .classList.add() etc.
 
+🟢 6. ES6+ Features
 
+26. What are Arrow Functions?
+→ Shorter function syntax that doesn’t bind its own this.
+
+27. What are Template Literals?
+→ String interpolation using backticks `Hello ${name}`.
 
 
 
