@@ -15111,6 +15111,13 @@ You need to call 3 APIs and show combined data only when all succeed. How to han
 27. What are Template Literals?
 → String interpolation using backticks `Hello ${name}`.
 
+28. What are Modules in JS?
+→ Using import and export to organize code across files.
 
+29. What are Classes in JS?
+→ Syntactic sugar over prototypes for object-oriented programming.
+
+30. What are Default Parameters?
+→ Set default values in functions if no argument is passed.
 
 
