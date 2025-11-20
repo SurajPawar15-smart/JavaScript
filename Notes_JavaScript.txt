@@ -15120,4 +15120,10 @@ You need to call 3 APIs and show combined data only when all succeed. How to han
 30. What are Default Parameters?
 → Set default values in functions if no argument is passed.
 
+🟢 7. Advanced Topics
 
+31. What is Debouncing and Throttling?
+→ Techniques to limit how often functions execute — used for performance optimization.
+
+32. What is Memoization?
+→ Caching results of function calls to improve performance.
