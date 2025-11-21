@@ -15127,3 +15127,12 @@ You need to call 3 APIs and show combined data only when all succeed. How to han
 
 32. What is Memoization?
 → Caching results of function calls to improve performance.
+
+33. What is Currying?
+→ Transforming a function with multiple arguments into a sequence of functions with one argument each.
+
+34. What are Generators?
+→ Functions that can pause execution and resume using yield.
+
+35. What is Event Loop starvation?
+→ When long-running tasks block the event loop and delay async operations.
