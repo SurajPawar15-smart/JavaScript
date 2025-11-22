@@ -15136,3 +15136,11 @@ You need to call 3 APIs and show combined data only when all succeed. How to han
 
 35. What is Event Loop starvation?
 → When long-running tasks block the event loop and delay async operations.
+
+🟢 8. Error Handling
+
+36. What is try...catch used for?
+→ To handle exceptions gracefully.
+
+37. What is finally used for?
+→ Executes regardless of success or failure.
