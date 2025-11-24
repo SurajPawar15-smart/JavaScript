@@ -15144,3 +15144,12 @@ You need to call 3 APIs and show combined data only when all succeed. How to han
 
 37. What is finally used for?
 → Executes regardless of success or failure.
+
+38. How do you create custom errors?
+→ throw new Error("Custom message");
+
+39. What is Promise.catch() used for?
+→ To handle rejected Promises.
+
+40. What are runtime vs syntax errors?
+→ Syntax errors → before execution; Runtime errors → during execution.
