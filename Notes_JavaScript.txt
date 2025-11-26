@@ -15153,3 +15153,11 @@ You need to call 3 APIs and show combined data only when all succeed. How to han
 
 40. What are runtime vs syntax errors?
 → Syntax errors → before execution; Runtime errors → during execution.
+
+🟢 9. Performance and Optimization
+
+41. How to optimize loops in JS?
+→ Use caching, for...of, or array methods instead of nested loops.
+
+42. What is Lazy Loading?
+→ Loading resources or modules only when needed.
