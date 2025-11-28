@@ -15161,3 +15161,9 @@ You need to call 3 APIs and show combined data only when all succeed. How to han
 
 42. What is Lazy Loading?
 → Loading resources or modules only when needed.
+
+43. What is Minification?
+→ Removing unnecessary characters from source code for faster load times.
+
+44. What causes Memory Leaks in JS?
+→ Unused variables, event listeners not removed, or global references.
