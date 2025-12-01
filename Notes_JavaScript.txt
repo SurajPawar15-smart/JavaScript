@@ -15167,3 +15167,6 @@ You need to call 3 APIs and show combined data only when all succeed. How to han
 
 44. What causes Memory Leaks in JS?
 → Unused variables, event listeners not removed, or global references.
+
+45. How do you profile performance in Chrome DevTools?
+→ Using the Performance and Memory tabs.
