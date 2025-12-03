@@ -15170,3 +15170,11 @@ You need to call 3 APIs and show combined data only when all succeed. How to han
 
 45. How do you profile performance in Chrome DevTools?
 → Using the Performance and Memory tabs.
+
+10. Security in JavaScript
+
+46. What is XSS (Cross-Site Scripting)?
+→ Injecting malicious scripts into web pages. Prevent using innerText or sanitizing input.
+
+47. What is CSRF (Cross-Site Request Forgery)?
+→ Forcing a user to perform actions they didn’t intend. Prevent using CSRF tokens.
