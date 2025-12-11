@@ -15178,3 +15178,9 @@ You need to call 3 APIs and show combined data only when all succeed. How to han
 
 47. What is CSRF (Cross-Site Request Forgery)?
 → Forcing a user to perform actions they didn’t intend. Prevent using CSRF tokens.
+
+48. What is JWT (JSON Web Token)?
+→ A secure token format for authentication.
+
+49. What is CORS?
+→ Cross-Origin Resource Sharing controls which domains can access resources.
