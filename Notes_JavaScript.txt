@@ -15184,3 +15184,6 @@ You need to call 3 APIs and show combined data only when all succeed. How to han
 
 49. What is CORS?
 → Cross-Origin Resource Sharing controls which domains can access resources.
+
+50. How do you secure cookies in JS?
+→ Use HttpOnly, Secure, and SameSite flags.
