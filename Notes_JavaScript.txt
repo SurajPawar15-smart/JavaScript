@@ -15187,3 +15187,16 @@ You need to call 3 APIs and show combined data only when all succeed. How to han
 
 50. How do you secure cookies in JS?
 → Use HttpOnly, Secure, and SameSite flags.
+
+51. Output?
+
+console.log([] + []);
+console.log([] + {});
+console.log({} + []);
+
+
+🟢 Output:
+
+""
+"[object Object]"
+0
