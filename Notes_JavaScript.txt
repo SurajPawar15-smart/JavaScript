@@ -15205,3 +15205,12 @@ You need to call APIs in parallel and wait for all responses — use:
 
 Promise.all([api1(), api2(), api3()])
   .then(([res1, res2, res3]) => console.log(res1, res2, res3));
+
+53. Scenario:
+You want to handle async errors globally:
+
+try {
+  const data = await fetchData();
+} catch (error) {
+  console.error("Error:", error);
+}
