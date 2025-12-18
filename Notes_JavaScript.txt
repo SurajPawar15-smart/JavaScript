@@ -15214,3 +15214,14 @@ try {
 } catch (error) {
   console.error("Error:", error);
 }
+
+54. Scenario:
+User types in search bar — avoid multiple API calls:
+
+function debounce(fn, delay) {
+  let timer;
+  return (...args) => {
+    clearTimeout(timer);
+    timer = setTimeout(() => fn(...args), delay);
+  };
+}
