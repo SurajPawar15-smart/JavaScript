@@ -15225,3 +15225,11 @@ function debounce(fn, delay) {
     timer = setTimeout(() => fn(...args), delay);
   };
 }
+55. Scenario:
+Optimize API responses by caching:
+
+const cache = {};
+function getData(url) {
+  if (cache[url]) return Promise.resolve(cache[url]);
+  return fetch(url).then(res => res.json()).then(data => (cache[url] = data));
+}
