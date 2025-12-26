@@ -15242,3 +15242,32 @@ BASIC LEVEL (1–15)
 
 2. Is JavaScript synchronous or asynchronous?
 → Synchronous by default, but supports asynchronous operations.
+
+3. What are JavaScript data types?
+→ string, number, boolean, null, undefined, object, symbol, bigint.
+
+4. Difference between null and undefined?
+→ undefined: variable declared but not assigned
+→ null: intentionally empty value
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
