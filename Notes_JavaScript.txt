@@ -15250,6 +15250,11 @@ BASIC LEVEL (1–15)
 → undefined: variable declared but not assigned
 → null: intentionally empty value
 
+5. What is var in ES5?
+→ Function-scoped variable, allows redeclaration.
+
+6. What is Hoisting?
+→ Variables and functions are moved to the top of their scope.
 
 
 
