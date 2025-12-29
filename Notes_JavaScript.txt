@@ -15256,6 +15256,13 @@ BASIC LEVEL (1–15)
 6. What is Hoisting?
 → Variables and functions are moved to the top of their scope.
 
+7. Difference between == and ===?
+→ == compares value
+→ === compares value and type
+
+8. What is a function in JS?
+→ A reusable block of code.
+
 
 
 
