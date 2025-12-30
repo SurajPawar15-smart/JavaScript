@@ -15263,6 +15263,9 @@ BASIC LEVEL (1–15)
 8. What is a function in JS?
 → A reusable block of code.
 
+9. What is an array?
+→ A collection of values stored in a single variable.
+
 
 
 
