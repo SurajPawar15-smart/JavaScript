@@ -15272,6 +15272,12 @@ BASIC LEVEL (1–15)
 11. What is this keyword?
 → Refers to the object that calls the function.
 
+12. What is NaN?
+→ Represents “Not-a-Number”.
+
+13. How do you check array type?
+Array.isArray(arr);
+
 
 
 
