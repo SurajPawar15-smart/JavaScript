@@ -15266,7 +15266,11 @@ BASIC LEVEL (1–15)
 9. What is an array?
 → A collection of values stored in a single variable.
 
+10. What is an object?
+→ A collection of key–value pairs.
 
+11. What is this keyword?
+→ Refers to the object that calls the function.
 
 
 
