@@ -15278,6 +15278,11 @@ BASIC LEVEL (1–15)
 13. How do you check array type?
 Array.isArray(arr);
 
+14. What is a loop?
+→ Used to execute code repeatedly (for, while).
+
+15. What is strict mode?
+→ "use strict" enforces better coding practices.
 
 
 
