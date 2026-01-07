@@ -15284,6 +15284,12 @@ Array.isArray(arr);
 15. What is strict mode?
 → "use strict" enforces better coding practices.
 
+16. What is a closure?
+→ A function that remembers variables from its outer scope.
+
+17. What are callbacks?
+→ Functions passed as arguments.
+
 
 
 
