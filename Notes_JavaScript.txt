@@ -15290,6 +15290,12 @@ Array.isArray(arr);
 17. What are callbacks?
 → Functions passed as arguments.
 
+18. Difference between function declaration & expression?
+→ Declaration is hoisted; expression is not.
+
+19. What is IIFE?
+→ Function that runs immediately after creation.
+
 
 
 
