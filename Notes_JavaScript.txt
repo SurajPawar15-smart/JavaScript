@@ -15296,6 +15296,12 @@ Array.isArray(arr);
 19. What is IIFE?
 → Function that runs immediately after creation.
 
+20. What is prototype in JS?
+→ Mechanism to share properties among objects.
+
+21. What are array methods in ES5?
+→ map, filter, reduce, forEach.
+
 
 
 
