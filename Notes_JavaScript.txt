@@ -15302,6 +15302,9 @@ Array.isArray(arr);
 21. What are array methods in ES5?
 → map, filter, reduce, forEach.
 
+22. What is bind, call, apply?
+→ Used to control this.
+
 
 
 
