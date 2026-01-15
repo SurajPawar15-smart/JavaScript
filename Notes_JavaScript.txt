@@ -15305,6 +15305,28 @@ Array.isArray(arr);
 22. What is bind, call, apply?
 → Used to control this.
 
+23. What is event bubbling?
+→ Event moves from child to parent.
+
+24. What is event delegation?
+→ Handling events at parent level.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
