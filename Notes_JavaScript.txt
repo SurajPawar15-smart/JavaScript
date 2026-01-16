@@ -15311,6 +15311,12 @@ Array.isArray(arr);
 24. What is event delegation?
 → Handling events at parent level.
 
+25. What is JSON?
+→ Lightweight data-interchange format.
+
+26. What is ES6?
+→ Modern version of JavaScript (ECMAScript 2015).
+
 
 
 
