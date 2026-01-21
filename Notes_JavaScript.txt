@@ -15317,7 +15317,11 @@ Array.isArray(arr);
 26. What is ES6?
 → Modern version of JavaScript (ECMAScript 2015).
 
+27. Difference between let, const, and var?
+→ let/const are block-scoped; var is function-scoped.
 
+28. What are arrow functions?
+→ Shorter syntax, no own this.
 
 
 
