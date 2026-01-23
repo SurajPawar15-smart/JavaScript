@@ -15323,7 +15323,14 @@ Array.isArray(arr);
 28. What are arrow functions?
 → Shorter syntax, no own this.
 
+29. What is template literal?
+`Hello ${name}`
 
+30. What is destructuring?
+→ Extract values from arrays/objects.
+
+31. What is spread operator?
+→ Expands arrays/objects.
 
 
 
