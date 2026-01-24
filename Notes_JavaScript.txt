@@ -15332,8 +15332,11 @@ Array.isArray(arr);
 31. What is spread operator?
 → Expands arrays/objects.
 
+32. What is rest operator?
+→ Collects arguments.
 
-
+33. What are default parameters?
+→ Assign default values to function arguments.
 
 
 
