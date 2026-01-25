@@ -15338,6 +15338,12 @@ Array.isArray(arr);
 33. What are default parameters?
 → Assign default values to function arguments.
 
+34. What are modules in ES6?
+→ import and export.
+
+35. What is Promise?
+→ Handles asynchronous operations.
+
 
 
 
