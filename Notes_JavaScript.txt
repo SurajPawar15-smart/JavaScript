@@ -15344,6 +15344,12 @@ Array.isArray(arr);
 35. What is Promise?
 → Handles asynchronous operations.
 
+36. What is async/await?
+→ Cleaner way to work with promises.
+
+37. What is the Event Loop?
+→ Handles asynchronous execution.
+
 
 
 
