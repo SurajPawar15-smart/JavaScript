@@ -15350,6 +15350,12 @@ Array.isArray(arr);
 37. What is the Event Loop?
 → Handles asynchronous execution.
 
+38. Difference between microtask & macrotask?
+→ Microtask (Promise) runs before macrotask (setTimeout).
+
+39. What is currying?
+→ Transform function into sequence of functions.
+
 
 
 
