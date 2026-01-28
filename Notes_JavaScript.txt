@@ -15356,6 +15356,12 @@ Array.isArray(arr);
 39. What is currying?
 → Transform function into sequence of functions.
 
+40. What is memoization?
+→ Caching function results.
+
+41. What is debouncing?
+→ Limits function execution rate.
+
 
 
 
