@@ -15362,8 +15362,8 @@ Array.isArray(arr);
 41. What is debouncing?
 → Limits function execution rate.
 
-
-
+42. What is Lazy Loading?
+→ Loading resources or modules only when needed.
 
 
 
