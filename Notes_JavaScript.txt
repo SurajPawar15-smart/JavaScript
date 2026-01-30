@@ -15365,6 +15365,8 @@ Array.isArray(arr);
 42. What is Lazy Loading?
 → Loading resources or modules only when needed.
 
+43. What is shallow vs deep copy?
+→ Shallow copies reference; deep copies actual data.
 
 
 
