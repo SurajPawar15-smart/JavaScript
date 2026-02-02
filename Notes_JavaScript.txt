@@ -15368,7 +15368,8 @@ Array.isArray(arr);
 43. What is shallow vs deep copy?
 → Shallow copies reference; deep copies actual data.
 
-
+44. What is immutability?
+→ Data cannot be changed directly.
 
 
 
