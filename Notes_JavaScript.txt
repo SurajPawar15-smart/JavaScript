@@ -15371,6 +15371,9 @@ Array.isArray(arr);
 44. What is immutability?
 → Data cannot be changed directly.
 
+45. What is optional chaining?
+user?.address?.city
+
 
 
 
