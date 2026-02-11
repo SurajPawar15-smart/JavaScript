@@ -15374,8 +15374,8 @@ Array.isArray(arr);
 45. What is optional chaining?
 user?.address?.city
 
-
-
+46. What is BigInt?
+→ Handles very large integers.
 
 
 
