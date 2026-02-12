@@ -15377,7 +15377,8 @@ user?.address?.city
 46. What is BigInt?
 → Handles very large integers.
 
-
+47. What is Symbol?
+→ Creates unique identifiers.
 
 
 
