@@ -15380,6 +15380,9 @@ user?.address?.city
 47. What is Symbol?
 → Creates unique identifiers.
 
+48. What are generators?
+→ Functions that pause using yield.
+
 
 
 
