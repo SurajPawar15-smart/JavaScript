@@ -15383,6 +15383,9 @@ user?.address?.city
 48. What are generators?
 → Functions that pause using yield.
 
+49. What causes memory leaks?
+→ Unused variables, event listeners.
+
 
 
 
