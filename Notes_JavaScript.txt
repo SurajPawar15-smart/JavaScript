@@ -15386,6 +15386,9 @@ user?.address?.city
 49. What causes memory leaks?
 → Unused variables, event listeners.
 
+50. How to improve JS performance?
+→ Code splitting, caching, lazy loading.
+
 
 
 
