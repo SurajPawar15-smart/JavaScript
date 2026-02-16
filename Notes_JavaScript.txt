@@ -15389,8 +15389,25 @@ user?.address?.city
 50. How to improve JS performance?
 → Code splitting, caching, lazy loading.
 
+49. What is CORS?
+→ Cross-Origin Resource Sharing controls which domains can access resources.
+
+50. How do you secure cookies in JS?
+→ Use HttpOnly, Secure, and SameSite flags.
+
+🟢 11. Coding & Scenario-Based Examples
+
+51. Output?
+
+console.log([] + []);
+console.log([] + {});
+console.log({} + []);
 
 
+🟢 Output:
+""
+"[object Object]"
+0
 
 
 
