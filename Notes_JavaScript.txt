@@ -15409,6 +15409,9 @@ console.log({} + []);
 "[object Object]"
 0
 
+This is a Git security feature (introduced to prevent unsafe repo access).
+Nothing is wrong with your command 👍
+
 
 
 
