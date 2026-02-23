@@ -15413,6 +15413,11 @@ This is a Git security feature (introduced to prevent unsafe repo access).
 Nothing is wrong with your command 
 
 
+🟢 Basic Level JavaScript Interview Questions
+1. What is JavaScript?
+
+JavaScript is a high-level, interpreted programming language used to create dynamic web pages.
+
 
 
 
