@@ -15418,6 +15418,18 @@ Nothing is wrong with your command
 
 JavaScript is a high-level, interpreted programming language used to create dynamic web pages.
 
+2. Difference between var, let, and const?
+Feature	var	let	const
+Scope	Function	Block	Block
+Redeclare	Yes	No	No
+Reassign	Yes	Yes	No
+Hoisting	Yes (undefined)	Yes (TDZ)	Yes (TDZ)
+
+Example:
+var a = 10;
+let b = 20;
+const c = 30;
+
 
 
 
