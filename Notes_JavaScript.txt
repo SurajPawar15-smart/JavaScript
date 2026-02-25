@@ -15430,6 +15430,13 @@ var a = 10;
 let b = 20;
 const c = 30;
 
+3. What is hoisting?
+
+JavaScript moves declarations to the top.
+
+console.log(a); // undefined
+var a = 5;
+
 
 
 
