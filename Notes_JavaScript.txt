@@ -15437,6 +15437,26 @@ JavaScript moves declarations to the top.
 console.log(a); // undefined
 var a = 5;
 
+4. What is a data type?
+
+Defines the type of value.
+
+Primitive:
+
+string
+
+number
+
+boolean
+
+null
+
+undefined
+
+symbol
+
+bigint
+
 
 
 
