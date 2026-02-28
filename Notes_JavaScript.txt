@@ -15438,26 +15438,33 @@ console.log(a); // undefined
 var a = 5;
 
 4. What is a data type?
-
 Defines the type of value.
-
 Primitive:
-
 string
-
 number
-
 boolean
-
 null
-
 undefined
-
 symbol
-
 bigint
 
+5. Difference between == and ===
+5 == "5"   // true (checks value)
+5 === "5"  // false (checks value + type)
 
+🟡 Intermediate Level Questions
+6. What is closure?
+Function accessing parent scope variables.
+function outer() {
+  let count = 0;
+  return function inner() {
+    count++;
+    console.log(count);
+  };
+}
+
+const fn = outer();
+fn(); // 1
 
 
 
