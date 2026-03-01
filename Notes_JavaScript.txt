@@ -15467,6 +15467,20 @@ const fn = outer();
 fn(); // 1
 
 
+7. What is event loop?
+
+Handles async operations.
+
+Order:
+
+Call Stack
+
+Web APIs
+
+Callback Queue
+
+Event Loop
+
 
 
 
