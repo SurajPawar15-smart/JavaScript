@@ -15481,7 +15481,12 @@ Callback Queue
 
 Event Loop
 
-
+8. What is callback function?
+Function passed as argument.
+function greet(name, callback) {
+  console.log(name);
+  callback();
+}
 
 
 
