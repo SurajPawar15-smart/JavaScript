@@ -15488,7 +15488,11 @@ function greet(name, callback) {
   callback();
 }
 
-
+9. What is promise?
+Handles async operations.
+let promise = new Promise((resolve, reject) => {
+  resolve("Success");
+});
 
 
 
