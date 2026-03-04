@@ -15494,7 +15494,11 @@ let promise = new Promise((resolve, reject) => {
   resolve("Success");
 });
 
+10. What is arrow function?
 
+Short syntax function.
+
+const add = (a,b) => a+b;
 
 
 
