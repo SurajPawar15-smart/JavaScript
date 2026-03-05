@@ -15500,5 +15500,30 @@ Short syntax function.
 
 const add = (a,b) => a+b;
 
+11. Difference between synchronous and asynchronous
 
+Synchronous:
 
+console.log("A");
+console.log("B");
+
+Async:
+
+setTimeout(() => console.log("A"), 1000);
+console.log("B");
+
+Output:
+
+B
+A
+
+12. What is this keyword?
+
+Refers to current object.
+
+const obj = {
+ name: "Suraj",
+ show() {
+   console.log(this.name);
+ }
+};
