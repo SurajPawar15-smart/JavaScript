@@ -15398,11 +15398,9 @@ user?.address?.city
 🟢 11. Coding & Scenario-Based Examples
 
 51. Output?
-
 console.log([] + []);
 console.log([] + {});
 console.log({} + []);
-
 
 🟢 Output:
 ""
@@ -15411,7 +15409,6 @@ console.log({} + []);
 
 This is a Git security feature (introduced to prevent unsafe repo access).
 Nothing is wrong with your command 
-
 
 🟢 Basic Level JavaScript Interview Questions
 1. What is JavaScript?
@@ -15462,7 +15459,6 @@ function outer() {
     console.log(count);
   };
 }
-
 const fn = outer();
 fn(); // 1
 
@@ -15470,15 +15466,10 @@ fn(); // 1
 7. What is event loop?
 
 Handles async operations.
-
 Order:
-
 Call Stack
-
 Web APIs
-
 Callback Queue
-
 Event Loop
 
 8. What is callback function?
@@ -15495,35 +15486,37 @@ let promise = new Promise((resolve, reject) => {
 });
 
 10. What is arrow function?
-
 Short syntax function.
-
 const add = (a,b) => a+b;
 
 11. Difference between synchronous and asynchronous
 
 Synchronous:
-
 console.log("A");
 console.log("B");
 
 Async:
-
 setTimeout(() => console.log("A"), 1000);
 console.log("B");
 
 Output:
-
 B
 A
 
 12. What is this keyword?
-
 Refers to current object.
-
 const obj = {
  name: "Suraj",
  show() {
    console.log(this.name);
  }
+};
+
+13. What is prototype?
+Mechanism for inheritance.
+function Person(name) {
+ this.name = name;
+}
+Person.prototype.say = function() {
+ console.log(this.name);
 };
