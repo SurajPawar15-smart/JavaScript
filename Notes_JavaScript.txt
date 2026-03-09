@@ -15524,3 +15524,11 @@ Person.prototype.say = function() {
 14. Difference between null and undefined
 null	undefined
 intentional empty	variable not assigned
+
+15. What is async/await?
+
+Cleaner async syntax.
+
+async function test() {
+ let result = await fetch("url");
+}
