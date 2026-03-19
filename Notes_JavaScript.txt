@@ -15532,3 +15532,22 @@ Cleaner async syntax.
 async function test() {
  let result = await fetch("url");
 }
+1️⃣5️⃣ Advanced Topics (Senior Level)
+
+Learn these to become Expert JavaScript Developer.
+
+Event Loop Deep Dive
+
+Memory Management
+
+Garbage Collection
+
+Web Workers
+
+Service Workers
+
+PWA
+
+Streams API
+
+WebSockets
