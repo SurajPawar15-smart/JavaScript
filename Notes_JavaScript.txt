@@ -15551,3 +15551,17 @@ PWA
 Streams API
 
 WebSockets
+
+
+1️⃣6️⃣ JavaScript Ecosystem
+
+Important tools
+
+Build Tools
+Webpack
+Vite
+Parcel
+Package Manager
+npm
+yarn
+pnpm
