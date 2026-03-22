@@ -15565,3 +15565,14 @@ Package Manager
 npm
 yarn
 pnpm
+
+1️⃣7️⃣ Version Control
+Learn Git.
+Important commands:
+git clone
+git add
+git commit
+git push
+git pull
+git branch
+git merge
