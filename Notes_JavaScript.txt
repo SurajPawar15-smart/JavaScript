@@ -15576,4 +15576,7 @@ git push
 git pull
 git branch
 git merge
-=============
+
+18. What is throttling?
+Limits execution rate.
+
