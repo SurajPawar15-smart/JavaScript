@@ -15580,3 +15580,16 @@ git merge
 18. What is throttling?
 Limits execution rate.
 
+1️⃣8️⃣ TypeScript (Very Important)
+
+Modern JS developers should know TypeScript.
+
+Topics:
+
+Types
+Interfaces
+Generics
+Utility types
+Enums
+Decorators
+
