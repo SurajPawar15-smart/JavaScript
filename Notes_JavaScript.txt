@@ -15595,3 +15595,13 @@ Decorators
 
 What us D
 Decorators
+
+19. What is currying?
+
+Function returning function.
+
+function add(a) {
+ return function(b) {
+  return a+b;
+ }
+}
