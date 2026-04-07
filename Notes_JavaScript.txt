@@ -15605,3 +15605,11 @@ function add(a) {
   return a+b;
  }
 }
+
+20. What is IIFE?
+
+Immediately invoked function.
+
+(function(){
+ console.log("Hello");
+})();
