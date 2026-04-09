@@ -15614,3 +15614,4 @@ Immediately invoked function.
 
 console.log(typeof null);
 object
+
