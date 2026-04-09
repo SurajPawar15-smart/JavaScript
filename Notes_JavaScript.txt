@@ -15607,9 +15607,11 @@ function add(a) {
 }
 
 20. What is IIFE?
-
 Immediately invoked function.
-
 (function(){
  console.log("Hello");
 })();
+
+console.log(typeof null);
+object
+
