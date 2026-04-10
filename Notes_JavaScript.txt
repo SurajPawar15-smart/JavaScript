@@ -15613,5 +15613,10 @@ Immediately invoked function.
 })();
 
 console.log(typeof null);
+Answer:
 object
 
+
+console.log(1 + "2" + 3);
+Answer:
+123
