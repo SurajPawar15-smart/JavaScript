@@ -15620,3 +15620,13 @@ object
 console.log(1 + "2" + 3);
 Answer:
 123
+
+for(var i=0;i<3;i++){
+ setTimeout(()=>console.log(i),1000);
+}
+
+Output:
+
+3
+3
+3
