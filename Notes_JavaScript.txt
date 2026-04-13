@@ -15640,3 +15640,21 @@ Output:
 0
 1
 2
+
+⭐ Most Important Topics for Interview
+
+Must prepare:
+
+var let const
+closures
+promises
+async await
+event loop
+this keyword
+arrow function
+hoisting
+prototype
+callbacks
+array methods
+DOM
+ES6 features
