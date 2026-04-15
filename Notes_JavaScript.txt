@@ -15658,3 +15658,10 @@ callbacks
 array methods
 DOM
 ES6 features
+
+BASIC LEVEL (1–25)
+What is JavaScript?
+What are data types in JavaScript?
+Difference between var, let, and const?
+What is hoisting?
+Difference between == and ===?
