@@ -15665,3 +15665,8 @@ What are data types in JavaScript?
 Difference between var, let, and const?
 What is hoisting?
 Difference between == and ===?
+What is undefined?
+What is null?
+Difference between null and undefined?
+What is NaN?
+What is a variable?
