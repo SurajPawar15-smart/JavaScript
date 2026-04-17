@@ -15670,3 +15670,8 @@ What is null?
 Difference between null and undefined?
 What is NaN?
 What is a variable?
+What is a function?
+Function declaration vs expression?
+What is an array?
+What is an object?
+What is scope?
