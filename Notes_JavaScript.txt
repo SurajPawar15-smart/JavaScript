@@ -15674,4 +15674,4 @@ What is a function?
 Function declaration vs expression?
 What is an array?
 What is an object?
-What is scope?
+What is scope...!!!
