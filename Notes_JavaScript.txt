@@ -15675,3 +15675,4 @@ Function declaration vs expression?
 What is an array?
 What is an object?
 What is scope
+what is TDZ?
