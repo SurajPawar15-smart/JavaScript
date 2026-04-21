@@ -15676,3 +15676,8 @@ What is an array?
 What is an object?
 What is scope
 what is TDZ?
+What is global vs local scope?
+What is block scope?
+What is this keyword?
+What are operators in JS?
+What is type coercion?
