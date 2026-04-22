@@ -15681,3 +15681,8 @@ What is block scope?
 What is this keyword?
 What are operators in JS?
 What is type coercion?
+What is truthy and falsy values?
+What is a loop? (for, while)
+What is break and continue?
+What is strict mode ("use strict")?
+What is template literal?
