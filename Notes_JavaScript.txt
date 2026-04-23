@@ -15686,3 +15686,8 @@ What is a loop? (for, while)
 What is break and continue?
 What is strict mode ("use strict")?
 What is template literal?
+What is a closure?
+What is lexical scope?
+What is callback function?
+What are higher-order functions?
+What is IIFE?
