@@ -15696,3 +15696,8 @@ What is call stack?
 What is callback queue?
 What is event bubbling?
 What is event capturing
+What is event delegation?
+What is DOM?
+How to select elements in DOM?
+What is addEventListener?
+What is JSON?
