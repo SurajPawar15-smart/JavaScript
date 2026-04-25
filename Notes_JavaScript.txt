@@ -15695,4 +15695,4 @@ What is event loop?
 What is call stack?
 What is callback queue?
 What is event bubbling?
-What is event capturing?
+What is event capturing
