@@ -15686,3 +15686,18 @@ What is a loop? (for, while)
 What is break and continue?
 What is strict mode ("use strict")?
 What is template literal?
+What is a closure?
+What is lexical scope?
+What is callback function?
+What are higher-order functions?
+What is IIFE?
+What is event loop?
+What is call stack?
+What is callback queue?
+What is event bubbling?
+What is event capturing
+What is event delegation?
+What is DOM?
+How to select elements in DOM?
+What is addEventListener?
+What is JSON?
