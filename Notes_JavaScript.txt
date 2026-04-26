@@ -15701,3 +15701,8 @@ What is DOM?
 How to select elements in DOM?
 What is addEventListener?
 What is JSON?
+What is AJAX?
+What is Promise?
+Promise states?
+What is .then() and .catch()?
+What is async/await?
