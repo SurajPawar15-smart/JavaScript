@@ -15706,3 +15706,8 @@ What is Promise?
 Promise states?
 What is .then() and .catch()?
 What is async/await?
+What is error handling in JS?
+What is try...catch?
+What is finally?
+What is array map()?
+What is filter()?
