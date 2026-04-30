@@ -15711,3 +15711,8 @@ What is try...catch?
 What is finally?
 What is array map()?
 What is filter()?
+What is reduce()?
+Difference between map and forEach?
+What is destructuring?
+What is spread operator (...)?
+What is rest operator?
