@@ -15716,3 +15716,8 @@ Difference between map and forEach?
 What is destructuring?
 What is spread operator (...)?
 What is rest operator?
+What are default parameters?
+What are arrow functions?
+Difference between arrow and normal functions?
+What are ES6 modules?
+What is import and export?
