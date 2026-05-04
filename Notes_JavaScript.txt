@@ -15721,3 +15721,9 @@ What are arrow functions?
 Difference between arrow and normal functions?
 What are ES6 modules?
 What is import and export?
+What is prototype?
+What is prototypal inheritance?
+What is __proto__?
+What is class in JS?
+What is constructor function?
+
