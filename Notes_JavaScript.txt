@@ -15726,4 +15726,6 @@ What is prototypal inheritance?
 What is __proto__?
 What is class in JS?
 What is constructor function?
+What is super keyword?
+What is new keyword?
 
