@@ -15730,4 +15730,9 @@ What is super keyword?
 What is new keyword?
 What is deep copy vs shallow copy?
 How to clone an object?
+What is immutability?
+What is currying?
+What is memoization?
+What is debouncing?
+What is throttling?
 
