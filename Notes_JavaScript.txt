@@ -15735,5 +15735,7 @@ What is currying?
 What is memoization?
 What is debouncing?
 What is throttling?
-ahsgdggf
+What is generator function?
+What is yield?
+What is Symbol?
 
