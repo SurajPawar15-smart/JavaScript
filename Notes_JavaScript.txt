@@ -15738,4 +15738,7 @@ What is throttling?
 What is generator function?
 What is yield?
 What is Symbol?
+What is BigInt?
+What is optional chaining (?.)?
+What is nullish coalescing (??)?
 
