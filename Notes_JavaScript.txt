@@ -15741,4 +15741,6 @@ What is Symbol?
 What is BigInt?
 What is optional chaining (?.)?
 What is nullish coalescing (??)?
+What is Set and Map?
+Difference between Map and Object?
 
