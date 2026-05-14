@@ -15743,4 +15743,6 @@ What is optional chaining (?.)?
 What is nullish coalescing (??)?
 What is Set and Map?
 Difference between Map and Object?
+What is cookie?
+What is service worker?
 
