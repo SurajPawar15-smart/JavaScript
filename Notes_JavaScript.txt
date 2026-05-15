@@ -15745,4 +15745,8 @@ What is Set and Map?
 Difference between Map and Object?
 What is cookie?
 What is service worker?
+What is lazy loading?
+What is code splitting?
+What is bundling?
+What is tree shaking?
 
