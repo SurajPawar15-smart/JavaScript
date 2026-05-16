@@ -15749,4 +15749,6 @@ What is lazy loading?
 What is code splitting?
 What is bundling?
 What is tree shaking?
+What is WebSocket?
+What is SSR (Server-Side Rendering)?
 
