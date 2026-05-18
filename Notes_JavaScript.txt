@@ -15751,4 +15751,6 @@ What is bundling?
 What is tree shaking?
 What is WebSocket?
 What is SSR (Server-Side Rendering)?
+What is SSR (Server-Side Rendering)?
+How to optimize JavaScript performance?
 
