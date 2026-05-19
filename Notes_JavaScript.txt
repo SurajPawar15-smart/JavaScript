@@ -15754,3 +15754,11 @@ What is SSR (Server-Side Rendering)?
 What is SSR (Server-Side Rendering)?
 How to optimize JavaScript performance?
 
+Bonus: Must-Prepare Topics for Interviews
+
+👉 If you’re targeting Angular / Node.js jobs, focus on:
+
+Closures
+Promises & Async/Await
+Event Loop
+
