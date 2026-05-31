@@ -1,0 +1,5 @@
+// 5. Boolean conversion
+!!"text";
+
+// 6. Default value
+let name = user || "Guest";
