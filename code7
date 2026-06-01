@@ -1,0 +1,2 @@
+// 7. Ternary operator
+let result = age > 18 ? "Adult" : "Minor";
